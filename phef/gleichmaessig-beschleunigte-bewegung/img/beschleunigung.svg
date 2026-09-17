@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+  <title id="title">Wagen mit zunehmender Geschwindigkeit</title>
+  <g fill="none" stroke="#292735" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 72 Q50 71 92 72 M16 77 L20 73 M72 76 L77 73"/>
+    <path d="M27 43 Q47 41 70 43 L73 65 L24 65 Z" fill="#fff"/>
+    <circle cx="35" cy="66" r="6" fill="#fff"/><circle cx="63" cy="66" r="6" fill="#fff"/>
+    <path d="M11 37 L21 37 M8 45 L20 45 M5 53 L18 53 M39 27 L76 27 M69 20 L77 27 L69 34"/>
+  </g>
+</svg>

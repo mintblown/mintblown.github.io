@@ -1,0 +1,36 @@
+VISUAL STYLE — consistent across all illustrations:
+
+Create a simple black-and-white educational sketch in a hand-drawn classroom / notebook style.
+
+Drawing style:
+- pure black ink on a clean white background
+- simple, slightly wobbly hand-drawn outlines
+- deliberately imperfect linework; lines should look drawn with a black fineliner
+- medium to bold line weight, with small natural variations
+- simple geometric forms and highly simplified objects
+- people are minimalist stick figures with round heads and very few facial features
+- friendly, playful, but not childish or cartoonishly exaggerated
+- no photorealism, no 3D rendering, no gradients
+- no grey fills or large solid black areas
+- use sparse diagonal hatching only where shading, material or depth needs clarification
+- motion is shown with simple arrows, curved arrows, dashed trajectories or a few motion lines
+- forces and physical quantities use clean vector arrows where appropriate
+- generous white space; avoid unnecessary decorative details
+
+Composition:
+- diagram-like and immediately readable
+- objects clearly separated
+- side views preferred for physical situations
+- consistent perspective and scale where objects are compared
+- if multiple situations are shown, arrange them as clearly separated panels
+- panel borders may be slightly irregular and hand-drawn
+- prioritize physical and conceptual correctness over artistic composition
+- all important spatial relationships must be unambiguous
+
+Typography:
+- avoid text unless explicitly requested
+- when text is necessary, use short handwritten-looking black labels
+- mathematical symbols and arrows must remain clearly legible
+
+Overall impression:
+A physics teacher's carefully drawn black-fineline sketch on a white sheet of paper: reduced, charmingly imperfect, visually calm, scientifically clear, and suitable for worksheets and presentation slides.
