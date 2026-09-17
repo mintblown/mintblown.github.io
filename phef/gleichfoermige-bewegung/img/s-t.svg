@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 350" role="img" aria-labelledby="title desc">
+  <title id="title">Ort-Zeit-Diagramm einer gleichförmigen Bewegung</title>
+  <desc id="desc">Eine Gerade steigt vom Ursprung bis zum Punkt 4 Sekunden und 8 Meter. Die Steigung beträgt 2 Meter pro Sekunde.</desc>
+  <rect width="620" height="350" fill="#fff"/>
+  <g fill="none" stroke="#292735" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M80 40 L80 280 L548 280 M74 48 L80 40 L86 48 M540 274 L548 280 L540 286"/>
+    <path d="M190 275 V285 M300 275 V285 M410 275 V285 M520 275 V285 M75 225 H85 M75 170 H85 M75 115 H85 M75 60 H85" stroke-width="2"/>
+  </g>
+  <path d="M80 280 L520 60" fill="none" stroke="#8b5caf" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="300" cy="170" r="6" fill="#fff" stroke="#8b5caf" stroke-width="3"/>
+  <circle cx="520" cy="60" r="6" fill="#fff" stroke="#8b5caf" stroke-width="3"/>
+  <g fill="#292735" font-family="Arial, sans-serif" font-size="17" text-anchor="middle">
+    <text x="80" y="305">0</text><text x="190" y="305">1</text><text x="300" y="305">2</text><text x="410" y="305">3</text><text x="520" y="305">4</text>
+  </g>
+  <g fill="#292735" font-family="Arial, sans-serif" font-size="17" text-anchor="end">
+    <text x="67" y="231">2</text><text x="67" y="176">4</text><text x="67" y="121">6</text><text x="67" y="66">8</text>
+  </g>
+  <text x="95" y="35" fill="#292735" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Ort s (m)</text>
+  <text x="480" y="333" fill="#292735" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Zeit t (s)</text>
+</svg>
