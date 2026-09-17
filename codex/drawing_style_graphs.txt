@@ -1,0 +1,15 @@
+Use whenever a graph is part of the drawing, especially for physics
+
+* use styles from drawing_style_x if not stated otherwise
+
+* axis labels are parallel to corresponding axis
+* axis labels consist of description, symbol and unit
+  * allways use description symbol / unit
+  * e.g. Zeit t / s
+  * do not use parentheses () for units
+* axis labels are centered w.r.t. corresponding axis
+* color may be used in s/w graphic to emphasize a small number of details
+* axes allways end with an arrow in their positive direction
+* for complex plots regular light or thin tick lines may be used
+* use regular ticks if not stated otherwise
+* start plot at (0,0) if not totally stupid or stated otherwise
