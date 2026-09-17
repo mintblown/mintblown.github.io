@@ -57,12 +57,19 @@ h1, h2, h3, .card-title { font-family: Nunito, Arial, sans-serif; letter-spacing
 .article-hero h1 { margin-bottom: 9px; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
 .article-hero p:last-child { margin-bottom: 0; color: #466068; line-height: 1.6; }
 .intro { margin: 36px 0 28px; color: #3b5360; font-size: 1.1rem; line-height: 1.7; }
+.keyboard-tip { margin: 0 0 30px; padding: 20px 24px; border: 1px solid #b9dcd6; border-radius: 15px; background: #e9f5f1; color: #315b58; line-height: 1.65; }
+.keyboard-tip p { margin: 0; }
 .steps-title { margin-bottom: 18px; font-size: 1.55rem; }
 .steps { list-style: none; display: grid; gap: 13px; margin: 0; padding: 0; counter-reset: steps; }
 .steps li { position: relative; min-height: 94px; padding: 24px 25px 23px 82px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); counter-increment: steps; }
 .steps li::before { content: counter(steps); position: absolute; top: 24px; left: 25px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #d9eee8; color: #126b64; font-weight: 900; }
 .steps h3 { margin-bottom: 5px; font-size: 1.1rem; }
 .steps p { margin-bottom: 0; color: var(--muted); line-height: 1.6; }
+.steps .step-note { margin-top: 12px; padding: 12px 15px; border-radius: 10px; background: #eef6f5; color: #365c5e; }
+.step-figure { width: fit-content; max-width: 100%; margin: 18px 0 0; }
+.step-figure--small { max-width: min(100%, 360px); }
+.step-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.step-figure figcaption { margin-top: 8px; color: var(--muted); font-size: .88rem; line-height: 1.45; }
 .tip { margin-top: 26px; padding: 22px 25px; border-left: 4px solid #e9aa65; border-radius: 0 15px 15px 0; background: #fff4e6; line-height: 1.6; }
 .tip p { margin: 0; }
 kbd { display: inline-block; padding: 1px 6px; border: 1px solid #b7c8cb; border-bottom-width: 2px; border-radius: 5px; background: white; font: inherit; font-weight: 700; white-space: nowrap; }
