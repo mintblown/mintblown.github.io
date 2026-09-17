@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title">
+  <title id="title">Datei mit Pfeil nach oben</title>
+  <rect x="13" y="9" width="46" height="60" rx="9" fill="#fff" stroke="#266f91" stroke-width="4"/>
+  <path d="M47 9v15h12" fill="none" stroke="#266f91" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M36 52V31m0 0-9 9m9-9 9 9" fill="none" stroke="#189c8c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
