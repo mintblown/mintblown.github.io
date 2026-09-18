@@ -56,12 +56,16 @@ footer { padding-bottom: 30px; color: #8a8178; font-size: .86rem; }
 .measurement th { background: #f9eee5; }
 .plot-exercise { margin-top: 42px; }
 .plot-exercise > p { line-height: 1.65; }
-.flip-card { perspective: 1200px; }
-.flip-card-inner { display: grid; transform-style: preserve-3d; transition: transform .7s ease; }
-.flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
-.flip-face { grid-area: 1 / 1; min-width: 0; padding: clamp(12px, 3vw, 24px); border: 1px solid var(--line); border-radius: 19px; background: white; backface-visibility: hidden; box-shadow: 0 9px 22px #4c2c1809; }
+.flip-card { -webkit-perspective: 1200px; perspective: 1200px; }
+.flip-card-inner { display: grid; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; transition: transform .7s ease; }
+.flip-card.is-flipped .flip-card-inner { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+/* Visibility keeps Safari from painting both stacked SVG faces at once. */
+.flip-face { grid-area: 1 / 1; min-width: 0; padding: clamp(12px, 3vw, 24px); border: 1px solid var(--line); border-radius: 19px; background: white; -webkit-backface-visibility: hidden; backface-visibility: hidden; box-shadow: 0 9px 22px #4c2c1809; transition: visibility 0s linear .35s; }
+.flip-front { visibility: visible; }
+.flip-card.is-flipped .flip-front { visibility: hidden; }
 .flip-face h3 { margin-bottom: 15px; }
-.flip-back { transform: rotateY(180deg); }
+.flip-back { visibility: hidden; -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+.flip-card.is-flipped .flip-back { visibility: visible; }
 .flip-back > p:last-child { margin-bottom: 0; line-height: 1.55; }
 .plot-frame { width: 100%; border: 1px solid #eee7df; border-radius: 10px; overflow: hidden; }
 .plot { display: block; width: 100%; height: auto; font-family: Arial, sans-serif; }
@@ -84,4 +88,4 @@ footer { padding-bottom: 30px; color: #8a8178; font-size: .86rem; }
 .exercise-controls button:focus-visible { outline: 3px solid #b26a43; outline-offset: 3px; }
 .exercise-controls button[hidden] { display: none; }
 .exercise-status { margin-top: 12px; color: var(--muted); }
-@media (prefers-reduced-motion: reduce) { .flip-card-inner { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .flip-card-inner, .flip-face { transition: none; } }
