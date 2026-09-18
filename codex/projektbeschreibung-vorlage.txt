@@ -1,0 +1,72 @@
+PROJEKTBESCHREIBUNG UND VORLAGE FÜR NEUE LERNPROJEKTE
+
+Dieses Repository ist eine Sammlung kleiner, statischer Lernprojekte. Die
+Startseite im Wurzelverzeichnis (index.html) verlinkt auf die Projekte. Jedes
+Projekt hat eine eigene Landingpage mit anklickbaren Themenkarten. Jede Karte
+zeigt ein Piktogramm oder eine kleine Skizze, einen Titel und eine kurze
+Beschreibung und führt zu einer passenden Unterseite.
+
+Vorhandene Projekte als Beispiele:
+- if6: digitale Anleitungen für etwa 10- bis 12-Jährige, einfache Sprache und
+  nachvollziehbare Schritte, bei Bedarf mit Screenshots.
+- phef: Mechanik für 14- bis 16-Jährige in der Einführungsphase (NRW), mit
+  Erklärungen und physikalisch korrekten Diagrammen.
+- ph9: Physik für Klasse 9, mit kurzen Erklärungen, Merksätzen, Denkfragen und
+  anschaulichen Skizzen.
+
+AUFBAU EINES NEUEN PROJEKTS
+
+index.html                         gemeinsame Startseite aller Projekte
+styles.css                         Stil der gemeinsamen Startseite
+<projektname>/index.html           Landingpage des neuen Projekts
+<projektname>/styles.css           gemeinsamer Stil seiner Unterseiten
+<projektname>/<thema>/html/index.html
+<projektname>/<thema>/img/         Bilder und Piktogramm zum Thema
+img/                               Piktogramme für die gemeinsame Startseite
+codex/                             Bildstilbeschreibungen und diese Vorlage
+
+Verzeichnisnamen sind kurz, sprechend und enthalten keine Leerzeichen. Eine
+neue Themenseite wird auf der Projekt-Landingpage verlinkt; ein neues Projekt
+bekommt zusätzlich eine Karte auf der gemeinsamen Startseite. Die Unterseiten
+haben innerhalb eines Projekts ein einheitliches Layout und eine klare
+Navigation zurück zur Projekt-Landingpage.
+
+GESTALTUNG UND INHALT
+
+- Freundliche, übersichtliche Karten und gut lesbare Seiten; jedes Projekt darf
+  eine eigene Farbwelt haben, soll aber zur Sammlung passen.
+- Kurze Abschnitte, konkrete Beispiele und Sprache passend zur Zielgruppe.
+- Begriffe und Bedienhandlungen eindeutig benennen; Bilder direkt an der
+  passenden Stelle in der Erklärung zeigen.
+- Aussagekräftige Alternativtexte für Piktogramme, Screenshots und Skizzen.
+- Fachliche Korrektheit geht vor dekorativen Details. Bei Diagrammen müssen
+  Achsen, Größen, Einheiten und dargestellte Zusammenhänge stimmen.
+- Für Physikskizzen den schwarz-weißen, leicht handgezeichneten Stil aus
+  codex/drawing_style_x.txt verwenden. Für Diagramme zusätzlich die Regeln in
+  codex/drawing_style_graphs.txt beachten. Die Bilder in examples/ dienen als
+  Stilreferenz. Für andere Fächer den gewünschten Bildstil eigens angeben.
+- Vorhandene Screenshots oder Vorlagen liegen gegebenenfalls in input/.
+
+ZUM START EINES VERGLEICHBAREN NEUEN PROJEKTS
+
+Kopiere den folgenden Auftrag in einen neuen Chat und ersetze die Angaben in
+eckigen Klammern. Nicht benötigte Zeilen kannst du streichen.
+
+"Lies codex/projektbeschreibung-vorlage.txt. Erstelle im selben Repository ein
+neues statisches Lernprojekt und verlinke es auf der gemeinsamen Startseite.
+
+Projektname/Verzeichnis: [kurzer Name ohne Leerzeichen]
+Fach und Oberthema: [z. B. Biologie – Ökologie]
+Zielgruppe: [Alter, Klasse, Schulform/Bundesland, Vorwissen]
+Lernziel: [Was sollen die Lernenden nach den Seiten verstehen oder können?]
+Themen und Reihenfolge: [Liste der Unterseiten; je Thema die wichtigsten Punkte]
+Ton und Sprachniveau: [z. B. einfache Sprache, sachlich, motivierend]
+Aufbau der Unterseiten: [z. B. Schritte, Beispiel, Merksatz, Denkfrage]
+Bildmaterial: [vorhandene Dateien/Pfade; benötigte neue Skizzen oder Screenshots]
+Bildstil und Farben: [Referenzen, gewünschte Farbwelt, besondere Regeln]
+Fachliche Vorgaben: [Begriffe, Formeln, Einheiten, Quellen, typische Fehler]
+Sonstige Wünsche: [z. B. Links zwischen Themen, bestimmte Bedienhinweise]
+
+Erstelle für jedes Thema ein eigenes Verzeichnis mit html/ und img/. Verwende
+eine konsistente Gestaltung, passende Piktogramme und verständliche Alt-Texte.
+Prüfe zum Schluss Links, Bildpfade, Rechtschreibung und fachliche Aussagen."

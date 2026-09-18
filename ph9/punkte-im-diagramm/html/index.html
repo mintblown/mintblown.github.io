@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lerne, wie du Messwerte als Punkte in ein Weg-Zeit-Diagramm einträgst, und probiere es selbst aus.">
+  <title>Punkte in ein Diagramm eintragen · Physik Klasse 9</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="diagramm.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">↔</span> Kräfte und Bewegung</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Diagramme üben</p><h1>Punkte in ein Diagramm eintragen</h1><p>Aus zwei Messwerten wird ein Ort im Koordinatensystem.</p></header>
+      <p class="intro">Ein Sprinter läuft geradeaus. Wir messen die Zeit seit dem Start und die zurückgelegte Strecke. Diese vereinfachten Messwerte nutzen wir als Beispiel:</p>
+      <div class="measurement-wrap"><table class="measurement"><caption>Messwerte des Sprinters</caption><thead><tr><th scope="col">Zeit t</th><th scope="col">Strecke s</th></tr></thead><tbody><tr><td>0 s</td><td>0 m</td></tr><tr><td>10 s</td><td>80 m</td></tr><tr><td>20 s</td><td>170 m</td></tr><tr><td>30 s</td><td>250 m</td></tr></tbody></table></div>
+      <section class="article-section"><h2>So findest du einen Punkt</h2><p>Im <strong>s(t)-Diagramm</strong> steht die Zeit <strong>t</strong> auf der waagerechten Achse und die Strecke <strong>s</strong> auf der senkrechten Achse. Für <strong>(10 s | 80 m)</strong> gehst du vom Ursprung auf der Zeitachse bis <strong>10 s</strong>. Von dort gehst du senkrecht nach oben bis zur Höhe von <strong>80 m</strong>. An diese Stelle setzt du einen Punkt.</p><figure class="sketch"><img src="../img/hilfslinien.svg" alt="Zwei gestrichelte Hilfslinien treffen sich im s(t)-Diagramm beim Messpunkt 10 Sekunden und 80 Meter: eine führt von 10 Sekunden senkrecht nach oben, die andere von 80 Metern waagerecht nach rechts." width="760" height="510"><figcaption>Die beiden Hilfslinien treffen sich beim Messpunkt (10 s | 80 m).</figcaption></figure><p>Die Schreibweise <strong>(t | s)</strong> bedeutet also: erst nach rechts zur Zeit, dann nach oben zur Strecke. Jeder Punkt gehört zu genau einem Wertepaar. Die Werte zwischen den Messungen kennen wir hier nicht genau; verbinde die Punkte deshalb noch nicht zu einer Kurve.</p></section>
+      <aside class="key-point"><p><strong>Merke:</strong> Erst den Wert auf der waagerechten Achse suchen, dann den Wert auf der senkrechten Achse. Der Schnittpunkt ist der gesuchte Messpunkt.</p></aside>
+      <section class="plot-exercise" aria-labelledby="exercise-title">
+        <h2 id="exercise-title">Jetzt du: zwei Punkte eintragen</h2>
+        <p>Setze die Punkte <strong>(10 s | 80 m)</strong> und <strong>(20 s | 170 m)</strong> in das leere Diagramm. Klicke oder tippe zweimal hinein. Du kannst einen Punkt danach mit der Maus oder dem Finger verschieben.</p>
+        <div class="flip-card" id="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-face flip-front">
+              <h3>Dein Diagramm</h3>
+              <div class="plot-frame"><svg id="practice-plot" class="plot interactive-plot" viewBox="0 0 760 510" role="img" aria-label="Leeres s(t)-Diagramm für Zeit von 0 bis 30 Sekunden und Strecke von 0 bis 300 Metern. Setze zwei Punkte mit Maus oder Touch."></svg></div>
+              <p class="plot-legend"><span class="legend-dot legend-dot--own"></span> Deine Punkte</p>
+            </div>
+            <div class="flip-face flip-back" aria-hidden="true">
+              <h3>Musterlösung</h3>
+              <div class="plot-frame"><svg id="solution-plot" class="plot" viewBox="0 0 760 510" role="img" aria-label="Musterlösung mit den Punkten bei 10 Sekunden und 80 Metern sowie 20 Sekunden und 170 Metern, daneben deine eigenen Punkte."></svg></div>
+              <p class="plot-legend"><span class="legend-dot legend-dot--solution"></span> Musterlösung <span class="legend-dot legend-dot--own"></span> Deine Punkte</p>
+              <p>Die richtigen Punkte liegen bei <strong>(10 s | 80 m)</strong> und <strong>(20 s | 170 m)</strong>. Vergleiche sie mit deinen Markierungen.</p>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-controls"><button type="button" id="solve-button" disabled>Lösen und umdrehen</button><button type="button" id="retry-button" hidden>Erneut versuchen</button><button type="button" id="clear-button">Punkte löschen</button></div>
+        <p id="exercise-status" class="exercise-status" aria-live="polite">Setze den ersten Punkt.</p>
+      </section>
+    </article>
+  </main>
+  <footer>Physik Klasse 9 · Kräfte und Bewegung</footer>
+</body>
+</html>
