@@ -89,3 +89,13 @@ footer { padding-bottom: 30px; color: #8a8178; font-size: .86rem; }
 .exercise-controls button[hidden] { display: none; }
 .exercise-status { margin-top: 12px; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .flip-card-inner, .flip-face { transition: none; } }
+
+/* Zusatzübung: fünf Punkte ohne Einheiten */
+.practice-only { margin-top: 34px; }
+.practice-only h2 { margin-bottom: 14px; font-size: 1.5rem; }
+.point-list { margin-bottom: 22px; padding: 15px 18px; border-radius: 13px; background: #f9eee5; font-size: 1.22rem; font-weight: 700; letter-spacing: .02em; line-height: 1.9; word-spacing: .3em; }
+.evaluation { margin-top: 17px; padding: 15px 18px; border-radius: 12px; background: #f9eee5; line-height: 1.55; }
+.evaluation h4 { margin: 0 0 4px; font-size: 1.25rem; }
+.evaluation p { margin: 0 0 6px; }
+.evaluation p:last-child { margin-bottom: 0; }
+.exercise-controls button#new-button { background: white; color: var(--accent); }

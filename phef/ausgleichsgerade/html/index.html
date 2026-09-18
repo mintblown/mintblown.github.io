@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktive Übung: eine Ausgleichsgerade durch zehn streuende Messpunkte legen.">
+  <title>Ausgleichsgerade zeichnen · Mechanik verstehen</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="ausgleichsgerade.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">↗</span> Mechanik verstehen</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Zur Mechanik</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Diagramme üben</p><h1>Eine Ausgleichsgerade finden</h1><p>Zehn Messpunkte streuen. Welche Gerade beschreibt ihren gemeinsamen Trend?</p></header>
+      <p class="intro">Setze zwei Punkte ins Diagramm. Sie legen deine Gerade fest. Verschiebe sie, bis ungefähr gleich viele Messpunkte oberhalb und unterhalb der Geraden liegen.</p>
+      <div class="fit-card" id="fit-card">
+        <div class="fit-card-inner">
+          <div class="fit-face fit-front">
+            <h2>Deine Gerade</h2>
+            <div class="fit-plot-frame"><svg id="practice-plot" class="fit-plot fit-interactive" viewBox="0 0 760 600" role="img" aria-label="Koordinatensystem von 0 bis 10 auf beiden Achsen mit zehn Messpunkten. Setze zwei Punkte, um eine Ausgleichsgerade zu bestimmen."></svg></div>
+            <p class="fit-legend"><span class="fit-key fit-key--data"></span> Messpunkte <span class="fit-key fit-key--own"></span> Deine Gerade</p>
+          </div>
+          <div class="fit-face fit-back" aria-hidden="true">
+            <h2>Vergleich</h2>
+            <div class="fit-plot-frame"><svg id="solution-plot" class="fit-plot" viewBox="0 0 760 600" role="img" aria-label="Messpunkte mit deiner Ausgleichsgeraden und der ursprünglich erzeugten Geraden."></svg></div>
+            <p class="fit-legend"><span class="fit-key fit-key--data"></span> Messpunkte <span class="fit-key fit-key--own"></span> Deine Gerade <span class="fit-key fit-key--original"></span> Ausgangsgerade</p>
+            <p>Die orange Gerade hat die Messpunkte erzeugt. Kleine Abweichungen deiner Ausgleichsgeraden sind bei streuenden Daten normal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fit-controls"><button type="button" id="solve-button" disabled>Auflösen und umdrehen</button><button type="button" id="retry-button" hidden>Erneut versuchen</button><button type="button" id="clear-button">Punkte löschen</button><button type="button" id="new-button">Neue Messpunkte</button></div>
+      <p id="fit-status" class="fit-status" aria-live="polite">Setze den ersten Punkt deiner Geraden.</p>
+    </article>
+  </main>
+  <footer>Physik EF · Mechanik</footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fünf zufällige Punkte in ein Koordinatensystem eintragen und die Lösung vergleichen.">
+  <title>Fünf Punkte eintragen · Physik Klasse 9</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="punkte-ueben.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">↔</span> Kräfte und Bewegung</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><h1>Fünf Punkte eintragen</h1></header>
+      <section class="practice-only" aria-labelledby="points-title">
+        <h2 id="points-title">Trage diese Punkte ein:</h2>
+        <p id="point-list" class="point-list" aria-live="polite"></p>
+        <div class="flip-card" id="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-face flip-front">
+              <h3>Dein Diagramm</h3>
+              <div class="plot-frame"><svg id="practice-plot" class="plot interactive-plot" viewBox="0 0 760 510" role="img" aria-label="Leeres Koordinatensystem mit x- und y-Achse von 0 bis 10. Fünf Punkte mit Maus oder Touch setzen."></svg></div>
+              <p class="plot-legend"><span class="legend-dot legend-dot--own"></span> Deine Punkte</p>
+            </div>
+            <div class="flip-face flip-back" aria-hidden="true">
+              <h3>Musterlösung</h3>
+              <div class="plot-frame"><svg id="solution-plot" class="plot" viewBox="0 0 760 510" role="img" aria-label="Musterlösung und deine fünf Punkte im Koordinatensystem."></svg></div>
+              <p class="plot-legend"><span class="legend-dot legend-dot--solution"></span> Musterlösung <span class="legend-dot legend-dot--own"></span> Deine Punkte</p>
+              <div id="evaluation" class="evaluation" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-controls"><button type="button" id="solve-button" disabled>Lösen und umdrehen</button><button type="button" id="retry-button" hidden>Erneut versuchen</button><button type="button" id="clear-button">Punkte löschen</button><button type="button" id="new-button">Neue Punkte</button></div>
+        <p id="exercise-status" class="exercise-status" aria-live="polite">Setze den ersten Punkt.</p>
+      </section>
+    </article>
+  </main>
+  <footer>Physik Klasse 9 · Kräfte und Bewegung</footer>
+</body>
+</html>
