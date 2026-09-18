@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktive Übung zum Federpendel: Amplitude und Schwingungsdauer markieren und Federkonstante berechnen.">
+  <title>Federpendel auswerten · Physik Q1</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="federpendel-uebung.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">∿</span> Schwingungen verstehen</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Federpendel · Übung</p><h1>Eine Federschwingung auswerten</h1><p>Markiere \(\hat{x}\) und \(T\) im Diagramm. Berechne danach \(D\) für eine Masse von 100 g.</p></header>
+      <p class="intro">Wähle „Amplitude x̂“ und markiere einen höchsten oder tiefsten Ausschlag von der Mittellinie aus. Wähle dann „Schwingungsdauer T“ und markiere zwei aufeinanderfolgende Maxima oder Minima. Du kannst deine Markierungen verschieben.</p>
+      <div class="mark-tools" id="mark-tools" aria-label="Markierungsart wählen"><button type="button" id="amplitude-tool" aria-pressed="true">Amplitude x̂ markieren</button><button type="button" id="period-tool" aria-pressed="false">Schwingungsdauer T markieren</button></div>
+      <div class="osc-card" id="osc-card">
+        <div class="osc-inner">
+          <div class="osc-face osc-front">
+            <h2>Dein Diagramm</h2>
+            <div class="osc-plot-frame"><svg id="practice-plot" class="osc-plot osc-interactive" viewBox="0 0 820 630" role="img" aria-label="x(t)-Diagramm einer Federschwingung. Die Auslenkung x reicht von minus 10 bis plus 10 Zentimetern, die Zeit von 0 bis 6 Sekunden."></svg></div>
+            <p class="osc-legend"><span class="osc-key osc-key--own"></span> Deine Markierungen</p>
+          </div>
+          <div class="osc-face osc-back" aria-hidden="true">
+            <h2>Musterlösung</h2>
+            <div class="osc-plot-frame"><svg id="solution-plot" class="osc-plot" viewBox="0 0 820 630" role="img" aria-label="Schwingungsdiagramm mit deinen Markierungen und der Musterlösung für Amplitude und Schwingungsdauer."></svg></div>
+            <p class="osc-legend"><span class="osc-key osc-key--own"></span> Deine Markierungen <span class="osc-key osc-key--answer"></span> Musterlösung</p>
+            <div id="osc-evaluation" class="osc-evaluation" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+      <div class="osc-input" id="osc-input"><div class="osc-field"><label for="t-input">Abgelesene Schwingungsdauer T</label><div><input id="t-input" type="text" inputmode="decimal" autocomplete="off"><span>s</span></div></div><div class="osc-field"><label for="d-input">Berechnete Federkonstante D</label><div><input id="d-input" type="text" inputmode="decimal" autocomplete="off" aria-describedby="d-help"><span>N/m</span></div></div><p id="d-help">Nutze \(m=0{,}100\,\mathrm{kg}\) und \(D=\frac{4\pi^2 m}{T^2}\).</p></div>
+      <div class="osc-controls"><button type="button" id="solve-button" disabled>Auflösen und umdrehen</button><button type="button" id="retry-button" hidden>Erneut versuchen</button><button type="button" class="secondary" id="clear-button">Markierungen löschen</button><button type="button" class="secondary" id="new-button">Neue Schwingung</button></div>
+      <p id="osc-status" class="osc-status" aria-live="polite">Markiere zuerst die Amplitude.</p>
+    </article>
+  </main>
+  <footer>Physik Q1 · Schwingungen</footer>
+</body>
+</html>

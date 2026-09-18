@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Federpendel mit Masse">
+  <g fill="none" stroke="#2b3542" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 12 Q49 10 84 12 M24 12l-6 7 M36 12l-6 7 M48 12l-6 7 M60 12l-6 7 M72 12l-6 7" stroke-width="2.7"/>
+    <path d="M50 12 v9 l-10 5 20 7-20 7 20 7-20 7 20 7-20 7 10 5 v5" stroke-width="3.2"/>
+    <path d="M31 81 Q50 79 69 81 L69 96 Q49 97 31 95 Z" stroke-width="3"/>
+    <path d="M75 35 Q88 55 76 76 M76 76l-1-9 m1 9 8-5" stroke-width="2.4"/>
+  </g>
+</svg>

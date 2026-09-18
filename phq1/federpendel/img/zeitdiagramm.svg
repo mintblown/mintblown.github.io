@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" role="img" aria-labelledby="title desc">
+  <title id="title">Amplitude und Schwingungsdauer im Zeitdiagramm</title>
+  <desc id="desc">Ein x(t)-Diagramm zeigt zwei Schwingungen mit einer Amplitude von beispielhaft 5 Zentimetern und einer Schwingungsdauer von 2 Sekunden. Pfeile markieren x-Dach von der Mittellinie zum Maximum und T zwischen zwei Maxima.</desc>
+  <rect width="800" height="540" fill="#fff"/>
+  <g fill="none" stroke="#171717" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M160 427 Q159 263 160 79 M160 260 Q415 259 710 260" stroke-width="3.3"/>
+    <path d="M160 79 l-7 13 m7-13 7 13 M710 260 l-13-7 m13 7-13 7" stroke-width="3.3"/>
+    <path d="M160 259 l-.5 8 M280 260 l.5 8 M400 259 l-.4 8 M520 260 l.4 8 M640 260 l.2 8" stroke-width="2.2"/>
+    <path d="M152 140 l8 .3 M152 380 l8-.3" stroke-width="2.2"/>
+    <path d="M160 140 Q410 140 640 140 M160 380 Q411 381 640 380" stroke-width="1.5" stroke-dasharray="5 10"/>
+    <path d="M160 260 C175 194 193 140 220 140 C247 140 265 194 280 260 C295 326 313 380 340 380 C367 380 385 326 400 260 C415 194 433 140 460 140 C487 140 505 194 520 260 C535 326 553 380 580 380 C607 380 625 326 640 260" stroke-width="3.6"/>
+    <path d="M116 141 Q114 198 116 258 M116 141 l-6 12 m6-12 6 12 M116 258 l-6-12 m6 12 6-12" stroke-width="2.9"/>
+    <path d="M220 442 Q340 441 460 442 M220 442 l12-6 m-12 6 12 6 M460 442 l-12-6 m12 6-12 6 M220 416 v28 M460 416 v28" stroke-width="2.8"/>
+  </g>
+  <g fill="#171717" font-family="Chalkboard SE, Bradley Hand, Comic Sans MS, cursive" font-size="21">
+    <text x="143" y="286" text-anchor="end">0</text>
+    <text x="144" y="146" text-anchor="end">+5</text>
+    <text x="144" y="387" text-anchor="end">−5</text>
+    <text x="160" y="291" text-anchor="middle">0</text>
+    <text x="280" y="291" text-anchor="middle">1</text>
+    <text x="400" y="291" text-anchor="middle">2</text>
+    <text x="520" y="291" text-anchor="middle">3</text>
+    <text x="640" y="291" text-anchor="middle">4</text>
+    <text x="90" y="205" text-anchor="middle" font-size="26" font-weight="700">x̂</text>
+    <text x="340" y="470" text-anchor="middle" font-size="25" font-weight="700">T</text>
+    <text x="420" y="525" text-anchor="middle" font-size="22" font-weight="700">Zeit t / s</text>
+    <text x="34" y="260" text-anchor="middle" font-size="22" font-weight="700" transform="rotate(-90 34 260)">Auslenkung x / cm</text>
+  </g>
+</svg>

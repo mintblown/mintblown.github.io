@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 450" role="img" aria-labelledby="title desc">
+  <title id="title">Federpendel mit Amplitude</title>
+  <desc id="desc">Eine Feder hängt an einer festen Halterung. Die gestrichelte Masse zeigt die Ruhelage, die durchgezogene Masse den unteren Umkehrpunkt. Ihr Abstand ist die Amplitude x-Dach.</desc>
+  <rect width="760" height="450" fill="#fff"/>
+  <g fill="none" stroke="#171717" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M220 47 Q360 44 500 47 M236 47 l-11 13 M264 46 l-10 13 M292 46 l-10 13 M320 46 l-10 13 M348 46 l-10 13 M376 46 l-10 13 M404 46 l-10 13 M432 46 l-10 13 M460 46 l-10 13 M488 46 l-10 13" stroke-width="3.2"/>
+    <path d="M360 47 v17 l-18 12 36 19-36 19 36 19-36 19 36 19-36 19 36 19-36 19 36 19-18 11 v48" stroke-width="3.5"/>
+    <path d="M322 306 Q360 304 398 306 L398 368 Q361 370 322 367 Z" stroke-width="3.5"/>
+    <path d="M322 207 Q359 205 398 207 L398 269 Q359 270 322 268 Z" stroke-width="2.5" stroke-dasharray="8 8"/>
+    <path d="M180 238 Q259 237 321 238 M399 238 Q449 237 515 238" stroke-width="2" stroke-dasharray="8 8"/>
+    <path d="M399 337 Q454 338 515 337" stroke-width="2" stroke-dasharray="8 8"/>
+    <path d="M530 240 Q528 288 530 335 M530 240 l-6 12 m6-12 6 12 M530 335 l-6-12 m6 12 6-12" stroke-width="3"/>
+  </g>
+  <g fill="#171717" font-family="Chalkboard SE, Bradley Hand, Comic Sans MS, cursive" font-size="23">
+    <text x="358" y="346" text-anchor="middle">m</text>
+    <text x="150" y="245" text-anchor="end">x = 0</text>
+    <text x="548" y="296" font-size="27" font-weight="700">x̂</text>
+    <text x="395" y="409" text-anchor="middle">unterer Umkehrpunkt</text>
+  </g>
+</svg>

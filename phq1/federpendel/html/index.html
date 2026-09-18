@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Federpendel in der Q1: Amplitude, Periodendauer, Frequenz, Zeitgesetz, Hooke'sches Gesetz und Energie.">
+  <title>Das Federpendel · Physik Q1</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">∿</span> Schwingungen verstehen</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Schwingungen · Federpendel</p><h1>Das Federpendel</h1><p>Eine Masse an einer Feder schwingt um ihre Ruhelage.</p></header>
+      <p class="intro">Ziehst du die Masse etwas nach unten und lässt sie los, bewegt sie sich auf und ab. Wir messen ihre <strong>Auslenkung \(x\)</strong> von der Ruhelage aus. In unseren Skizzen ist die Richtung nach unten positiv. Die Diagramme zeigen Zentimeter; in Formeln mit \(D\) setzt du \(x\) in Metern ein.</p>
+      <figure class="sketch"><img src="../img/aufbau.svg" alt="Senkrechtes Federpendel: Die gestrichelte Masse zeigt die Ruhelage, die durchgezogene Masse den unteren Umkehrpunkt. Der Abstand zwischen beiden Lagen ist die Amplitude x-Dach." width="760" height="450"><figcaption>Versuchsaufbau: Der Abstand zwischen Ruhelage und unterem Umkehrpunkt ist die Amplitude \(\hat{x}\).</figcaption></figure>
+      <section class="article-section"><h2>Drei Größen für die Schwingung</h2><p><strong>Amplitude \(\hat{x}\):</strong> der größte Abstand von der Ruhelage. <strong>Schwingungsdauer \(T\):</strong> die Zeit für eine vollständige Bewegung zurück in dieselbe Lage mit derselben Bewegungsrichtung. <strong>Frequenz \(f\):</strong> die Zahl der Schwingungen pro Sekunde. Es gilt \(f=\frac{1}{T}\); ihre Einheit ist Hertz (Hz).</p><figure class="sketch"><img src="../img/zeitdiagramm.svg" alt="Handgezeichnetes Auslenkung-Zeit-Diagramm mit zwei Schwingungen. Ein senkrechter Doppelpfeil zeigt die Amplitude x-Dach von null bis zum Maximum. Ein waagerechter Doppelpfeil zwischen zwei Maxima zeigt die Schwingungsdauer T." width="800" height="540"><figcaption>Im \(x(t)\)-Diagramm liest du \(\hat{x}\) auf der Auslenkungsachse und \(T\) auf der Zeitachse ab.</figcaption></figure></section>
+      <section class="article-section"><h2>Zeitgesetz und Bewegungsgesetz</h2><p>Beginnt die Messung in der Ruhelage und bewegt sich die Masse zuerst in positiver Richtung, gilt für eine ideale Schwingung ohne Reibung:</p><div class="formula">\[x(t)=\hat{x}\,\sin(\omega t)\]<small>Die Kreisfrequenz ist \(\omega=\frac{2\pi}{T}\).</small></div><p>Das Zeitgesetz nennt die Auslenkung zu jedem Zeitpunkt. Die Geschwindigkeit beschreibt das Bewegungsgesetz:</p><div class="formula">\[v(t)=\hat{x}\,\omega\,\cos(\omega t)\]<small>Die Geschwindigkeit eilt der Auslenkung um eine Viertelperiode voraus.</small></div><p>Für das Federpendel gilt außerdem \(T=2\pi\sqrt{\frac{m}{D}}\). Dabei ist \(m\) die schwingende Masse und \(D\) die Federkonstante. Am Umkehrpunkt ist die Geschwindigkeit null; in der Ruhelage ist sie am größten.</p></section>
+      <section class="article-section"><h2>Was hat das mit dem Hookeschen Gesetz zu tun?</h2><p>Eine ideale Feder zieht umso stärker zurück, je weiter die Masse ausgelenkt ist. Bezogen auf die Ruhelage gilt für die resultierende Kraft \(F_{\mathrm{res}}=-D\,x\). Das Minuszeichen zeigt: Die Kraft wirkt der Auslenkung entgegen. Die Einheit von \(D\) ist \(\mathrm{N/m}\).</p><p>Beim senkrechten Pendel gleicht die Federkraft in der Ruhelage die Gewichtskraft aus. Deshalb beschreibt \(F_{\mathrm{res}}=-D\,x\) die Bewegung um genau diese Lage.</p></section>
+      <section class="article-section"><h2>Wohin geht die Energie?</h2><div class="formula">\[E_{\mathrm{ges}}=E_{\mathrm{kin}}+E_{\mathrm{pot}}=\text{konstant}\]</div><p>An den Umkehrpunkten steht die Masse kurz still: \(E_{\mathrm{kin}}=0\), während \(E_{\mathrm{pot}}\) maximal ist. In der Ruhelage ist die Masse am schnellsten; dort ist \(E_{\mathrm{kin}}\) maximal und \(E_{\mathrm{pot}}\) minimal. Beim vertikalen Aufbau gehören zur potenziellen Energie sowohl die gespannte Feder als auch die Lage der Masse im Schwerefeld.</p><p>Ohne Reibung bleibt \(E_{\mathrm{ges}}\) gleich. Mit Reibung wird ein Teil der mechanischen Energie in Wärme umgewandelt; die Amplitude nimmt ab.</p></section>
+      <aside class="key-point"><p><strong>Merke:</strong> \(\hat{x}\) misst den größten Ausschlag, \(T\) die Dauer einer Schwingung und \(f=1/T\) ihre Häufigkeit. Ein größeres \(D\) macht die Schwingung schneller, eine größere Masse \(m\) macht sie langsamer.</p></aside>
+      <nav class="next" aria-label="Nächste Lektion"><a class="next-link" href="../../federpendel-uebung/html/index.html">Weiter zur interaktiven Übung →</a></nav>
+    </article>
+  </main>
+  <footer>Physik Q1 · Schwingungen</footer>
+</body>
+</html>
