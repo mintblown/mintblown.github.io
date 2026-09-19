@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
+  <title id="title">Gleichförmige Bewegung</title><desc id="desc">Handgezeichnetes Fahrrad über gleichmäßig verteilten Wegmarken.</desc>
+  <g fill="none" stroke="#1f1f1f" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="28" cy="66" r="13"/><circle cx="72" cy="66" r="13"/>
+    <path d="M28 66 L41 43 L57 66 L28 66 M41 43 L62 43 L72 66 M37 38 L46 38 M60 38 L65 32"/>
+    <path d="M10 88 C31 86 66 90 91 87"/>
+    <path d="M18 84 l0 8 M42 84 l0 8 M66 84 l0 8 M90 83 l0 8"/>
+    <path d="M9 23 C31 20 62 22 87 20 M87 20 l-9 -5 M87 20 l-8 7"/>
+  </g>
+</svg>

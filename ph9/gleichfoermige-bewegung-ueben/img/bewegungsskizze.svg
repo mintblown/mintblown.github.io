@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" role="img" aria-labelledby="title desc">
+  <title id="title">Fahrrad bei gleichförmiger Bewegung</title><desc id="desc">Vier gleich weit voneinander entfernte Positionen eines Fahrrads in gleichen Zeitabständen.</desc>
+  <rect width="1000" height="360" fill="#fff"/>
+  <g fill="none" stroke="#202020" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M55 281 C256 275 476 285 935 279"/>
+    <path d="M104 289 l0 18 M365 289 l0 18 M626 289 l0 18 M887 289 l0 18"/>
+    <path d="M75 65 C283 55 611 64 905 57 M905 57 l-21 -13 M905 57 l-20 17"/>
+  </g>
+  <defs><g id="bike"><circle cx="42" cy="125" r="34"/><circle cx="151" cy="125" r="34"/><path d="M42 125 L78 68 L115 125 L42 125 M78 68 L126 68 L151 125 M68 56 L90 56 M122 56 L135 42"/><circle cx="91" cy="26" r="16"/><path d="M91 42 L80 69 M91 43 L125 68"/></g></defs>
+  <g fill="none" stroke="#202020" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#bike" transform="translate(46 150) scale(.72)"/><use href="#bike" transform="translate(307 150) scale(.72)"/><use href="#bike" transform="translate(568 150) scale(.72)"/><use href="#bike" transform="translate(829 150) scale(.72)"/>
+  </g>
+  <g fill="#202020" font-family="Arial, sans-serif" font-size="24" text-anchor="middle"><text x="105" y="335">gleiche Zeitabstände</text><text x="365" y="335">→ gleicher Weg</text><text x="626" y="335">→ gleiches v</text></g>
+</svg>

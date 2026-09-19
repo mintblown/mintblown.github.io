@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" role="img" aria-labelledby="title desc">
+  <title id="title">Schematische Orts- und Geschwindigkeitskurve</title>
+  <desc id="desc">Oben verläuft y(t) als Sinuskurve um die Ruhelage y_R. Unten verläuft v_y(t) als Kosinuskurve. Am Hochpunkt von y ist v_y gleich null; v_y ist um eine Viertelperiode vor y verschoben.</desc>
+  <rect width="900" height="650" fill="#fff"/>
+  <g fill="none" stroke="#1b1b1b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M170 278 Q169 171 170 68 M170 170 Q473 169 790 170 M170 558 Q169 452 170 340 M170 450 Q472 449 790 450" stroke-width="3.1"/>
+    <path d="M170 68 l-7 13 m7-13 7 13 M790 170 l-13-7 m13 7-13 7 M170 340 l-7 13 m7-13 7 13 M790 450 l-13-7 m13 7-13 7" stroke-width="3"/>
+    <path d="M170 100 Q470 99 770 100 M170 240 Q470 241 770 240 M170 380 Q470 379 770 380 M170 520 Q470 521 770 520" stroke-width="1.4" stroke-dasharray="6 10"/>
+    <path d="M245 170 v7 M320 170 v7 M395 170 v7 M470 170 v7 M545 170 v7 M620 170 v7 M695 170 v7 M770 170 v7 M245 450 v7 M320 450 v7 M395 450 v7 M470 450 v7 M545 450 v7 M620 450 v7 M695 450 v7 M770 450 v7" stroke-width="2"/>
+    <path d="M170 170 C187 130 215 100 245 100 C275 100 303 140 320 170 C337 210 365 240 395 240 C425 240 453 200 470 170 C487 130 515 100 545 100 C575 100 603 140 620 170 C637 210 665 240 695 240 C725 240 753 200 770 170" stroke-width="3.7"/>
+    <path d="M170 380 C207 380 223 418 245 450 C269 489 293 520 320 520 C348 520 374 480 395 450 C420 411 443 380 470 380 C498 380 524 420 545 450 C570 489 593 520 620 520 C648 520 674 480 695 450 C720 411 743 380 770 380" stroke-width="3.7"/>
+    <path d="M245 100 v280 M245 450 h-22" stroke-width="1.7" stroke-dasharray="6 9"/>
+  </g>
+  <g fill="#1b1b1b" font-family="Chalkboard SE, Bradley Hand, Comic Sans MS, cursive" font-size="20">
+    <text x="151" y="176" text-anchor="end">y_R</text>
+    <text x="151" y="456" text-anchor="end">0</text>
+    <text x="170" y="200" text-anchor="middle">0</text><text x="320" y="200" text-anchor="middle">1</text><text x="470" y="200" text-anchor="middle">2</text><text x="620" y="200" text-anchor="middle">3</text><text x="770" y="200" text-anchor="middle">4</text>
+    <text x="170" y="480" text-anchor="middle">0</text><text x="320" y="480" text-anchor="middle">1</text><text x="470" y="480" text-anchor="middle">2</text><text x="620" y="480" text-anchor="middle">3</text><text x="770" y="480" text-anchor="middle">4</text>
+    <text x="475" y="311" text-anchor="middle" font-size="22" font-weight="700">Zeit t / s</text>
+    <text x="475" y="627" text-anchor="middle" font-size="22" font-weight="700">Zeit t / s</text>
+    <text x="34" y="170" text-anchor="middle" font-size="22" font-weight="700" transform="rotate(-90 34 170)">Ort y / m</text>
+    <text x="34" y="450" text-anchor="middle" font-size="22" font-weight="700" transform="rotate(-90 34 450)">Geschwindigkeit v_y / m/s</text>
+  </g>
+</svg>

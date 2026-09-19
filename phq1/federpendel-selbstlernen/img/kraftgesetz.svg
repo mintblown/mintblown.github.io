@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Lineares rücktreibendes Kraftgesetz</title>
+  <desc id="desc">Im Kraft-Auslenkung-Diagramm fällt eine Gerade durch den Ursprung. Bei positiver Auslenkung x ist die resultierende Kraft negativ; bei negativer Auslenkung ist sie positiv.</desc>
+  <rect width="800" height="500" fill="#fff"/>
+  <g fill="none" stroke="#1b1b1b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M108 250 Q393 249 692 250 M400 428 Q399 251 400 68" stroke-width="3.5"/>
+    <path d="M692 250 l-13-7 m13 7-13 7 M400 68 l-7 13 m7-13 7 13" stroke-width="3.3"/>
+    <path d="M260 250 l-.5 9 M400 250 l.5 9 M540 250 l-.5 9 M400 120 l-8 .4 M400 380 l-8-.4" stroke-width="2.2"/>
+    <path d="M190 100 Q300 174 400 250 Q500 326 610 400" stroke-width="4"/>
+    <path d="M540 250 v99 M400 349 h140" stroke-width="1.8" stroke-dasharray="7 9"/>
+    <circle cx="400" cy="250" r="4" fill="#1b1b1b"/>
+  </g>
+  <g fill="#1b1b1b" font-family="Chalkboard SE, Bradley Hand, Comic Sans MS, cursive" font-size="22">
+    <text x="390" y="283" text-anchor="end">0</text>
+    <text x="540" y="282" text-anchor="middle">+x</text>
+    <text x="260" y="282" text-anchor="middle">−x</text>
+    <text x="370" y="356" text-anchor="end">−F</text>
+    <text x="402" y="484" text-anchor="middle" font-weight="700">Auslenkung x / m</text>
+    <text x="37" y="250" text-anchor="middle" font-weight="700" transform="rotate(-90 37 250)">Kraft F_res / N</text>
+  </g>
+</svg>

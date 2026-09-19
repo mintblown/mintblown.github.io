@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selbstlerneinheit zum Federpendel: Zeitgesetz und Bewegungsgleichung über Viana-Messdaten oder einen vereinfachten mathematischen Weg verstehen.">
+  <title>Das Zeitgesetz entdecken · Physik Q1</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="lernwege.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">∿</span> Schwingungen verstehen</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Federpendel · Selbstlerneinheit</p><h1>Das Zeitgesetz selbst entdecken</h1><p>Beginne mit der Kraft. Wähle danach den Weg über deine Videoanalyse oder über eine einfache mathematische Idee.</p></header>
+
+      <section class="article-section learning-intro" aria-labelledby="intro-title">
+        <h2 id="intro-title">Wann ist eine Schwingung harmonisch?</h2>
+        <p>Eine Schwingung ist <strong>harmonisch</strong>, wenn die rücktreibende Kraft mit der Auslenkung wächst und immer zur Ruhelage zeigt. Der Zusammenhang ist linear:</p>
+        <div class="formula">\[F_{\mathrm{res}}=-D\,x\]<small>\(x\): Auslenkung von der Ruhelage; \(D\): Federkonstante. Das Minuszeichen zeigt zur Ruhelage.</small></div>
+        <figure class="sketch"><img src="../img/kraftgesetz.svg" alt="Handgezeichnetes Kraft-Auslenkung-Diagramm: Die resultierende Kraft verläuft als fallende Gerade durch den Ursprung. Bei positiver Auslenkung ist die Kraft negativ, bei negativer Auslenkung positiv." width="800" height="500"><figcaption>Hookesches Gesetz: Doppelte Auslenkung bedeutet doppelt so große rücktreibende Kraft.</figcaption></figure>
+        <p>Beim Federpendel liefert das <strong>Hookesche Gesetz</strong> diese lineare Kraft. Bei einem vertikalen Aufbau ist in der Ruhelage die Gewichtskraft bereits durch die Federkraft ausgeglichen. Für die Bewegung um diese Lage bleibt \(F_{\mathrm{res}}=-D\,x\). Das gilt, solange die Feder im linearen Bereich arbeitet; Reibung lassen wir zunächst weg.</p>
+      </section>
+
+      <section class="path-choice" aria-labelledby="choice-title">
+        <h2 id="choice-title">Wähle deinen Weg</h2>
+        <div class="path-choice-grid">
+          <button type="button" class="path-choice-button" data-open-path="experiment" aria-pressed="false"><strong>Experimenteller Weg</strong><span>Starte mit deinen Viana-Diagrammen \(y(t)\) und \(v_y(t)\).</span></button>
+          <button type="button" class="path-choice-button" data-open-path="mathematik" aria-pressed="false"><strong>Mathematischer Weg</strong><span>Prüfe eine Sinusfunktion als Lösung der Bewegungsgleichung.</span></button>
+        </div>
+      </section>
+
+      <section class="learning-path" id="experiment" aria-labelledby="experiment-title" hidden>
+        <header class="path-header"><p class="eyebrow">Weg 1 · Videoanalyse</p><h2 id="experiment-title">Von Messkurven zum Zeitgesetz</h2><p>Halte deine Viana-Diagramme \(y(t)\) und \(v_y(t)\) bereit. Die Skizze zeigt nur die typische Form einer idealen Schwingung, keine Messwerte eures Versuchs.</p></header>
+
+        <section class="learning-step" id="exp-1">
+          <span class="step-number">1</span><h3>Von \(y\) zu \(x\)</h3>
+          <p>Viana nennt die vertikale Position \(y(t)\). In unserer Formelsammlung heißt die <strong>Auslenkung von der Ruhelage</strong> \(x(t)\). Wähle die positive Richtung von \(x\) wie bei Vianas \(y\). Dann gilt \(x(t)=y(t)-y_{\mathrm{R}}\), wobei \(y_{\mathrm{R}}\) die Position der Ruhelage ist. Die Geschwindigkeit heißt dann \(v(t)=v_y(t)\). Bei umgekehrter Achsenrichtung wechseln beide Vorzeichen, die Schwingungsdauer bleibt gleich.</p>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a1" data-next="exp-2">Warum ziehen wir \(y_{\mathrm{R}}\) ab?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="exp-a1" hidden>Erst dann ist die Ruhelage der Nullpunkt: \(x=0\). Die rücktreibende Kraft lässt sich so direkt als \(F_{\mathrm{res}}=-D\,x\) beschreiben.</div>
+        </section>
+
+        <section class="learning-step" id="exp-2" hidden>
+          <span class="step-number">2</span><h3>Was verraten die beiden Kurven?</h3>
+          <p>In \(y(t)\) suchst du die Ruhelage \(y_{\mathrm{R}}\), zwei aufeinanderfolgende Maxima und den größten Abstand zur Mittellinie. So erhältst du \(T=t_2-t_1\) und \(\hat{x}=(y_{\max}-y_{\min})/2\). Nutze für \(y\) die Einheit deiner Viana-Achse. Bei einer idealen Schwingung liegt \(v_y(t)\) um ein Viertel der Schwingungsdauer versetzt: An den Umkehrpunkten ist die Geschwindigkeit null, beim Durchgang durch die Ruhelage am größten.</p>
+          <div class="measurement-notes" aria-label="Eigene Messwerte aus Viana notieren"><label>Ruhelage \(y_{\mathrm{R}}\)<input type="text" inputmode="decimal" autocomplete="off" aria-label="Ruhelage aus Viana"></label><label>Erstes Maximum \(t_1\) in s<input type="text" inputmode="decimal" autocomplete="off" aria-label="Zeit des ersten Maximums in Sekunden"></label><label>Nächstes Maximum \(t_2\) in s<input type="text" inputmode="decimal" autocomplete="off" aria-label="Zeit des nächsten Maximums in Sekunden"></label><label>Schwingungsdauer \(T\) in s<input type="text" inputmode="decimal" autocomplete="off" aria-label="Eigene Schwingungsdauer in Sekunden"></label><label>Amplitude \(\hat{x}\)<input type="text" inputmode="decimal" autocomplete="off" aria-label="Eigene Amplitude aus Viana"></label></div>
+          <figure class="sketch"><img src="../img/viana-kurven.svg" alt="Zwei schematische Zeitdiagramme: oben verläuft y(t) sinusförmig um die Ruhelage; unten ist v_y(t) um eine Viertelperiode verschoben. Beide Achsen sind mit Größe und Einheit beschriftet." width="900" height="650"><figcaption>Schematische Kurven zum Vergleichen mit deinen Viana-Daten. Die Zahlen gehören nicht zu eurem Versuch.</figcaption></figure>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a2" data-next="exp-3">Was zeigt \(v_y(t)\), wenn \(y(t)\) einen Hochpunkt hat?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="exp-a2" hidden>Die Masse kehrt dort um. Deshalb ist \(v_y=0\); danach hat die Geschwindigkeit das entgegengesetzte Vorzeichen.</div>
+        </section>
+
+        <section class="learning-step" id="exp-3" hidden>
+          <span class="step-number">3</span><h3>Eine Sinuskurve beschreibt die Messung</h3>
+          <p>Eine passende ideale Modellkurve lautet \(x(t)=\hat{x}\sin(\omega t+\varphi_0)\). Dabei ist \(\omega t+\varphi_0\) der <strong>Phasenwinkel</strong>. Nach einer ganzen Schwingung hat er um \(2\pi\) zugenommen. Deshalb ist \(\omega=2\pi/T\). Der Wert \(\varphi_0\) beschreibt, an welcher Stelle der Schwingung die Videoaufnahme bei \(t=0\) beginnt.</p>
+          <p>Zur Sinuskurve passt eine Kosinuskurve für die Geschwindigkeit: \(v(t)=\hat{x}\,\omega\cos(\omega t+\varphi_0)\). Das erklärt die Verschiebung zwischen euren \(y(t)\)- und \(v_y(t)\)-Diagrammen.</p>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a3" data-next="exp-4">Warum steht in \(\omega=2\pi/T\) die Zahl \(2\pi\)?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="exp-a3" hidden>Ein vollständiger Sinusdurchlauf entspricht einem Phasenwinkel von \(2\pi\) Radiant. Dieser Winkel wird in der Zeit \(T\) durchlaufen: Winkel pro Zeit ist \(\omega=2\pi/T\).</div>
+        </section>
+
+        <section class="learning-step" id="exp-4" hidden>
+          <span class="step-number">4</span><h3>Von der Krümmung zur Wurzel</h3>
+          <p>Aus der Steigung eurer \(v_y(t)\)-Kurve könnt ihr die Beschleunigung ablesen. Bei positiver Auslenkung zeigt sie zur Ruhelage, also in die negative Richtung. Für eine Sinusschwingung gilt \(a(t)=-\omega^2x(t)\). Das Federpendel hat nach Newton und Hooke zugleich \(a(t)=-(D/m)x(t)\). Beide Aussagen beschreiben dieselbe Bewegung. Daher muss \(\omega^2=D/m\) gelten.</p>
+          <div class="formula">\[\omega=\sqrt{\frac{D}{m}},\qquad T=\frac{2\pi}{\omega}=2\pi\sqrt{\frac{m}{D}}\]</div>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a4" data-next="exp-5">Warum erscheint im Gesetz für \(T\) eine Wurzel?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="exp-a4" hidden>In der Beschleunigung steht \(\omega^2\). Um aus \(\omega^2=D/m\) die positive Kreisfrequenz \(\omega\) zu bekommen, ziehen wir die Wurzel. Beim Einsetzen in \(T=2\pi/\omega\) steht deshalb \(\sqrt{m/D}\).</div>
+        </section>
+
+        <section class="learning-step" id="exp-5" hidden>
+          <span class="step-number">5</span><h3>Was macht die Anfangsphase?</h3>
+          <p>Die Form der Kurve kann gleich bleiben, obwohl eine andere Aufnahme zu einem anderen Zeitpunkt startet. Genau dafür steht \(\varphi_0\). Beginnt die Zeitmessung beim Durchgang durch die Ruhelage in positiver Richtung, ist \(\varphi_0=0\). Startet sie am oberen oder unteren Umkehrpunkt, braucht das Zeitgesetz eine andere Anfangsphase.</p>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a5" data-next="exp-summary">Was ändert sich durch einen neuen Startzeitpunkt – \(T\) oder \(\varphi_0\)?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="exp-a5" hidden>Nur die Anfangsphase \(\varphi_0\) verschiebt die Kurve auf der Zeitachse. Bei derselben Schwingung bleiben \(T\), \(\omega\) und \(\hat{x}\) gleich.</div>
+        </section>
+
+        <div class="path-summary" id="exp-summary" hidden><h3>Dein Ergebnis aus den Messkurven</h3><p>\(x(t)=\hat{x}\sin(\omega t+\varphi_0)\) beschreibt die Auslenkung. \(\omega t+\varphi_0\) ist die Phase; \(\varphi_0\) legt den Start fest. Ein Umlauf braucht \(2\pi\) Radiant, daher \(T=2\pi/\omega\). Die rücktreibende Kraft führt zu \(\omega^2=D/m\), deshalb \(T=2\pi\sqrt{m/D}\). Die Sinusfunktion passt, weil ihre zweite zeitliche Ableitung wieder dieselbe Kurve mit umgekehrtem Vorzeichen ergibt.</p><button type="button" class="switch-path" data-open-path="mathematik">Auch den mathematischen Weg ansehen →</button></div>
+      </section>
+
+      <section class="learning-path" id="mathematik" aria-labelledby="mathematik-title" hidden>
+        <header class="path-header"><p class="eyebrow">Weg 2 · Vereinfachte Mathematik</p><h2 id="mathematik-title">Eine passende Funktion finden</h2><p>Wir lösen keine DGL Schritt für Schritt. Wir probieren eine Funktion aus und prüfen, ob sie die Bewegungsgleichung erfüllt.</p></header>
+
+        <section class="learning-step" id="math-1">
+          <span class="step-number">1</span><h3>Kraft wird Beschleunigung</h3>
+          <p>Hooke sagt \(F_{\mathrm{res}}=-D\,x\), Newton sagt \(F_{\mathrm{res}}=m\,a\). Zusammen ergibt das die <strong>Bewegungsgleichung</strong> \(m\,\ddot{x}(t)=-D\,x(t)\). Der Punkt über \(x\) bedeutet eine zeitliche Ableitung; zwei Punkte stehen für die Beschleunigung.</p>
+          <div class="formula">\[\ddot{x}(t)=-\frac{D}{m}\,x(t)\]</div>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="math-a1" data-next="math-2">Was bedeutet das Minuszeichen in dieser Gleichung?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="math-a1" hidden>Die Beschleunigung zeigt immer entgegen der Auslenkung, also zurück zur Ruhelage. Bei \(x>0\) ist \(\ddot{x}<0\), bei \(x<0\) ist \(\ddot{x}>0\).</div>
+        </section>
+
+        <section class="learning-step" id="math-2" hidden>
+          <span class="step-number">2</span><h3>Warum ausgerechnet Sinus?</h3>
+          <p>Wir probieren \(x(t)=\hat{x}\sin(\omega t+\varphi_0)\). Beim ersten Ableiten entsteht eine Kosinusfunktion: \(v(t)=\hat{x}\,\omega\cos(\omega t+\varphi_0)\). Beim zweiten Ableiten entsteht wieder der Sinus, aber mit Minuszeichen:</p>
+          <div class="formula">\[\ddot{x}(t)=-\omega^2\hat{x}\sin(\omega t+\varphi_0)=-\omega^2x(t)\]</div>
+          <p>Genau diese Form verlangt die Bewegungsgleichung: Beschleunigung und Auslenkung sind proportional und haben entgegengesetzte Vorzeichen.</p>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="math-a2" data-next="math-3">Was macht den Sinus hier zu einer Lösung?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="math-a2" hidden>Nach zweimaligem Ableiten steht wieder dieselbe Sinusfunktion da, nur negativ und mit dem Faktor \(\omega^2\). So kann \(\ddot{x}\) genau ein negatives Vielfaches von \(x\) sein.</div>
+        </section>
+
+        <section class="learning-step" id="math-3" hidden>
+          <span class="step-number">3</span><h3>Woher kommen Wurzel und \(2\pi\)?</h3>
+          <p>Die Bewegungsgleichung fordert den Faktor \(D/m\); beim Sinusversuch steht dort \(\omega^2\). Darum gilt \(\omega^2=D/m\) und für die positive Kreisfrequenz \(\omega=\sqrt{D/m}\). Ein Sinus wiederholt sich nach einer Winkeländerung von \(2\pi\). Die Zeit dafür ist \(T\), also \(\omega T=2\pi\).</p>
+          <div class="formula">\[T=\frac{2\pi}{\omega}=2\pi\sqrt{\frac{m}{D}}\]</div>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="math-a3" data-next="math-4">Welche zwei Ideen stecken im Gesetz für \(T\)?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="math-a3" hidden>Die Wurzel kommt aus \(\omega^2=D/m\). Der Faktor \(2\pi\) kommt von einer ganzen Sinusperiode: Der Phasenwinkel wächst dabei um \(2\pi\) Radiant.</div>
+        </section>
+
+        <section class="learning-step" id="math-4" hidden>
+          <span class="step-number">4</span><h3>Was bedeuten \(\omega t\) und \(\varphi_0\)?</h3>
+          <p>\(\omega t\) ist der Winkel, den die Schwingung seit \(t=0\) durchlaufen hat. Addiert man \(\varphi_0\), erhält man die <strong>Phase</strong> \(\omega t+\varphi_0\). Die Anfangsphase \(\varphi_0\) verschiebt die Kurve: Sie bestimmt Startort und Startrichtung. Für \(x(0)=0\) und anfänglich positive Geschwindigkeit ist \(\varphi_0=0\).</p>
+          <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="math-a4" data-next="math-summary">Warum braucht ein Start am Umkehrpunkt \(\varphi_0\ne 0\)?<span>Antwort anzeigen ↓</span></button>
+          <div class="learning-answer" id="math-a4" hidden>Bei \(\varphi_0=0\) gilt \(x(0)=\hat{x}\sin(0)=0\): Die Masse startet in der Ruhelage. Am Umkehrpunkt ist \(x(0)=\pm\hat{x}\); dafür muss der Sinus bei \(t=0\) bereits \(+1\) oder \(-1\) sein.</div>
+        </section>
+
+        <div class="path-summary" id="math-summary" hidden><h3>Dein Ergebnis aus der Bewegungsgleichung</h3><p>\(x(t)=\hat{x}\sin(\omega t+\varphi_0)\) löst \(\ddot{x}=-(D/m)x\), weil zweimaliges Ableiten \(-\omega^2x\) ergibt. Der Vergleich liefert \(\omega=\sqrt{D/m}\): Daher steht im Gesetz für \(T\) eine Wurzel. Eine vollständige Phase umfasst \(2\pi\), daher \(T=2\pi/\omega\). \(\omega t\) ist der seit dem Start durchlaufene Winkel, \(\varphi_0\) der Winkel zu Beginn.</p><button type="button" class="switch-path" data-open-path="experiment">Auch den experimentellen Weg ansehen →</button></div>
+      </section>
+    </article>
+  </main>
+  <footer>Physik Q1 · Schwingungen</footer>
+</body>
+</html>

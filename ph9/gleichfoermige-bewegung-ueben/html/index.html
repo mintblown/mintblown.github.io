@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktive Übungen zu Weg, Geschwindigkeit und Beschleunigung bei gleichförmigen Bewegungen.">
+  <title>Gleichförmige Bewegung üben · Physik Klasse 9</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="bewegung.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">↔</span> Kräfte und Bewegung</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Interaktive Übung · Gleichförmige Bewegung</p><h1>Weg, Geschwindigkeit und Beschleunigung</h1><p>Rechne mit \(s\), \(v\) und \(a\). Trage danach die Messpunkte der Bewegung in ein Diagramm ein.</p></header>
+
+      <figure class="sketch motion-sketch"><img src="../img/bewegungsskizze.svg" alt="Vier Positionen eines Fahrrads liegen bei gleichen Zeitabständen gleich weit auseinander." width="1000" height="360"><figcaption>Gleichförmig bedeutet: In gleichen Zeitabschnitten wird immer derselbe Weg zurückgelegt. Die Geschwindigkeit bleibt gleich.</figcaption></figure>
+
+      <section class="motion-practice" aria-labelledby="situation-title">
+        <div class="motion-situation"><p class="eyebrow">Deine Aufgabe</p><h2 id="situation-title">Eine gleichförmige Fahrt</h2><p id="situation-text" aria-live="polite"></p><div class="formula-strip"><strong>\(s=v\cdot t\)</strong><strong>\(v=\frac{s}{t}\)</strong><strong>\(a=\frac{\Delta v}{\Delta t}\)</strong></div></div>
+
+        <form id="motion-form" novalidate>
+          <div class="calculation-grid">
+            <label class="calculation-card"><span class="task-symbol">s</span><strong id="distance-question"></strong><span class="answer-entry"><input id="distance-input" type="text" inputmode="decimal" autocomplete="off" aria-describedby="distance-feedback"><span>m</span></span><span class="answer-feedback" id="distance-feedback"></span></label>
+            <label class="calculation-card"><span class="task-symbol">v</span><strong id="speed-question"></strong><span class="answer-entry"><input id="speed-input" type="text" inputmode="decimal" autocomplete="off" aria-describedby="speed-feedback"><span>m/s</span></span><span class="answer-feedback" id="speed-feedback"></span></label>
+            <label class="calculation-card"><span class="task-symbol">a</span><strong id="acceleration-question"></strong><span class="answer-entry"><input id="acceleration-input" type="text" inputmode="decimal" autocomplete="off" aria-describedby="acceleration-feedback"><span>m/s²</span></span><span class="answer-feedback" id="acceleration-feedback"></span></label>
+          </div>
+
+          <section class="motion-graph-task" aria-labelledby="graph-title">
+            <h2 id="graph-title">Messpunkte eintragen</h2>
+            <p>Trage die vier angegebenen Messpunkte in das \(s(t)\)-Diagramm ein. Klicke oder tippe in das Diagramm. Du kannst gesetzte Punkte verschieben.</p>
+            <p class="motion-points" id="point-list" aria-live="polite"></p>
+            <div class="motion-plot-frame"><svg id="motion-plot" class="motion-plot motion-plot--interactive" viewBox="0 0 820 590" role="img" aria-label="Leeres Weg-Zeit-Diagramm zum Eintragen von vier Messpunkten"></svg></div>
+            <p class="plot-legend"><span class="legend-dot legend-dot--own"></span> Deine Punkte <span class="legend-dot legend-dot--solution"></span> Musterlösung</p>
+            <div class="exercise-controls"><button type="button" id="clear-motion-points">Punkte löschen</button></div>
+            <p class="exercise-status" id="motion-status" aria-live="polite">Noch kein Punkt gesetzt.</p>
+          </section>
+
+          <div class="motion-actions"><button type="submit" id="check-motion">Musterlösung anzeigen</button><button type="button" id="new-motion">Zurücksetzen · neue Aufgabe</button></div>
+        </form>
+
+        <section class="motion-solution" id="motion-solution" aria-labelledby="solution-title" hidden>
+          <h2 id="solution-title">Musterlösung</h2><div id="solution-copy"></div>
+        </section>
+      </section>
+    </article>
+  </main>
+  <footer>Physik Klasse 9 · Kräfte und Bewegung</footer>
+</body>
+</html>

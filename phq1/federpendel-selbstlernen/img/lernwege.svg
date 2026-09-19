@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Federpendel mit zwei Wegen">
+  <g fill="none" stroke="#253746" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 12 Q34 11 55 12 M18 12l-5 6 M30 12l-5 6 M42 12l-5 6 M54 12l-5 6" stroke-width="2.4"/>
+    <path d="M35 12 v10 l-8 5 16 8-16 8 16 8-16 8 8 5 v5" stroke-width="2.8"/>
+    <path d="M24 70 Q35 69 46 70 L46 87 Q35 88 24 87 Z" stroke-width="2.7"/>
+    <path d="M48 78 Q61 76 67 61 M48 78 Q61 80 67 91 M67 61l-7 1 m7-1-3 7 M67 91l-7-1 m7 1-3-7" stroke-width="2.3"/>
+    <path d="M70 49 Q78 41 86 49 M70 49 Q77 56 86 49 M70 77 q7-12 15 0 M70 77 q8 11 16 0" stroke-width="2.3"/>
+  </g>
+</svg>

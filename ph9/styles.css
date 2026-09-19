@@ -99,3 +99,44 @@ footer { padding-bottom: 30px; color: #8a8178; font-size: .86rem; }
 .evaluation p { margin: 0 0 6px; }
 .evaluation p:last-child { margin-bottom: 0; }
 .exercise-controls button#new-button { background: white; color: var(--accent); }
+
+/* Übung zur gleichförmigen Bewegung */
+.motion-sketch { margin-bottom: 25px; }
+.motion-practice { margin-top: 28px; }
+.motion-situation { padding: 24px 26px; border-radius: 18px; background: #f9eee5; }
+.motion-situation h2 { margin-bottom: 9px; font-size: 1.55rem; }
+.motion-situation > p:not(.eyebrow) { margin-bottom: 17px; color: #4f4c47; font-size: 1.05rem; line-height: 1.65; }
+.formula-strip { display: flex; flex-wrap: wrap; gap: 10px; }
+.formula-strip strong { padding: 9px 13px; border: 1px solid #dfc7b6; border-radius: 10px; background: white; }
+.calculation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin: 22px 0 38px; }
+.calculation-card { position: relative; display: flex; flex-direction: column; gap: 13px; min-height: 220px; padding: 22px; border: 1px solid var(--line); border-radius: 17px; background: white; box-shadow: 0 7px 18px #4c2c1809; }
+.calculation-card > strong { padding-right: 36px; line-height: 1.5; }
+.task-symbol { position: absolute; top: 16px; right: 17px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #f9eee5; color: var(--accent); font-size: 1.15rem; font-weight: 800; }
+.answer-entry { display: flex; align-items: center; gap: 7px; margin-top: auto; font-weight: 700; }
+.answer-entry input { width: 105px; padding: 10px 12px; border: 1px solid #bea894; border-radius: 9px; color: inherit; font: inherit; }
+.answer-feedback { min-height: 2.8em; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+.answer-feedback.is-correct { color: #33704a; font-weight: 700; }
+.answer-feedback.is-correction { color: #8a492b; font-weight: 700; }
+.motion-graph-task { margin-top: 30px; }
+.motion-graph-task > p { color: #4f4c47; line-height: 1.65; }
+.motion-points { padding: 14px 17px; border-radius: 12px; background: #f9eee5; font-size: 1.04rem; font-weight: 700; line-height: 1.8; word-spacing: .15em; }
+.motion-plot-frame { border: 1px solid #eee7df; border-radius: 11px; overflow: hidden; background: white; }
+.motion-plot { display: block; width: 100%; height: auto; font-family: Arial, sans-serif; }
+.motion-plot--interactive { cursor: crosshair; touch-action: none; }
+.motion-grid { stroke: #e7e2dc; stroke-width: 1; }
+.motion-tick { stroke: #302e2b; stroke-width: 2; }
+.motion-axis { fill: none; stroke: #302e2b; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.motion-tick-label { fill: #302e2b; font-size: 18px; }
+.motion-axis-label { fill: #302e2b; font-size: 21px; font-weight: 700; }
+.motion-own-dot { fill: #266e8b; stroke: white; stroke-width: 2; }
+.motion-answer-ring { fill: none; stroke: #965633; stroke-width: 4; }
+.motion-answer-line { fill: none; stroke: #965633; stroke-width: 3.5; stroke-linecap: round; }
+.motion-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+.motion-actions button { padding: 13px 18px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.motion-actions #new-motion { background: white; color: var(--accent); }
+.motion-solution { margin-top: 25px; padding: 23px 26px; border-left: 4px solid #c08158; border-radius: 0 15px 15px 0; background: #f9eee5; }
+.motion-solution[hidden] { display: none; }
+.motion-solution h2 { margin-bottom: 13px; }
+.motion-solution p { margin-bottom: 10px; line-height: 1.65; }
+.motion-solution p:last-child { margin-bottom: 0; }
+@media (max-width: 720px) { .calculation-grid { grid-template-columns: 1fr; } .calculation-card { min-height: 0; } }
