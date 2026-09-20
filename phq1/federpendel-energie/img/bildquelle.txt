@@ -1,0 +1,25 @@
+Die beiden Unterrichtsskizzen wurden mit dem integrierten image_gen-Werkzeug erstellt und redaktionell geprüft.
+
+halfpipe.png
+Use case: scientific-educational
+Asset type: wide lesson illustration for German upper-secondary physics
+Primary request: A skateboarder in a halfpipe as an analogy for energy transfer in a spring oscillator.
+Scene/backdrop: pure white background.
+Subject: One continuous U-shaped halfpipe shown from the side. Show the same minimalist skateboarder at three moments along the motion: high on the left wall, fastest at the low center, high on the right wall. Use faint dashed trajectory and simple motion arrows. At the high positions the skateboarder is upright and nearly stopped; at the center the skateboard is horizontal with clear speed lines. Make the repeated figures obviously three snapshots of the same motion, not three people interacting.
+Style/medium: pure black fineliner, loose hand-drawn classroom notebook sketch, slightly wobbly outlines, friendly but not childish.
+Composition/framing: wide, diagram-like, generous white space, all objects fully visible.
+Text: no text and no mathematical labels.
+Constraints: physically readable side view; sparse diagonal hatching only under the ramp edge; black ink only.
+Avoid: color, gray fills, gradients, photorealism, 3D, shadows, logos, watermark, decorative background.
+
+federgabel-grenzfall.png
+Use case: scientific-educational
+Asset type: wide lesson illustration for German upper-secondary physics
+Primary request: Explain the aperiodic critical damping case with a bicycle suspension fork.
+Scene/backdrop: pure white background.
+Subject: A simple side-view close-up of a bicycle front wheel and telescopic suspension fork after rolling over one small curb or bump. Show three faint successive outlines of the fork/wheel settling monotonically toward the normal resting position, with progressively shorter vertical arrows. The motion returns quickly without bouncing past the resting position. Include a small separate inset at right: a hand-drawn displacement-versus-time curve that starts above zero and falls quickly and smoothly toward a horizontal zero line without crossing it and without oscillations.
+Style/medium: pure black fineliner, loose hand-drawn classroom notebook sketch, slightly wobbly outlines, friendly but not childish.
+Composition/framing: wide, diagram-like, generous white space, main fork left and simple graph right, all fully visible.
+Text: no words, no letters, no mathematical labels, no numbers.
+Constraints: side view, physically readable telescopic fork; curve must never cross the zero line; sparse diagonal hatching only on the ground bump.
+Avoid: color, gray fills, gradients, photorealism, 3D, shadows, logos, watermark, repeated bouncing curve.
