@@ -1,0 +1,6 @@
+Euro-Münzen: vereinfachte, nicht maßstabsgetreue Unterrichtsskizze.
+Erstellt mit dem integrierten image_gen-Werkzeug (Skill imagegen).
+Datei: euro-muenzen.png
+
+Verwendeter Prompt:
+Use case: scientific-educational. Asset type: wide illustration for a German grade 6 interactive lesson. Draw exactly all eight standard euro coin denominations, each once, as a clean black ink educational hand-drawn sketch on pure white. Two rows of four separate coins: top row 1 CENT, 2 CENT, 5 CENT, 10 CENT; bottom row 20 CENT, 50 CENT, 1 EURO, 2 EURO. Front-on views, generous whitespace, clearly legible denomination numerals and short unit labels inside each coin. Recognizable simplified common European coin faces, sparse continent outlines and line details; double rings on 1 and 2 euro coins. Slightly wobbly black fineliner outlines, medium line weight. No color, no gray fills, no gradients, no photorealism, no 3D, no large black fills. Sparse hatching only. No other coins or text. All coins entirely visible. Classroom worksheet style, calm and readable.

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Entdecke Binärzahlen mit Münzen: Lege Euro-Beträge, spare Münzen und erfinde eine Währung aus Zweierpotenzen.">
+  <title>Von Münzen zu Binärzahlen · Digital einfach erklärt</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="muenzen.css">
+  <script>window.MathJax = {tex: {inlineMath: [['\\(', '\\)']]}, options: {enableMenu: false}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="muenzen.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">✳</span> Digital einfach erklärt</a></header>
+  <main class="article-main coin-lesson">
+    <a class="back-link" href="../../index.html">← Zur Themenübersicht</a>
+    <article>
+      <header class="article-hero coin-hero"><div><p class="article-kicker">Informatik · Klasse 6</p><h1>Von Münzen zu Binärzahlen</h1><p>Du kannst mit Münzen bezahlen. Aber kannst du mit ihnen auch herausfinden, wie ein Computer Zahlen speichert?</p></div></header>
+      <nav class="lesson-nav" aria-label="Stationen der Lektion"><a href="#euro">1 · Euro-Münzen</a><a href="#sparsam">2 · Münzen sparen</a><a href="#neue-waehrung">3 · Neue Währung</a><a href="#computer">4 · Zum Computer</a></nav>
+      <noscript><p class="notice">Schalte JavaScript ein, damit du die Münzen auswählen und deine Lösungen prüfen kannst.</p></noscript>
+      <section class="guide-section" id="euro">
+        <p class="article-kicker">Station 1 · Das kennst du schon</p><h2>Ein Betrag, viele Möglichkeiten</h2>
+        <p>Diese acht Euro-Münzen kennst du bestimmt: 1, 2, 5, 10, 20 und 50 Cent sowie 1 und 2 Euro. Mit mehreren Münzen kannst du größere Beträge zusammensetzen. Denk daran: 1 Euro sind 100 Cent.</p>
+        <figure class="coin-figure"><img src="../img/euro-muenzen.png" width="1774" height="887" alt="Schwarz-Weiß-Skizze der acht Euro-Münzen: oben 1, 2, 5 und 10 Cent, unten 20 und 50 Cent, 1 und 2 Euro."><figcaption>Die acht Münzwerte im Überblick. Vereinfachte Skizzen, nicht maßstabsgetreu.</figcaption></figure>
+        <p>Wie würdest du zum Beispiel 60 Cent bezahlen? Mit sechs 10-Cent-Münzen? Oder mit einer 50-Cent- und einer 10-Cent-Münze? Beides geht!</p>
+      </section>
+      <section class="activity" aria-labelledby="euro-title">
+        <p class="article-kicker">Deine Münzwerkstatt</p><h2 id="euro-title">Lege den passenden Betrag</h2>
+        <p>Du bekommst einen zufälligen Betrag von 0,01 € bis 10,00 €. Wähle für jede Münzsorte eine Anzahl. Du kannst die Zahl eintippen oder die Plus- und Minus-Tasten benutzen.</p>
+        <label class="mode-label" for="euro-mode">Deine Aufgabe</label>
+        <select id="euro-mode"><option value="free">Den Betrag genau treffen</option><option value="minimum">Mit möglichst wenigen Münzen bezahlen</option></select>
+        <p id="euro-rule">Jede passende Zusammenstellung zählt. Du darfst Münzsorten mehrfach verwenden.</p>
+        <p class="target">Gesucht: <strong id="euro-target"></strong></p>
+        <div class="coin-grid" id="euro-coins"></div>
+        <p class="wallet" id="euro-total" aria-live="polite" aria-atomic="true"></p>
+        <div class="actions"><button id="euro-check" type="button">Prüfen</button><button id="euro-new" class="secondary" type="button">Neuer Betrag</button><button id="euro-clear" class="secondary" type="button">Münzen zurücklegen</button><button id="euro-solve" class="secondary" type="button">Lösung zeigen</button></div>
+        <p id="euro-feedback" class="feedback" role="status"></p><div id="euro-solution" class="solution" hidden></div>
+      </section>
+      <section class="guide-section" id="sparsam">
+        <p class="article-kicker">Station 2 · Geht es mit weniger?</p><h2>Spare Münzen</h2>
+        <p>Jetzt zählt nicht nur der Betrag: Gesucht ist die <strong>kleinste Anzahl von Münzen</strong>. Bei 60 Cent sind das zwei Münzen: 50 Cent und 10 Cent.</p>
+        <button id="minimum-start" type="button">Die aktuelle Aufgabe mit möglichst wenigen Münzen lösen</button>
+        <details class="help-card"><summary>Tipp umklappen: Wie spare ich Münzen?</summary><p>Nimm zuerst die größte Münze, die noch in den fehlenden Betrag passt. Zieh ihren Wert ab. Mach mit dem Rest genauso weiter, bis nichts mehr fehlt.</p><p>Bei den Euro-Münzen findest du so eine Lösung mit möglichst wenigen Münzen. Beispiel: 87 Cent = 50 Cent + 20 Cent + 10 Cent + 5 Cent + 2 Cent, also fünf Münzen.</p><p>Die gleiche Regel klappt nicht bei jeder erfundenen Währung. Hier passt sie zu unseren Euro-Münzen.</p></details>
+      </section>
+      <section class="guide-section" id="neue-waehrung">
+        <p class="article-kicker">Station 3 · Eine neue Münzwelt</p><h2>Jede Münze ist doppelt so viel wert</h2>
+        <p>Stell dir eine neue Währung vor. Ihre Münzen sind 1, 2, 4, 8, 16, 32, 64, 128 und 256 Cent wert. Von einer Münze zur nächsten verdoppelt sich der Wert. Die größte Münze ist also 2,56 € wert.</p>
+        <p>Diese Cent-Werte heißen <strong>Zweierpotenzen</strong>: \(2^0 = 1\), \(2^1 = 2\), \(2^2 = 4\) und so weiter. Ein Münzwert in Euro ist eine Zweierpotenz mal 0,01 €.</p>
+        <p>Die neue Regel: <strong>Von jeder Sorte hast du genau eine Münze.</strong> Du kannst sie nehmen oder liegen lassen. Auch die Null ist möglich: Dann nimmst du gar keine Münze.</p>
+        <details class="help-card"><summary>Hilfekarte umklappen: Alle Zweierpotenzen</summary><div class="table-scroll"><table><caption>Neun Münzen, neun verschiedene Werte</caption><thead><tr><th>Potenz</th><th>Cent</th><th>Euro</th></tr></thead><tbody>
+          <tr><td>\(2^0\)</td><td>1</td><td>0,01 €</td></tr><tr><td>\(2^1\)</td><td>2</td><td>0,02 €</td></tr><tr><td>\(2^2\)</td><td>4</td><td>0,04 €</td></tr><tr><td>\(2^3\)</td><td>8</td><td>0,08 €</td></tr><tr><td>\(2^4\)</td><td>16</td><td>0,16 €</td></tr><tr><td>\(2^5\)</td><td>32</td><td>0,32 €</td></tr><tr><td>\(2^6\)</td><td>64</td><td>0,64 €</td></tr><tr><td>\(2^7\)</td><td>128</td><td>1,28 €</td></tr><tr><td>\(2^8\)</td><td>256</td><td>2,56 €</td></tr>
+        </tbody></table></div></details>
+      </section>
+      <section class="activity" aria-labelledby="binary-title"><h2 id="binary-title">Nehmen oder liegen lassen?</h2>
+        <p>Tippe auf die Münzen, die du benutzen möchtest. Tippe noch einmal, um eine Münze zurückzulegen. Jede Münze gibt es nur einmal.</p>
+        <p class="notice">Alle neun Münzen zusammen sind 5,11 € wert. Deshalb liegen die zufälligen Aufgaben hier zwischen 0,00 € und 5,11 €.</p>
+        <p class="target">Gesucht: <strong id="binary-target"></strong></p>
+        <div class="binary-coins" id="binary-coins"></div>
+        <p class="wallet" id="binary-total" aria-live="polite" aria-atomic="true"></p>
+        <div class="actions"><button id="binary-check" type="button">Prüfen</button><button id="binary-new" class="secondary" type="button">Neuer Betrag</button><button id="binary-clear" class="secondary" type="button">Münzen zurücklegen</button><button id="binary-example" class="secondary" type="button">Beispiel: 0,42 €</button><button id="binary-solve" class="secondary" type="button">Lösung zeigen</button></div>
+        <p id="binary-feedback" class="feedback" role="status"></p><div id="binary-solution" class="solution" hidden></div>
+        <details class="help-card"><summary>Tipp umklappen: Welche Münze nehme ich?</summary><p>Beginne mit der größten Münze. Ist sie höchstens so viel wert wie dein noch fehlender Betrag? <strong>Ja:</strong> Nimm sie und zieh ihren Wert ab. <strong>Nein:</strong> Lass sie liegen. Prüfe dann die nächstkleinere Münze.</p><p>Anders als bei Euro-Münzen brauchst du hier keine Münze doppelt. Jeder ganze Cent-Betrag von 0 bis 511 hat genau eine passende Auswahl.</p></details>
+        <details class="help-card"><summary>Knobelfrage umklappen: Könntest du 10,00 € bezahlen?</summary><p>Nein. Selbst mit allen Münzen kommst du nur auf 5,11 €. Die nächste Münze müsste 5,12 € wert sein. Zusammen mit den bisherigen Münzen könntest du damit Beträge bis 10,23 € darstellen.</p></details>
+      </section>
+      <section class="guide-section" id="computer"><p class="article-kicker">Station 4 · Von Münzen zu Schaltern</p><h2>Was haben 0 und 1 mit dem Computer zu tun?</h2>
+        <p>Bei jeder neuen Münze hast du nur zwei Möglichkeiten: <strong>liegt da</strong> oder <strong>nehme ich</strong>. Du könntest dafür einfach 0 und 1 aufschreiben: 0 bedeutet „nicht genommen“, 1 bedeutet „genommen“.</p>
+        <p>Auch ein Computer arbeitet mit zwei gut unterscheidbaren Zuständen. Stell dir einen winzigen Schalter vor: aus oder an. Wir nennen die beiden Zustände 0 und 1. Eine Speicherstelle für eine solche 0 oder 1 heißt <strong>Bit</strong>.</p>
+        <p>Ein einzelnes Bit reicht nur für zwei Möglichkeiten. Viele Bits nebeneinander können viel mehr ausdrücken – genauso wie deine neun Münzen zusammen viele verschiedene Beträge ergeben.</p>
+        <div class="notice"><strong>Wir zählen ganze Cent.</strong> Beim Beispiel 0,42 € speichern wir die Zahl 42. Die Münzen helfen uns also, ganze Zahlen zu verstehen.</div>
+      </section>
+      <section class="activity" aria-labelledby="question-title"><p class="article-kicker">Deine Idee</p><h2 id="question-title">Wie könnte ein System, das nur 0 und 1 kennt, unsere Zahlen darstellen?</h2>
+        <p>Denk an die Münzen: Was könnte jede Stelle einer Folge aus Nullen und Einsen wert sein? Wie würdest du die Zahl 42 aufschreiben?</p>
+        <label for="idea">Halte deine Vermutung fest:</label><textarea id="idea" rows="3" placeholder="Meine Idee ist …" aria-describedby="idea-note"></textarea><p id="idea-note" class="small-note">Deine Notiz bleibt nur auf dieser geöffneten Seite und wird nicht gespeichert oder abgeschickt.</p>
+        <details class="help-card"><summary>Erklärung umklappen: So entstehen Binärzahlen</summary><p>Jede Stelle bekommt einen Wert wie eine unserer Münzen. Ganz rechts steht 1, links daneben 2, dann 4, 8, 16 und so weiter. Eine 1 heißt: Zähle diesen Wert dazu. Eine 0 heißt: Lass ihn weg.</p>
+          <div class="table-scroll"><table><caption>42 Cent mit Zweierpotenz-Münzen</caption><thead><tr><th>Wert in Cent</th><th>256</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr></thead><tbody><tr><th>Genommen?</th><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr></tbody></table></div>
+          <p>\(42 = 32 + 8 + 2\). Die Auswahl heißt also 000101010. Nullen ganz links darfst du weglassen: <strong>101010</strong>. Das ist die Binärdarstellung der Zahl 42.</p><p>Wir schreiben \([42]_{10} = [101010]_2\). Die kleine 10 bedeutet „Dezimalsystem“, die kleine 2 „Binärsystem“. Es ist dieselbe Zahl in zwei Schreibweisen.</p><p>Zurück geht es genauso: Bei <strong>101010</strong> addierst du die Stellenwerte mit einer 1, also \(32 + 8 + 2 = 42\). Die Stellen mit einer 0 tragen nichts bei.</p>
+          <p>Unsere neun Münzen entsprechen neun Bits. Acht Bits heißen ein Byte. Mit acht Bits kannst du die ganzen Zahlen von 0 bis 255 darstellen.</p>
+        </details>
+      </section>
+    </article>
+  </main><footer class="site-footer">Lernen in deinem Tempo. Eine Münze nach der anderen.</footer>
+</body></html>

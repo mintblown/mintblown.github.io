@@ -1,0 +1,54 @@
+.coin-lesson { max-width: 1000px; }
+.coin-hero { background: #e2efe9; }
+.lesson-nav, .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.lesson-nav { margin: 24px 0 36px; }
+.lesson-nav a { padding: 7px 12px; background: white; border: 1px solid var(--line); border-radius: 9px; color: #126b64; text-decoration: none; font-weight: 700; }
+.coin-figure { margin: 24px 0; padding: 14px; background: white; border: 1px solid var(--line); border-radius: 18px; }
+.coin-figure img { display: block; width: 100%; height: auto; }
+.coin-figure figcaption, .small-note { color: var(--muted); font-size: .88rem; line-height: 1.5; margin-top: 10px; }
+.activity { margin-top: 30px; padding: clamp(18px, 3vw, 32px); border: 1px solid var(--line); border-radius: 22px; background: var(--paper); }
+.activity h2 { font-size: 1.6rem; }
+.activity p, .help-card p { line-height: 1.7; }
+button, select, input, textarea { font: inherit; }
+button { padding: 11px 16px; border: 1px solid #126b64; border-radius: 10px; background: #126b64; color: white; cursor: pointer; font-weight: 700; }
+button.secondary { background: #edf5f2; color: #126b64; }
+button:disabled { opacity: .45; cursor: default; }
+:focus-visible { outline: 3px solid #b86921; outline-offset: 3px; }
+select, textarea { max-width: 100%; padding: 10px; border: 1px solid #8ba8a3; border-radius: 8px; background: white; color: var(--ink); }
+.mode-label { display: block; margin: 0 0 8px; font-weight: 700; }
+.target { margin: 20px 0; font-size: 1.5rem; color: #174c48; }
+.target strong { white-space: nowrap; font-size: 1.25em; }
+.coin-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.coin-picker { padding: 16px 8px; border: 1px solid var(--line); border-radius: 16px; text-align: center; background: white; }
+.coin-face { display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto 12px; width: 72px; height: 72px; border: 2px solid currentColor; outline: 1px solid currentColor; outline-offset: -6px; border-radius: 48% 51% 49% 52%; color: #24353b; font-weight: 800; background: white; font-size: 1.25rem; }
+.coin-face small { font-size: .7rem; line-height: 1.1; }
+.coin-picker label { display: block; font-size: .83rem; margin-bottom: 6px; }
+.counter { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.counter button { padding: 3px 0; width: 32px; min-height: 40px; flex-shrink: 0; }
+.counter input { width: 58px; min-height: 40px; text-align: center; border: 1px solid #8ba8a3; border-radius: 6px; appearance: textfield; -moz-appearance: textfield; }
+.counter input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.wallet { padding: 14px 18px; background: #e9f5f1; border-radius: 12px; margin-top: 20px; }
+.feedback { min-height: 1.7em; font-weight: 700; margin: 16px 0 0; }
+.feedback[data-state="success"] { color: #126b64; }
+.feedback[data-state="error"] { color: #9a3b20; }
+.help-card { padding: 18px 22px; background: #fff4e6; border: 1px solid #e5d3bb; border-radius: 14px; margin-top: 20px; }
+.help-card summary { cursor: pointer; font-weight: 700; line-height: 1.5; }
+.help-card p:first-of-type { margin-top: 16px; }
+.help-card p:last-child { margin-bottom: 0; }
+.notice { padding: 15px 18px; background: #eef3fa; border-radius: 12px; line-height: 1.6; }
+.binary-coins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.binary-coin { padding: 15px 8px; background: white; color: #21313c; border: 2px solid #cad8d5; }
+.binary-coin[aria-pressed="true"] { border-color: #126b64; background: #ddefe6; }
+.binary-coin .coin-face { width: 76px; height: 76px; }
+.binary-coin .coin-caption, .binary-coin .coin-state { display: block; font-size: .85rem; }
+.binary-coin .coin-state { margin-top: 5px; }
+.solution { margin-top: 16px; padding: 18px; background: #eef3fa; border-radius: 12px; line-height: 1.7; }
+.solution p:last-child { margin-bottom: 0; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+th, td { text-align: center; padding: 8px; border-bottom: 1px solid #d6c9b8; }
+caption { text-align: left; font-weight: 700; padding: 8px 0; }
+textarea { display: block; width: 100%; margin-top: 10px; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .coin-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .coin-picker { padding: 12px 4px; } .counter { gap: 3px; } .counter input { width: 42px; } .counter button { width: 28px; } .binary-coins { gap: 6px; } .binary-coin { padding: 12px 3px; } .binary-coin .coin-face { width: 60px; height: 60px; font-size: 1.1rem; } .binary-coin .coin-state { font-size: .75rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
