@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 500" role="img" aria-labelledby="title desc">
+<title id="title">Vereinfachtes Von-Neumann-Modell</title><desc id="desc">Baustein A steht oben, darunter die CPU mit Baustein B links und Baustein C rechts. Daten fließen zwischen A und B, Anweisungen von A zu C. Steuersignale fließen von C zu B.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#222" stroke-width="1.5"/></marker></defs>
+<rect width="860" height="500" fill="white"/>
+<g fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 192 30 L 667 32 L 669 135 L 190 133 Z"/>
+<path d="M 65 310 Q 65 296 80 296 L 780 298 Q 795 298 795 313 L 793 456 Q 793 471 778 471 L 81 468 Q 64 468 65 450 Z" stroke-dasharray="7 6"/>
+<path d="M 105 352 L 328 351 L 330 434 L 103 436 Z"/>
+<path d="M 532 351 L 755 354 L 753 436 L 530 433 Z"/>
+<path d="M 215 141 L 215 344" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<path d="M 642 141 L 642 344" marker-end="url(#arrow)"/>
+<path d="M 524 396 L 338 396" marker-end="url(#arrow)"/>
+</g>
+<g font-family="Arial, sans-serif" fill="#222" text-anchor="middle">
+<text x="430" y="70" font-size="27" font-weight="700">Baustein A</text><text x="430" y="109" font-size="22">Daten + Anweisungen</text>
+<rect x="160" y="213" width="110" height="32" fill="white"/><text x="215" y="237" font-size="21">Daten</text>
+<rect x="557" y="213" width="170" height="32" fill="white"/><text x="642" y="237" font-size="21">Anweisungen</text>
+<text x="430" y="326" font-size="19">CPU / Prozessor</text>
+<text x="216" y="402" font-size="24" font-weight="700">Baustein B</text><text x="643" y="402" font-size="24" font-weight="700">Baustein C</text>
+<text x="430" y="380" font-size="17">Steuersignale</text>
+</g></svg>

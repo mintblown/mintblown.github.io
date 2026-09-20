@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hilfen zum Arbeitsblatt Vom Programm zum Prozessor: EVA, Syntax, Compiler und Von-Neumann-Architektur. Transfer auf einen Arduino mit 8×8-RGB-LED-Matrix.">
+  <title>Vom Programm zum Prozessor · IF EF</title>
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="architektur.css">
+  <script>window.MathJax = {tex: {inlineMath: [['\\(', '\\)']]}, options: {enableMenu: false}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="architektur.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main>
+  <a href="../../index.html">← Zur Projektübersicht</a>
+  <header class="hero"><p class="eyebrow">03 · Rechnersysteme verstehen</p><h1>Vom Programm zum Prozessor</h1><p>Wie wird aus einem Text eine Berechnung? Erarbeiten Sie die Bausteine eines Rechners und übertragen Sie das Modell auf ein leuchtendes Ausgabegerät.</p></header>
+  <p class="intro">Diese Lektion begleitet das Arbeitsblatt <strong>„Wie verarbeitet ein Computer ein Programm?“ (IF_EF_06)</strong>. Bearbeiten Sie zuerst die jeweilige Aufgabe. Öffnen Sie bei Bedarf einen Hinweis und vergleichen Sie erst danach Ihren Lösungsansatz.</p>
+  <nav aria-label="Lernstationen"><a href="#eva">Aufgabe 1 · EVA</a><a href="#syntax">Aufgabe 2 · Syntax</a><a href="#compiler">Aufgabe 3 · Übersetzung</a><a href="#bausteine">Aufgabe 4 · Architektur</a><a href="#transfer">Transfer · LED-Matrix</a></nav>
+  <noscript><p class="notice">Die Erklärungen und Hilfekarten können Sie ohne JavaScript lesen. Für Programmablauf, Zuordnung und LED-Modell aktivieren Sie bitte JavaScript.</p></noscript>
+
+  <section class="panel" id="eva">
+    <p class="eyebrow">Zum Arbeitsblatt · Aufgabe 1</p><h2>Ein Programm als Eingabe</h2>
+    <p>Beschreiben Sie zunächst in eigenen Worten, was dieses Programm macht. Unterscheiden Sie die Daten, die Berechnung und die sichtbare Ausgabe.</p>
+    <pre aria-label="Java-Programm aus dem Arbeitsblatt"><code>public class Main {
+    public static void main(String[] args) {
+        int zahl1 = 5;
+        int zahl2 = 3;
+        int ergebnis = zahl1 + zahl2;
+
+        System.out.println(ergebnis);
+    }
+}</code></pre>
+    <details><summary>Hinweis 1: Woher kommen die Daten?</summary><p>Suchen Sie nach den Zahlen im Quelltext. Das Programm fragt nicht nach einer Tastatureingabe. Welche Werte stehen schon fest, bevor es startet?</p></details>
+    <details><summary>Hinweis 2: Verarbeitung oder Ausgabe?</summary><p>Das Pluszeichen beschreibt eine Berechnung. Eine Zuweisung speichert einen Wert in einer Variablen. Erst <code>System.out.println(...)</code> macht das Ergebnis in der Konsole sichtbar.</p></details>
+    <h3>Den Ablauf nachvollziehen</h3><p>Führen Sie die vier Anweisungen schrittweise aus. Das ist eine didaktische Simulation, keine Java-Laufzeit und keine Darstellung einzelner Maschinenbefehle.</p>
+    <div class="trace-lines" aria-label="Die vier Anweisungen"><code id="line-1">1 · int zahl1 = 5;</code><code id="line-2">2 · int zahl2 = 3;</code><code id="line-3">3 · int ergebnis = zahl1 + zahl2;</code><code id="line-4">4 · System.out.println(ergebnis);</code></div>
+    <div class="trace-values"><div><span>zahl1</span><output id="value-1">—</output></div><div><span>zahl2</span><output id="value-2">—</output></div><div><span>ergebnis</span><output id="value-result">—</output></div><div><span>Konsole</span><output id="console-value">—</output></div></div>
+    <div class="controls"><button id="trace-next" type="button">Nächste Anweisung</button><button id="trace-reset" class="secondary" type="button">Zurücksetzen</button></div><p id="trace-status" class="status" role="status"></p>
+    <details><summary>Vergleichen: EVA und die Leitfrage</summary><dl><dt>Eingabe</dt><dd>Die vorgegebenen Daten 5 und 3. Hier gibt es keine Benutzereingabe während der Ausführung.</dd><dt>Verarbeitung</dt><dd>Die Zahlen werden addiert; die Summe wird in <code>ergebnis</code> gespeichert.</dd><dt>Ausgabe</dt><dd>Die Konsole zeigt 8.</dd></dl><p>Eine zweite Sichtweise führt zur Leitfrage: Auch der <strong>gesamte Quelltext</strong> wird dem Computersystem als Eingabe übergeben. Ein Compiler muss diesen Text erst verarbeiten, bevor das Programm ausgeführt werden kann.</p></details>
+  </section>
+
+  <section class="panel" id="syntax"><p class="eyebrow">Zum Arbeitsblatt · Aufgabe 2a–c</p><h2>Regeln, nach denen Quelltext aufgebaut ist</h2>
+    <p>Führen Sie die Änderungen aus Aufgabe 2 in IntelliJ durch. Stellen Sie zwischen den Versuchen die ursprüngliche Zeile wieder her. Notieren Sie jeweils: Was wurde verändert? Wo erscheint die Markierung? Kann das Programm neu übersetzt werden?</p>
+    <label for="syntax-example">Eine der drei Zeilen untersuchen</label><select id="syntax-example"><option value="valid">Ursprüngliche Zeile</option><option value="semicolon">Ohne Semikolon · Aufgabe 2a</option><option value="operand">Ohne zweiten Operanden · Aufgabe 2b</option></select>
+    <pre><code id="syntax-code">int ergebnis = zahl1 + zahl2;</code></pre><button type="button" id="syntax-check">Erklärung anzeigen</button><p id="syntax-feedback" class="status" role="status"></p>
+    <p class="small">Die Auswahl zeigt die Erklärung zu diesen drei Beispielen. Sie führt keinen echten Compiler aus. Der Wortlaut der Fehlermeldungen in IntelliJ kann abweichen.</p>
+    <details><summary>Formulierungshilfe für Aufgabe 2c</summary><p>Vervollständigen Sie: „Unter Syntax versteht man die Regeln, nach denen …“. Nennen Sie danach ein Beispiel aus Ihren beiden Versuchen.</p></details>
+    <details><summary>Vergleichen: Was bedeutet Syntax?</summary><p>Die Syntax legt fest, wie gültiger Quelltext aufgebaut sein muss. Diese Java-Anweisungen benötigen ein abschließendes Semikolon; bei einer Addition braucht das Pluszeichen zwei Operanden. Ein Syntaxfehler verhindert die erfolgreiche Übersetzung des geänderten Programms.</p><p>Umgekehrt garantiert korrekte Syntax noch nicht das gewünschte Ergebnis: Auch eine formal korrekte Berechnung kann inhaltlich falsch sein.</p></details>
+  </section>
+
+  <section class="panel" id="compiler"><p class="eyebrow">Zum Arbeitsblatt · Aufgabe 3a–b</p><h2>Versteht der Prozessor Java?</h2>
+    <p>Ein Text kann als Nullen und Einsen gespeichert sein, ohne ein ausführbares Programm für den Prozessor zu sein. Die Zeichenfolge <code>zahl1 + zahl2</code> beschreibt für Menschen eine Addition. Der Prozessor benötigt dafür passende <strong>Maschinenbefehle</strong>.</p>
+    <details><summary>Hinweis zu den beiden Lücken</summary><p>Die erste Lücke bezeichnet das Werkzeug, das den Quelltext prüft und übersetzt. Die zweite bezeichnet das Ergebnis dieser Übersetzung.</p></details>
+    <details><summary>Vergleichen: Der Weg bei Java</summary><ol class="flow-list"><li><strong>Java-Quelltext</strong><br>Text für Menschen</li><li><strong>Compiler</strong><br>Prüft und übersetzt</li><li><strong>Bytecode</strong><br>Übersetztes Java-Programm</li><li><strong>Ausführung durch die JVM</strong><br>Die Java Virtual Machine ermöglicht die Ausführung auf dem jeweiligen Rechner.</li></ol><p>Die fehlenden Stationen auf dem Blatt sind also <strong>Compiler</strong> und <strong>übersetztes Programm / Bytecode</strong>.</p><p>Die CPU führt ihren Maschinencode aus. Java-Bytecode ist noch nicht der native Maschinencode der CPU: Die JVM interpretiert ihn oder übersetzt ihn weiter. Für diese Aufgabe genügt diese Einordnung; die JVM ist hier kein eigenes Lernthema.</p><p>In einem Satz: „Der Compiler prüft den Quelltext unter anderem auf Syntaxfehler und übersetzt ihn in Bytecode.“</p><p class="small">Vertiefung: <a href="https://www.oracle.com/java/technologies/architecture-neutral-portable-robust.html">Oracle: Java-Compiler und Bytecode</a>.</p></details>
+  </section>
+
+  <section class="panel" id="bausteine"><p class="eyebrow">Zum Arbeitsblatt · Aufgabe 4a</p><h2>Was muss ein Rechner können?</h2>
+    <p>Gehen Sie von den drei Zuweisungen auf dem Blatt aus. Wo bleiben die Zahlen? Wer addiert? Wer legt die Reihenfolge fest? Wie gelangen Werte von einem Baustein zum anderen?</p>
+    <form id="roles-form"><div id="role-questions" class="role-questions"></div><button type="submit">Zuordnung prüfen</button><p id="roles-feedback" class="status" role="status"></p></form>
+    <details><summary>Hinweis: Speichern ist nicht Rechnen</summary><p>Der Speicher hält Werte bereit. Das Rechenwerk verändert oder verknüpft Werte. Das Steuerwerk koordiniert den Ablauf. Die Verbindungen transportieren Informationen zwischen den Bausteinen.</p></details>
+    <details><summary>Vergleichen: Die vier Aufgaben der Bausteine</summary><dl><dt>Speicher</dt><dd>Hält Daten wie 5, 3 und das Ergebnis bereit – außerdem die Anweisungen des Programms.</dd><dt>Rechenwerk</dt><dd>Führt Rechen- und logische Operationen aus, hier die Addition.</dd><dt>Steuerwerk</dt><dd>Holt Anweisungen und veranlasst die zugehörigen Schritte.</dd><dt>Verbindungen / Bussystem</dt><dd>Transportieren Daten, Anweisungen und Steuersignale. Ein Bus ist ein Kommunikationsweg, kein eigener Rechner.</dd></dl></details>
+
+    <h3>Aufgabe 4b · Ein Modell zeichnen</h3><p>Zeichnen Sie zuerst Speicher, Rechenwerk und Steuerwerk. Ergänzen Sie beschriftete Pfeile für Daten, Anweisungen und Steuersignale.</p>
+    <details><summary>Modellskizze öffnen: Bausteine zuordnen</summary><figure><img class="model-image" src="../img/von-neumann.svg" width="860" height="500" alt="Baustein A steht oben, darunter die CPU mit Baustein B links und Baustein C rechts. Daten fließen zwischen A und B, Anweisungen von A zu C. Steuersignale fließen von C zu B."><figcaption>Ordnen Sie Baustein A, B und C die passenden Fachbegriffe zu. Vereinfachte Informationsflüsse; die Pfeile zeigen Funktionen der Verbindungen, keinen elektrischen Verdrahtungsplan.</figcaption></figure>
+    <p><strong>Die entscheidende Idee:</strong> Daten und Programmanweisungen liegen im Von-Neumann-Modell in einem gemeinsamen Speicher. Rechenwerk und Steuerwerk sind zentrale Teile der CPU, also des Prozessors. Zur vollständigen Rechnerbeschreibung gehören außerdem Ein- und Ausgabeeinheiten.</p>
+    <p>Über ein Bussystem werden Informationen ausgetauscht: Adressen bestimmen das Ziel, Datenleitungen übertragen Inhalte, Steuersignale koordinieren beispielsweise Lesen und Schreiben. Die Anweisungen werden ebenfalls übertragen.</p></details>
+
+    <h3>Holen → Entschlüsseln → Ausführen</h3><p>Das Steuerwerk wiederholt einen Grundzyklus. Der Befehlszähler hält die Adresse der nächsten Anweisung bereit. Entdecken Sie die drei Phasen.</p>
+    <div class="controls" aria-label="Phasen des Befehlszyklus"><button class="cycle-button" data-phase="0" type="button" aria-pressed="true">1 · Holen</button><button class="cycle-button secondary" data-phase="1" type="button" aria-pressed="false">2 · Entschlüsseln</button><button class="cycle-button secondary" data-phase="2" type="button" aria-pressed="false">3 · Ausführen</button></div><p id="cycle-text" class="readout" aria-live="polite">Das Steuerwerk veranlasst, dass die nächste Maschinenanweisung aus dem Speicher geholt wird.</p>
+    <p class="small">Eine Java-Zeile kann viele Maschinenanweisungen auslösen. „Nächste Anweisung“ bedeutet hier nicht automatisch „nächste Java-Zeile“. Sprünge können die Reihenfolge verändern.</p>
+    <details><summary>Aufgabe 4c: Eine Antwort auf die Leitfrage aufbauen</summary><p>Verbinden Sie diese Begriffe zu einer Erklärung: <strong>Quelltext → Übersetzung → gespeicherte Anweisungen und Daten → Steuerwerk → Rechenwerk → Ausgabe</strong>. Erläutern Sie auch die Rolle der Verbindungen.</p></details>
+    <details><summary>Vergleichen: Vom Text zur Ausgabe 8</summary><p>Der Java-Quelltext wird zuerst geprüft und in Bytecode übersetzt. Die JVM ermöglicht dessen Ausführung auf dem Rechner. Auf der Ebene unseres Rechnermodells liegen ausführbare Anweisungen und Daten im Speicher. Das Steuerwerk holt und entschlüsselt die Anweisungen und steuert die weiteren Schritte. Für die Addition verarbeitet das Rechenwerk die Werte 5 und 3; das Ergebnis 8 wird gespeichert und schließlich ausgegeben. Verbindungen transportieren die benötigten Informationen zwischen den Bausteinen.</p></details>
+  </section>
+
+  <section class="panel" id="transfer"><p class="eyebrow">Transfer · Ein einfaches Informatiksystem</p><h2>Ein Arduino steuert 64 RGB-LEDs</h2>
+    <p>Eine <strong>8×8-RGB-LED-Matrix</strong> ist über eine Busverbindung mit einem Arduino verbunden. Der Mikrocontroller (µC) auf dem Board führt ein Programm aus. Jede LED kann einzeln ausgewählt werden.</p>
+    <figure><img class="system-image" src="../img/arduino-led-matrix.png" width="1774" height="887" alt="Lockere Schwarz-Weiß-Skizze: links ein Arduino-Board mit Mikrocontroller, in der Mitte eine Busverbindung mit Pfeil nach rechts, rechts eine Matrix mit acht Reihen und acht Spalten von LEDs."><figcaption>Unser Unterrichtsmodell. Die gebündelt gezeichnete Busleitung steht für die Verbindung, nicht für eine festgelegte Anzahl elektrischer Adern. Stromversorgung und weitere elektrische Details sind weggelassen.</figcaption></figure>
+    <p>Für dieses System vereinbaren wir pro LED <strong>vier Nutzdaten-Bytes</strong>: je ein Byte für Rot, Grün, Blau und Sättigung. Jedes Byte kann Werte von 0 bis 255 annehmen. Die Auswahl der LED über eine Adresse ist davon zu unterscheiden.</p>
+    <div class="notice"><strong>Übertragen Sie die Funktionen, nicht das gesamte Innenleben.</strong> Ein Mikrocontroller vereint Prozessor, Speicher und Ein-/Ausgabefunktionen auf einem Chip. Nicht jedes Arduino-Board entspricht intern einer reinen Von-Neumann-Architektur. Beispielsweise nutzt die AVR-Familie getrennte Programm- und Datenspeicher. Unser Transfer untersucht die gemeinsamen Aufgaben der Bausteine.</div>
+    <details><summary>Transfer 1: Wo finden Sie die Bausteine wieder?</summary><dl><dt>Eingabe</dt><dd>Das Programm und die vorgegebenen LED-Werte. Eine laufende Eingabe durch Sensor oder Tastatur ist in diesem Modell nicht erforderlich. In der Simulation geben Sie die Werte über die Bedienfelder vor.</dd><dt>Speicher</dt><dd>Hält das Programm und die LED-Daten im Mikrocontroller bereit. Ein Bildpuffer speichert die vier Werte pro LED.</dd><dt>Steuerwerk</dt><dd>Koordiniert das Lesen, Verarbeiten und Ausgeben der Werte gemäß dem Programm.</dd><dt>Rechenwerk</dt><dd>Berechnet beispielsweise LED-Adressen, Speicherpositionen oder veränderte Farbwerte.</dd><dt>Busverbindung</dt><dd>Überträgt die Informationen zur Matrix. Der externe LED-Bus ist nicht mit sämtlichen internen Verbindungen des Mikrocontrollers gleichzusetzen.</dd><dt>Ausgabe</dt><dd>Die LEDs erzeugen ein sichtbares Lichtmuster.</dd></dl></details>
+
+    <h3>Adressen: Welche LED ist gemeint?</h3><p>Wir nummerieren die LEDs <strong>zeilenweise von 0 bis 63</strong>, beginnend oben links. Spalte und Zeile zählen ebenfalls von 0 bis 7. Das ist unsere Modellvereinbarung; eine reale Matrix kann anders angeordnet sein.</p><p class="formula">\(\text{Adresse} = 8 \cdot \text{Zeile} + \text{Spalte}\)</p>
+    <details><summary>Transfer 2: Wie viel Speicher benötigt ein Bild?</summary><p>Berechnen Sie zuerst die LED-Anzahl, dann den Speicherbedarf.</p><p>\(8\cdot8=64\) LEDs; \(64\cdot4\,\text{Byte}=256\,\text{Byte}=2048\,\text{Bit}\).</p><p>Das sind nur die LED-Nutzdaten für ein Bild. Programm, weitere Variablen sowie Adress- und Steuerinformationen einer Übertragung kommen gegebenenfalls hinzu.</p><p>Zur Unterscheidung von 64 LEDs genügen theoretisch \(6\) Bit, denn \(2^6=64\). Wie diese Adresse tatsächlich übertragen wird, legt das Protokoll fest; sie ist nicht eines der vier RGBS-Bytes.</p></details>
+  </section>
+
+  <section class="panel" id="led-labor"><p class="eyebrow">Ausprobieren · Speicher ist noch keine Ausgabe</p><h2>Vom Wert im Speicher zum Licht</h2>
+    <p>Wählen Sie eine LED, ändern Sie ihre Werte und übernehmen Sie diese zuerst in den Speicher. Senden Sie danach die <strong>gespeicherten</strong> Werte über den Modellbus. Beobachten Sie, wann sich die Anzeige verändert.</p>
+    <div class="lab-layout"><div><h3>Ausgabe: 8×8-Matrix</h3><div id="led-matrix" class="led-matrix" role="group" aria-label="64 LEDs, zeilenweise adressiert von 0 bis 63"></div><p class="small">Die Zahlen zeigen die Adressen. Auswahl per Klick oder mit den Pfeiltasten. Die Farbe zeigt den zuletzt gesendeten Zustand.</p></div>
+    <div><form id="led-form"><label for="led-address">LED-Adresse (0–63)</label><div class="controls address-controls"><input id="led-address" type="number" min="0" max="63" step="1" value="0" required><button id="select-address" type="button" class="secondary">Auswählen</button></div><p id="address-info" class="small"></p>
+      <fieldset><legend>Neue Werte · noch nicht gespeichert</legend>
+        <label for="red">Rot <output id="red-value" for="red">255</output></label><input id="red" type="range" min="0" max="255" step="1" value="255">
+        <label for="green">Grün <output id="green-value" for="green">0</output></label><input id="green" type="range" min="0" max="255" step="1" value="0">
+        <label for="blue">Blau <output id="blue-value" for="blue">0</output></label><input id="blue" type="range" min="0" max="255" step="1" value="0">
+        <label for="saturation">Sättigung <output id="saturation-value" for="saturation">255</output></label><input id="saturation" type="range" min="0" max="255" step="1" value="255">
+      </fieldset><p class="preview-line"><span id="led-preview" aria-hidden="true"></span> Vorschau der neuen Werte</p><button type="submit">1 · In den Speicher übernehmen</button></form>
+      <p id="saved-values" class="readout"></p><button id="send-led" type="button">2 · Gespeicherte Werte senden</button>
+    </div></div>
+    <p id="led-status" class="status" role="status"></p><div class="readout"><strong>Zuletzt über den Modellbus übertragen</strong><p id="bus-message">Noch keine Übertragung.</p></div>
+    <p class="small">Simulation ohne Verbindung zu echter Hardware. Der Bus zeigt Adresse und vier Nutzdaten-Bytes getrennt; ein konkretes Übertragungsprotokoll wird nicht nachgebildet. Für die Bildschirmanzeige verwenden wir das vierte Byte in diesem Unterrichtsmodell als Sättigung: 0 ergibt einen Grauton, 255 erhält die gewählte RGB-Farbe. Zwischenwerte mischen zwischen Grau und Farbe. Das ist eine Modellvereinbarung, keine Vorgabe für reale LED-Hardware.</p>
+    <button id="reset-leds" class="secondary" type="button">Matrix und Speicher zurücksetzen</button>
+    <details><summary>Erkundungsauftrag: Adresse 19</summary><ol><li>Wählen Sie die LED in Zeile 2 und Spalte 3. Prüfen Sie ihre Adresse.</li><li>Stellen Sie Rot = 255, Grün = 0, Blau = 0 und Sättigung = 128 ein.</li><li>Speichern Sie die Werte. Warum leuchtet die LED noch nicht entsprechend?</li><li>Senden Sie die Werte. Ändern Sie anschließend nur den Sättigungsregler auf 0. Was muss geschehen, bevor die LED grau erscheint?</li></ol></details>
+    <details><summary>Vergleichen: Adresse, Daten und Ausgabe</summary><p>Die Adresse ist \(8\cdot2+3=19\). Der Datensatz enthält die vier Werte <code>255, 0, 0, 128</code>. Im Modell-Bildpuffer beginnt er bei Byte-Position \(4\cdot19=76\) und belegt die Positionen 76 bis 79. Die LED-Adresse 19 und die Byte-Position 76 bezeichnen also Verschiedenes.</p><p>Speichern ändert zunächst nur den Bildpuffer. Erst die Übertragung ändert hier die Ausgabe. Ein geänderter Regler muss erneut gespeichert und gesendet werden. Sättigung 0 macht die Ausgabe grau, auch wenn Rot weiterhin 255 ist. Zum Ausschalten setzen Sie Rot, Grün und Blau auf 0, speichern die Werte und senden sie erneut.</p></details>
+  </section>
+
+  <section class="panel"><h2>Zurück zur Leitfrage</h2><p>Erklären Sie nun ohne Hilfekarte, wie aus einem Programmtext ein sichtbares Lichtmuster werden kann. Verwenden Sie die Begriffe <strong>Übersetzung, Anweisungen, Daten, Speicher, Steuerwerk, Rechenwerk, Bus und Ausgabe</strong>.</p><p>Markieren Sie in Ihrer Erklärung, welche Schritte zum Übersetzen gehören und welche erst beim Ausführen stattfinden. Für den Mikrocontroller wird ein zum jeweiligen Prozessor passendes Programm benötigt; die Java-JVM aus dem Arbeitsblatt wird für dieses LED-Modell nicht vorausgesetzt.</p></section>
+  <details class="sources"><summary>Grundlagen der Lektion</summary><p>Inhaltliche Zuordnung und Hilfen nach dem bereitgestellten Arbeitsblatt <cite>IF_EF_06 – „Wie verarbeitet ein Computer ein Programm?“</cite> und dem zugehörigen Erwartungshorizont. Die Hilfen folgen den Aufgaben 1 bis 4; der LED-Transfer ergänzt sie um das vereinbarte Unterrichtsmodell.</p><ul><li><a href="https://www.oracle.com/java/technologies/architecture-neutral-portable-robust.html">Oracle: Java-Compiler erzeugen Bytecode</a></li><li><a href="https://developerhelp.microchip.com/xwiki/bin/view/products/mcu-mpu/8-bit-avr/structure/memory/">Microchip: getrennte Programm- und Datenspeicher bei AVR</a></li><li><a href="https://docs.arduino.cc/hardware/uno-rev3/">Arduino: UNO R3 mit ATmega328P als Beispiel eines AVR-Boards</a></li></ul></details>
+  <a class="button" href="../../index.html">Zur IF-EF-Übersicht</a>
+</main><footer>Informatik · Einführungsphase NRW · Rechnersysteme <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body></html>

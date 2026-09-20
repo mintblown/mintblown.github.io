@@ -104,3 +104,9 @@ kbd { display: inline-block; padding: 1px 6px; border: 1px solid #b7c8cb; border
   .steps li { padding-left: 69px; }
   .steps li::before { left: 19px; }
 }
+
+.site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; }
+.all-projects { color: #126b64; font-weight: 700; text-decoration: none; }
+.all-projects:hover { text-decoration: underline; }
+.all-projects:focus-visible { outline: 3px solid #e89b52; outline-offset: 4px; }
+.site-footer a { color: #126b64; }

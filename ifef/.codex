@@ -16,3 +16,13 @@ Diese Vorgaben gelten ausschließlich für `ifef/`. Die allgemeinen Projekt- und
 - Übungen: zufällige vorzeichenlose 8-Bit-Zahlen von 0 bis 255 in beide Richtungen. Bei binären Antworten genau acht Bits verlangen und auf führende Nullen hinweisen.
 - Negative Zahlen gesondert als Ausblick erklären: Vorzeichen-Betrag-Darstellung und 8-Bit-Zweierkomplement; nicht mit der vorzeichenlosen Interpretation der Übungen vermischen.
 - Nach eingeblendeter Lösung eine Aufgabe nicht mehr als selbst gelöst werten.
+
+## Unterrichtseinheit Rechnerarchitektur
+
+- Die Lektion `rechnerarchitektur/` unterstützt die Aufgaben 1–4 aus `input/IF_EF_06.pdf`; der Erwartungshorizont liegt in `input/IF_EF_06.txt`. Zuerst Hinweise, danach aufklappbare Vergleichslösungen anbieten.
+- Den Java-Weg fachlich unterscheiden: Quelltext → Compiler → Bytecode → Ausführung durch die JVM. Bytecode nicht mit nativem CPU-Maschinencode gleichsetzen.
+- Im Von-Neumann-Modell liegen Daten und Anweisungen im gemeinsamen Speicher. Rechenwerk und Steuerwerk gehören zur CPU; Verbindungen transportieren Informationen.
+- LED-Transfer als vereinbartes Unterrichtsmodell: 8×8 LEDs, zeilenweise Adressen 0–63, vier Nutzdaten-Bytes je LED in der Reihenfolge Rot, Grün, Blau, Sättigung (je 0–255). Für die Bildschirmanzeige ersetzt Sättigung die ursprünglich vorgesehene Helligkeit: 0 ergibt einen Grauton, 255 erhält die RGB-Farbe. Dies ist eine Unterrichtsmodell-Konvention, keine Hardware-Spezifikation.
+- LED-Adresse, Byte-Position im Bildpuffer und Nutzdaten unterscheiden. Ein Bild benötigt 256 Byte LED-Nutzdaten, ohne Programm oder Protokollinformationen.
+- Die externe Busverbindung nicht mit allen internen CPU-Verbindungen gleichsetzen. Keine konkrete Arduino-Architektur, elektrische Verdrahtung oder LED-Bus-Spezifikation unterstellen.
+- Im interaktiven Modell Entwurf, gespeicherte Daten und tatsächlich übertragene Ausgabe getrennt darstellen.

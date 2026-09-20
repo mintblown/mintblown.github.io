@@ -16,6 +16,6 @@
     <text x="260" y="282" text-anchor="middle">−x</text>
     <text x="370" y="356" text-anchor="end">−F</text>
     <text x="402" y="484" text-anchor="middle" font-weight="700">Auslenkung x / m</text>
-    <text x="37" y="250" text-anchor="middle" font-weight="700" transform="rotate(-90 37 250)">Kraft F_res / N</text>
+    <text x="37" y="250" text-anchor="middle" font-weight="700" transform="rotate(-90 37 250)">Kraft <tspan font-style="italic">F</tspan><tspan baseline-shift="sub" font-size="15">res</tspan><tspan baseline-shift="baseline" font-size="22"> / N</tspan></text>
   </g>
 </svg>

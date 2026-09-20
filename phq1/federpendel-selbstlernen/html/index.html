@@ -7,6 +7,8 @@
   <title>Das Zeitgesetz entdecken · Physik Q1</title>
   <link rel="stylesheet" href="../../styles.css">
   <script src="lernwege.js" defer></script>
+  <script src="messkurven.js" defer></script>
+  <link rel="stylesheet" href="messkurven.css">
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
 </head>
 <body>
@@ -33,22 +35,43 @@
       </section>
 
       <section class="learning-path" id="experiment" aria-labelledby="experiment-title" hidden>
-        <header class="path-header"><p class="eyebrow">Weg 1 · Videoanalyse</p><h2 id="experiment-title">Von Messkurven zum Zeitgesetz</h2><p>Halte deine Viana-Diagramme \(y(t)\) und \(v_y(t)\) bereit. Die Skizze zeigt nur die typische Form einer idealen Schwingung, keine Messwerte eures Versuchs.</p></header>
+        <header class="path-header"><p class="eyebrow">Weg 1 · Videoanalyse</p><h2 id="experiment-title">Von Messkurven zum Zeitgesetz</h2><p>Halte deine Viana-Diagramme \(y(t)\) und \(v_y(t)\) bereit. In Box 2 kannst du aus deinen abgelesenen Werten ideale Modellkurven erzeugen und mit euren Messdaten vergleichen.</p></header>
 
         <section class="learning-step" id="exp-1">
           <span class="step-number">1</span><h3>Von \(y\) zu \(x\)</h3>
           <p>Viana nennt die vertikale Position \(y(t)\). In unserer Formelsammlung heißt die <strong>Auslenkung von der Ruhelage</strong> \(x(t)\). Wähle die positive Richtung von \(x\) wie bei Vianas \(y\). Dann gilt \(x(t)=y(t)-y_{\mathrm{R}}\), wobei \(y_{\mathrm{R}}\) die Position der Ruhelage ist. Die Geschwindigkeit heißt dann \(v(t)=v_y(t)\). Bei umgekehrter Achsenrichtung wechseln beide Vorzeichen, die Schwingungsdauer bleibt gleich.</p>
           <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a1" data-next="exp-2">Warum ziehen wir \(y_{\mathrm{R}}\) ab?<span>Antwort anzeigen ↓</span></button>
-          <div class="learning-answer" id="exp-a1" hidden>Erst dann ist die Ruhelage der Nullpunkt: \(x=0\). Die rücktreibende Kraft lässt sich so direkt als \(F_{\mathrm{res}}=-D\,x\) beschreiben.</div>
+          <div class="learning-answer" id="exp-a1" hidden>
+            <p>Durch das Abziehen von \(y_{\mathrm{R}}\) wird die Ruhelage zum Nullpunkt der Auslenkung: \(x=0\). Die rücktreibende Kraft lässt sich so direkt als \(F_{\mathrm{res}}=-D\,x\) beschreiben.</p>
+            <p><strong>Mit einem passend eingestellten Koordinatensystem sparst du diesen Rechenschritt:</strong> Lege in Viana den Ursprung in die Ruhelage des Pendels. Dann gilt bereits \(y_{\mathrm{R}}=0\) und damit \(x(t)=y(t)\). Du kannst die Auslenkung mit ihrem Vorzeichen direkt an der Kurve ablesen; auch die Amplitude ist als größter Abstand von der Nulllinie unmittelbar erkennbar.</p>
+            <p>Vergleiche das mit der <strong>Maßstabseinstellung in Viana</strong>: Mit einer bekannten Strecke legst du fest, welcher realen Länge die Bildabstände entsprechen. Der Maßstab sorgt für passende Längenwerte und Einheiten; der Ursprung in der Ruhelage sorgt für den passenden Nullpunkt. Wenn du beides vor der Auswertung sorgfältig einstellst, sind die Werte direkt und übersichtlich ablesbar – ohne nachträgliche Umrechnung der Bildabstände oder Verschiebung um \(y_{\mathrm{R}}\).</p>
+          </div>
         </section>
 
         <section class="learning-step" id="exp-2" hidden>
-          <span class="step-number">2</span><h3>Was verraten die beiden Kurven?</h3>
+          <span class="step-number">2</span><h3>Was verraten die drei Kurven?</h3>
           <p>In \(y(t)\) suchst du die Ruhelage \(y_{\mathrm{R}}\), zwei aufeinanderfolgende Maxima und den größten Abstand zur Mittellinie. So erhältst du \(T=t_2-t_1\) und \(\hat{x}=(y_{\max}-y_{\min})/2\). Nutze für \(y\) die Einheit deiner Viana-Achse. Bei einer idealen Schwingung liegt \(v_y(t)\) um ein Viertel der Schwingungsdauer versetzt: An den Umkehrpunkten ist die Geschwindigkeit null, beim Durchgang durch die Ruhelage am größten.</p>
-          <div class="measurement-notes" aria-label="Eigene Messwerte aus Viana notieren"><label>Ruhelage \(y_{\mathrm{R}}\)<input type="text" inputmode="decimal" autocomplete="off" aria-label="Ruhelage aus Viana"></label><label>Erstes Maximum \(t_1\) in s<input type="text" inputmode="decimal" autocomplete="off" aria-label="Zeit des ersten Maximums in Sekunden"></label><label>Nächstes Maximum \(t_2\) in s<input type="text" inputmode="decimal" autocomplete="off" aria-label="Zeit des nächsten Maximums in Sekunden"></label><label>Schwingungsdauer \(T\) in s<input type="text" inputmode="decimal" autocomplete="off" aria-label="Eigene Schwingungsdauer in Sekunden"></label><label>Amplitude \(\hat{x}\)<input type="text" inputmode="decimal" autocomplete="off" aria-label="Eigene Amplitude aus Viana"></label></div>
-          <figure class="sketch"><img src="../img/viana-kurven.svg" alt="Zwei schematische Zeitdiagramme: oben verläuft y(t) sinusförmig um die Ruhelage; unten ist v_y(t) um eine Viertelperiode verschoben. Beide Achsen sind mit Größe und Einheit beschriftet." width="900" height="650"><figcaption>Schematische Kurven zum Vergleichen mit deinen Viana-Daten. Die Zahlen gehören nicht zu eurem Versuch.</figcaption></figure>
+          <p>Trage deine Werte ein: Die drei Diagramme passen sich direkt an. Die vorbelegten Zahlen sind ein Beispiel. Im Modus „Zwei Maxima“ werden \(T=t_2-t_1\) und \(\varphi_0=\pi/2-\omega t_1\) automatisch bestimmt. So liegen die Hochpunkte von \(y(t)\) bei deinen Zeitpunkten. Im freien Modus kannst du \(T\) und \(\varphi_0\) selbst einstellen.</p>
+          <div class="measurement-notes" aria-label="Werte für die Modellkurven">
+            <label for="curve-mode">Kurve bestimmen über<select id="curve-mode"><option value="maxima">Zwei aufeinanderfolgende Maxima</option><option value="manual">Schwingungsdauer und Anfangsphase</option></select></label>
+            <label for="curve-unit">Längeneinheit deiner Eingaben<select id="curve-unit"><option value="m">Meter (m)</option><option value="cm">Zentimeter (cm)</option><option value="mm">Millimeter (mm)</option></select></label>
+            <label for="curve-rest">Ruhelage \(y_{\mathrm{R}}\)<input id="curve-rest" type="text" inputmode="decimal" value="0" autocomplete="off"></label>
+            <label for="curve-amplitude">Amplitude \(\hat{x}\)<input id="curve-amplitude" type="text" inputmode="decimal" value="0,05" autocomplete="off"></label>
+            <label for="curve-t1">Erstes Maximum \(t_1\) in s<input id="curve-t1" type="text" inputmode="decimal" value="0,5" autocomplete="off"></label>
+            <label for="curve-t2">Nächstes Maximum \(t_2\) in s<input id="curve-t2" type="text" inputmode="decimal" value="2,5" autocomplete="off"></label>
+            <label for="curve-period">Schwingungsdauer \(T\) in s<input id="curve-period" type="text" inputmode="decimal" value="2" autocomplete="off" readonly></label>
+            <label for="curve-phase">Anfangsphase \(\varphi_0\) in rad<input id="curve-phase" type="text" inputmode="decimal" value="0" autocomplete="off" readonly></label>
+          </div>
+          <p class="curve-note">Ruhelage und Amplitude gelten in der gewählten Längeneinheit. Ein Einheitenwechsel deutet die eingegebenen Zahlen neu; er rechnet sie nicht um. Grau hinterlegte Felder werden berechnet oder sind im aktuellen Modus nicht nötig.</p>
+          <p id="curve-status" class="curve-status" role="status"></p>
+          <div id="curve-view">
+            <figure class="sketch"><div class="curve-scroll"><svg id="measurement-plot" viewBox="0 0 900 870" role="img" aria-labelledby="curve-title curve-description"><title id="curve-title">Position, Geschwindigkeit und Beschleunigung</title><desc id="curve-description">Drei ideale Sinuskurven mit gemeinsamer Zeitachse, berechnet aus den eingetragenen Werten.</desc></svg></div><figcaption>Ideale Modellkurven ohne Dämpfung, keine zusätzlich gemessenen Daten. Die senkrechten Achsen sind jeweils passend skaliert; beachte Zahlen und Einheiten beim Vergleichen. Die gestrichelte Linie im oberen Diagramm zeigt die Ruhelage.</figcaption></figure>
+            <label for="curve-cursor">Gemeinsamen Ablesezeitpunkt verschieben</label><input id="curve-cursor" type="range" min="0" max="1000" value="200" step="1">
+            <p id="curve-readout" class="curve-readout" aria-live="polite"></p>
+          </div>
+          <noscript><p>Aktiviere JavaScript, damit die Modellkurven aus deinen Eingaben gezeichnet werden.</p></noscript>
           <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="exp-a2" data-next="exp-3">Was zeigt \(v_y(t)\), wenn \(y(t)\) einen Hochpunkt hat?<span>Antwort anzeigen ↓</span></button>
-          <div class="learning-answer" id="exp-a2" hidden>Die Masse kehrt dort um. Deshalb ist \(v_y=0\); danach hat die Geschwindigkeit das entgegengesetzte Vorzeichen.</div>
+          <div class="learning-answer" id="exp-a2" hidden>Die Masse kehrt dort um. Deshalb ist \(v_y=0\); danach hat die Geschwindigkeit das entgegengesetzte Vorzeichen. Bei positiver Amplitude ist die Beschleunigung am Hochpunkt am stärksten negativ: \(a=-\omega^2\hat{x}\). Sie zeigt zurück zur Ruhelage.</div>
         </section>
 
         <section class="learning-step" id="exp-3" hidden>
@@ -82,7 +105,12 @@
 
         <section class="learning-step" id="math-1">
           <span class="step-number">1</span><h3>Kraft wird Beschleunigung</h3>
-          <p>Hooke sagt \(F_{\mathrm{res}}=-D\,x\), Newton sagt \(F_{\mathrm{res}}=m\,a\). Zusammen ergibt das die <strong>Bewegungsgleichung</strong> \(m\,\ddot{x}(t)=-D\,x(t)\). Der Punkt über \(x\) bedeutet eine zeitliche Ableitung; zwei Punkte stehen für die Beschleunigung.</p>
+          <p>Hooke sagt \(F_{\mathrm{res}}=-D\,x\), Newton sagt \(F_{\mathrm{res}}=m\,a\). Zusammen ergibt das die <strong>Bewegungsgleichung</strong> \(m\,\ddot{x}(t)=-D\,x(t)\). Leitet man den Ort \(x(t)\) einmal nach der Zeit ab, erhält man die Geschwindigkeit \(v(t)=\dot{x}(t)\). Leitet man den Ort zweimal nach der Zeit ab, erhält man die Beschleunigung \(a(t)=\ddot{x}(t)\).</p>
+          <p>Das kennst du von der gleichmäßig beschleunigten Bewegung. Für einen Start bei \(x(0)=0\) und \(v(0)=0\) gilt bei konstanter Beschleunigung \(a\):</p>
+          <div class="formula">\[x(t)=\frac{1}{2}a t^2\]
+            \[v(t)=\dot{x}(t)=a t\]
+            \[a(t)=\ddot{x}(t)=a\]</div>
+          <p>Durch jede Ableitung nach der Zeit sinkt hier die Potenz von \(t\) um eins. Beim Federpendel ist die Beschleunigung dagegen nicht konstant: Sie hängt von der momentanen Auslenkung ab.</p>
           <div class="formula">\[\ddot{x}(t)=-\frac{D}{m}\,x(t)\]</div>
           <button type="button" class="reveal-answer" aria-expanded="false" aria-controls="math-a1" data-next="math-2">Was bedeutet das Minuszeichen in dieser Gleichung?<span>Antwort anzeigen ↓</span></button>
           <div class="learning-answer" id="math-a1" hidden>Die Beschleunigung zeigt immer entgegen der Auslenkung, also zurück zur Ruhelage. Bei \(x>0\) ist \(\ddot{x}<0\), bei \(x<0\) ist \(\ddot{x}>0\).</div>
@@ -116,6 +144,6 @@
       </section>
     </article>
   </main>
-  <footer>Physik Q1 · Schwingungen</footer>
+  <footer>Physik Q1 · Schwingungen <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
 </body>
 </html>

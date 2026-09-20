@@ -1,0 +1,11 @@
+.measurement-notes select { width: 100%; padding: 10px; border: 1px solid #b8cadb; border-radius: 9px; background: white; color: inherit; font: inherit; }
+.measurement-notes input:read-only, .measurement-notes input:disabled { background: #eaf0f5; color: #526271; }
+.measurement-notes input[aria-invalid="true"] { border: 2px solid #ac3f22; }
+.curve-note { font-size: .9rem; }
+.curve-status { min-height: 1.6em; font-weight: 700; }
+.curve-status[data-error="true"] { color: #a43721; }
+.curve-scroll { overflow-x: auto; }
+#measurement-plot { display: block; width: 100%; min-width: 620px; height: auto; }
+#curve-cursor { display: block; width: 100%; margin: 14px 0; accent-color: #42668b; }
+.curve-readout { padding: 14px; background: #edf4fa; border-radius: 10px; font-variant-numeric: tabular-nums; }
+#curve-view[hidden] { display: none; }

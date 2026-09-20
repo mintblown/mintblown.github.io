@@ -1,0 +1,11 @@
+Arduino und LED-Matrix: schematische Unterrichtsskizze, kein Verdrahtungsplan.
+Erstellt mit dem integrierten image_gen-Werkzeug (Skill imagegen).
+Finale Datei: arduino-led-matrix.png
+
+Generierungsprompt:
+Use case: scientific-educational. Asset type: wide teaching illustration for a German introductory computer architecture lesson. Pure black ink on white, loose but precise hand-drawn classroom notebook sketch, slightly wobbly medium fineliner outlines. Draw a simple Arduino-style microcontroller board on the LEFT and a front-facing square RGB LED matrix on the RIGHT, connected by ONE clearly visible gently curved cable bundle representing a bus. Add a small arrow along that bus from board toward matrix. Matrix MUST contain EXACTLY 8 rows and EXACTLY 8 columns of circular LEDs, 64 circles total, evenly spaced in a square array. All circles white with black outlines, no colors and no illumination effect. Arduino board has a USB socket, pin headers, a large central rectangular microcontroller chip, a few sparse component outlines. Do not draw electrical pin-by-pin wiring or extra devices. Labels in short black handwritten style: above left board "Arduino", on its central chip "µC", above cable "Bus", above matrix "8 × 8 RGB-LEDs". Front/top schematic views, all parts fully visible, whitespace between objects, generous margins. No photorealism, no 3D rendering, no gradients, no grey fills, no solid black areas, no shadows. Sparse diagonal hatching only on a connector edge. No other text, no numbers inside LEDs. Scientific correctness and countable 8 by 8 arrangement are essential.
+
+Korrekturprompt:
+Edit only the LED matrix array on the right. The current image incorrectly contains seven rows of eight circles. It MUST have EIGHT rows of EIGHT circles, exactly 64 LEDs. Keep its eight columns, make the circles slightly smaller and the rows closer together to fit EIGHT complete rows inside the board. Count rows 1,2,3,4,5,6,7,8 from top to bottom. Preserve everything else: Arduino board, labels, bus cable, arrow, white background, monochrome hand-drawn black fineliner style. No new labels, no change to layout.
+
+Die zusätzliche Datei von-neumann.svg ist eine direkt erstellte Vektorskizze der logischen Informationsflüsse aus Aufgabe 4b.
