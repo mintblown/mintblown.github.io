@@ -1,0 +1,18 @@
+# IF EF – Kursspezifische Vorgaben
+
+Diese Vorgaben gelten ausschließlich für `ifef/`. Die allgemeinen Projekt- und Gestaltungsvorgaben stehen in `../codex/`.
+
+- Fach und Zielgruppe: Informatik in der Einführungsphase in Nordrhein-Westfalen.
+- Anrede: Lernende konsequent mit „Sie“ ansprechen; Aufgaben in der höflichen Imperativform formulieren.
+- Mathematische Ausdrücke in LaTeX schreiben: inline \( ... \), abgesetzt \[ ... \]. Die Kursseiten verwenden MathJax zur Darstellung.
+- Zahlensysteme mit eckigen Klammern und tiefgestellter Basis kennzeichnen, zum Beispiel \([42]_{10} = [101010]_2\).
+
+## Unterrichtseinheit Binärzahlen
+
+- Lernziel: binäre Speicherung anhand von Schaltern und Speicherstellen erklären und zwischen Dezimal- und Binärdarstellung umwandeln können.
+- Dezimal → Binär: Stellenwerte mit anklickbarer Ja-/Nein-Verzweigung prüfen, wiederholt durch 2 teilen und jeweils die größte passende Zweierpotenz abziehen.
+- Interaktive Leitbeispiele: \([42]_{10}\) nach binär und \([101010]_2\) nach dezimal.
+- Zweierpotenzen als umklappbare Hilfekarte anbieten; negative Zahlen als umklappbaren Denkanstoß behandeln.
+- Übungen: zufällige vorzeichenlose 8-Bit-Zahlen von 0 bis 255 in beide Richtungen. Bei binären Antworten genau acht Bits verlangen und auf führende Nullen hinweisen.
+- Negative Zahlen gesondert als Ausblick erklären: Vorzeichen-Betrag-Darstellung und 8-Bit-Zweierkomplement; nicht mit der vorzeichenlosen Interpretation der Übungen vermischen.
+- Nach eingeblendeter Lösung eine Aufgabe nicht mehr als selbst gelöst werten.
