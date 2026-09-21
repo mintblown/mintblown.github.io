@@ -1,0 +1,17 @@
+.learning-step[hidden] { display: none; }
+.learning-step h3 { font-size: 1.45rem; }
+.learning-step p { line-height: 1.7; }
+.plot-scroll { margin: 20px 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: white; }
+#sinus-plot { display: block; width: 100%; min-width: 580px; height: auto; font-family: Arial, sans-serif; }
+.plot-description, .readout { padding: 14px 16px; border-radius: 10px; background: #edf3fa; color: #364b5d; }
+.learning-step label { display: block; margin: 17px 0 10px; font-weight: 700; }
+.learning-step input[type="range"] { display: block; width: 100%; accent-color: var(--accent); }
+.control-note { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+.learning-step .formula { overflow-x: auto; }
+.next-step { margin-top: 13px; padding: 12px 16px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.next-step[hidden] { display: none; }
+.learning-step details { margin-top: 20px; padding: 18px 21px; border: 1px solid #b8cadb; border-radius: 12px; background: #f8fbfe; }
+.learning-step summary { cursor: pointer; font-weight: 700; }
+.learning-step details p:first-of-type { margin-top: 14px; }
+.learning-step details p:last-child { margin-bottom: 0; }
+.readout { font-weight: 700; }

@@ -22,6 +22,7 @@ h1, h2, h3, .topic-card strong { letter-spacing: -.03em; }
 .topic-card:hover { transform: translateY(-4px); box-shadow: 0 15px 29px #243c561c; }
 .icon-tile { display: grid; place-items: center; flex: 0 0 90px; width: 90px; height: 90px; border-radius: 19px; background: #edf3fa; }
 .icon-tile img { width: 75px; height: 75px; object-fit: contain; }
+.sinus-icon { color: var(--accent); font-size: 3.5rem; line-height: 1; }
 .card-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; color: var(--muted); line-height: 1.55; }
 .card-copy strong { color: #273342; font-size: 1.5rem; line-height: 1.2; }
 .card-copy .kicker { margin: 0; }

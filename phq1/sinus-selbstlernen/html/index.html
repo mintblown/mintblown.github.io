@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktive Einführung in Sinus, Amplitude, Kreisfrequenz, Schwingungsdauer, Frequenz und Anfangsphase für Physik Q1.">
+  <title>Vom Sinus zur Schwingung · Physik Q1</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="sinus.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+  <script defer src="sinus.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">∿</span> Schwingungen verstehen</a><a class="all-projects" href="../../../index.html">Alle Projekte</a></header>
+  <main class="article-main">
+    <a class="back-link" href="../../index.html">← Alle Themen</a>
+    <article>
+      <header class="article-hero"><p class="eyebrow">Physik Q1 · Interaktive Selbstlerneinheit</p><h1>Vom Sinus zur Schwingung</h1><p>Beginne mit einer einfachen Kurve. Verändere dann ihre Höhe und ihren Takt.</p></header>
+
+      <section class="learning-step" id="step-1">
+        <span class="step-number">1</span><h3>Eine Sinuskurve</h3>
+        <p>Sieh dir zuerst \(y=\sin(x)\) an. Die Kurve geht regelmäßig auf und ab. Nach \(2\pi\) beginnt dieselbe Form erneut. Das nennen wir eine <strong>Periode</strong>.</p>
+        <p>Die waagerechte Achse zeigt hier <strong>\(x\) als Winkel im Bogenmaß</strong>. Sie ist noch keine Zeitachse.</p>
+        <div class="plot-scroll" id="plot-shell"><svg id="sinus-plot" viewBox="0 0 820 430" role="img" aria-labelledby="plot-title plot-desc"><title id="plot-title">Die Sinuskurve</title><desc id="plot-desc">Zunächst wird sin(x) dargestellt. In späteren Schritten lassen sich Amplitude und Kreisfrequenz verändern.</desc></svg></div>
+        <p id="plot-description" class="plot-description" aria-live="polite">Die Kurve liegt zwischen −1 und +1. Bei \(x=0\) beginnt sie bei 0 und steigt an.</p>
+        <button class="next-step" id="show-amplitude" type="button" aria-controls="step-2" aria-expanded="false">Weiter: Amplitude verändern ↓</button>
+      </section>
+
+      <section class="learning-step" id="step-2" hidden>
+        <span class="step-number">2</span><h3>Die Amplitude verändern</h3>
+        <p>Die <strong>Amplitude \(A\)</strong> ist der größte Abstand der Kurve von der Mittellinie. Verändere sie mit dem Regler. Die Kurve wird höher oder flacher. Ihr Abstand zwischen zwei Hochpunkten bleibt gleich.</p>
+        <div class="formula">\[y=A\sin(x)\]</div>
+        <label for="amplitude">Amplitude \(A\): <output id="amplitude-value" for="amplitude">1,0</output></label>
+        <input id="amplitude" type="range" min="0.2" max="2.5" step="0.1" value="1">
+        <p class="control-note">Der Wert ist hier nur eine Zahl. Beim Federpendel hätte eine Auslenkungsamplitude eine Längeneinheit, zum Beispiel cm.</p>
+        <button class="next-step" id="show-omega" type="button" aria-controls="step-3" aria-expanded="false">Weiter: Zeit statt Winkel ↓</button>
+      </section>
+
+      <section class="learning-step" id="step-3" hidden>
+        <span class="step-number">3</span><h3>Aus \(x\) wird \(\omega t\)</h3>
+        <p>Jetzt steht auf der waagerechten Achse die <strong>Zeit \(t\)</strong> in Sekunden. Wir ersetzen den Winkel \(x\) durch \(\omega t\). Die <strong>Kreisfrequenz \(\omega\)</strong> sagt, wie schnell der Winkel wächst.</p>
+        <div class="formula">\[y(t)=A\sin(\omega t)\]</div>
+        <label for="omega">Kreisfrequenz \(\omega\): <output id="omega-value" for="omega">0,5</output> \(\pi/\mathrm{s}\)</label>
+        <input id="omega" type="range" min="0.1" max="2" step="0.1" value="0.5">
+        <p class="control-note">Großes \(\omega\): schnelle Schwingung, die Kurve wird auf der Zeitachse enger. Kleines \(\omega\): langsame Schwingung, die Kurve wird breiter.</p>
+        <button class="next-step" id="show-period" type="button" aria-controls="step-4" aria-expanded="false">Weiter: Schwingungsdauer und Frequenz ↓</button>
+      </section>
+
+      <section class="learning-step" id="step-4" hidden>
+        <span class="step-number">4</span><h3>Wie lange dauert eine Schwingung?</h3>
+        <p>Eine ganze Sinusschwingung braucht einen Winkel von \(2\pi\). Diese Zeit heißt <strong>Schwingungsdauer \(T\)</strong>. Der Regler für \(\omega\) verändert also auch \(T\).</p>
+        <div class="formula">\[\omega=\frac{2\pi}{T}\qquad\text{und damit}\qquad T=\frac{2\pi}{\omega}\]</div>
+        <p id="period-readout" class="readout" aria-live="polite"></p>
+        <p>Die <strong>Frequenz \(f\)</strong> zählt Schwingungen pro Sekunde. Deshalb gilt \(f=1/T\). Die Einheit ist Hertz: \(1\,\mathrm{Hz}=1/\mathrm{s}\). Ein kleines \(T\) bedeutet ein großes \(f\).</p>
+        <details><summary>Hilfekarte umklappen: Warum kann ich \(T\) jetzt auf der Zeitachse ablesen?</summary>
+          <p>Am Anfang zeigte die waagerechte Achse einen Winkel \(x\). Der Abstand von einem Hochpunkt zum nächsten betrug \(2\pi\) <strong>Radiant</strong>. Das war noch keine Zeit.</p>
+          <p>Jetzt zeigt die Achse \(t\) in <strong>Sekunden</strong>. In \(\omega t\) macht \(\omega\) aus der Zeit einen Winkel: \(\mathrm{rad/s}\cdot\mathrm{s}=\mathrm{rad}\). Für eine ganze Schwingung muss dieser Winkel um \(2\pi\) wachsen. Dazu braucht es \(T=2\pi/\omega\) Sekunden.</p>
+          <p>Miss also den zeitlichen Abstand zwischen zwei benachbarten Hochpunkten – oder zwischen zwei Nulldurchgängen mit <em>gleicher</em> Bewegungsrichtung. Dieser Abstand ist \(T\). Der waagerechte Doppelpfeil in der Grafik zeigt ihn.</p>
+        </details>
+        <button class="next-step" id="show-phase" type="button" aria-controls="step-5" aria-expanded="false">Weiter: Anfangsphase ausprobieren ↓</button>
+      </section>
+
+      <section class="learning-step" id="step-5" hidden>
+        <span class="step-number">5</span><h3>Wann beginnt die Schwingung?</h3>
+        <p>Die <strong>Anfangsphase \(\varphi_0\)</strong> legt fest, an welcher Stelle der Schwingung die Kurve bei \(t=0\) startet. Verschiebe sie mit dem Regler. Die gestrichelte Kurve zeigt zum Vergleich immer \(\varphi_0=0\).</p>
+        <div class="formula">\[y(t)=A\sin(\omega t+\varphi_0)\]</div>
+        <label for="phase">Anfangsphase \(\varphi_0\): <output id="phase-value" for="phase">0,00</output> rad</label>
+        <input id="phase" type="range" min="-3.14" max="3.14" step="0.01" value="0">
+        <p id="phase-readout" class="readout" aria-live="polite"></p>
+        <p class="control-note">Eine positive Phase verschiebt die Kurve nach links, eine negative nach rechts. Amplitude \(A\), Schwingungsdauer \(T\) und Frequenz \(f\) bleiben dabei gleich.</p>
+        <div class="next"><p>Für das Federpendel wird aus \(y(t)\) später die Auslenkung \(x(t)\). Damit kennst du die Bausteine seines Zeitgesetzes.</p><a class="next-link" href="../../federpendel-selbstlernen/html/index.html">Weiter zum Zeitgesetz des Federpendels →</a></div>
+      </section>
+    </article>
+  </main>
+  <footer>Physik Q1 · Schwingungen <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body>
+</html>
