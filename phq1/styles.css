@@ -128,3 +128,40 @@ footer { padding-bottom: 30px; color: #7a8794; font-size: .87rem; }
 .path-summary p { line-height: 1.75; }
 .switch-path { padding: 11px 15px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent); color: white; font: inherit; font-weight: 700; cursor: pointer; }
 @media (max-width: 680px) { .path-choice-grid, .measurement-notes { grid-template-columns: 1fr; } .learning-step { padding: 20px; } .reveal-answer { flex-direction: column; align-items: flex-start; gap: 4px; } }
+
+/* Gemessene Pendelkurven anpassen */
+.data-details { margin: 32px 0; border: 1px solid var(--line); border-radius: 16px; background: white; }
+.data-details summary { padding: 17px 21px; color: var(--accent); font-weight: 800; cursor: pointer; }
+.data-details p { margin: 0; padding: 0 21px 15px; color: var(--muted); line-height: 1.5; }
+.data-scroll { max-height: 370px; overflow: auto; border-top: 1px solid var(--line); }
+.data-scroll table { width: 100%; min-width: 690px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.data-scroll th, .data-scroll td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.data-scroll th { position: sticky; top: 0; background: var(--soft); font-size: .85rem; }
+.data-scroll tbody tr:nth-child(even) { background: #f8fbfe; }
+.curve-panel { margin: 28px 0; padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: white; box-shadow: 0 8px 21px #243c560b; }
+.curve-panel h2 { margin-bottom: 10px; }
+.curve-panel > p { color: #485765; line-height: 1.65; }
+.curve-formula { margin: 17px 0 21px; padding: 13px 17px; overflow-x: auto; border-radius: 11px; background: var(--soft); font-size: 1.13rem; }
+.fit-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 22px; margin-bottom: 24px; }
+.fit-controls label { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; font-weight: 700; }
+.fit-controls input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
+.fit-controls output { color: var(--accent); font-variant-numeric: tabular-nums; }
+.curve-frame { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.curve-frame svg { display: block; width: 100%; height: auto; font-family: Arial, sans-serif; }
+.fit-grid { stroke: #e8e8e8; stroke-width: 1; }
+.fit-tick { stroke: #282828; stroke-width: 2; }
+.fit-axis { fill: none; stroke: #282828; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.fit-axis-label { fill: #282828; font-size: 18px; font-weight: 700; }
+.fit-tick-label { fill: #282828; font-size: 15px; }
+.fit-measurement { fill: #202020; }
+.fit-model { fill: none; stroke: #a9502f; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.curve-legend { display: flex; align-items: center; gap: 8px 13px; flex-wrap: wrap; margin: 12px 0 0; font-size: .9rem; }
+.data-dot { width: 9px; height: 9px; border-radius: 50%; background: #202020; }
+.model-stroke { width: 23px; border-top: 3px solid #a9502f; }
+@media (max-width: 600px) { .curve-panel { padding: 14px; } .fit-controls { grid-template-columns: 1fr; } }
+.comparison-answer { margin-top: 18px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.comparison-answer summary { padding: 15px 18px; color: var(--accent); background: var(--soft); font-weight: 800; cursor: pointer; }
+.comparison-answer .data-scroll { max-height: none; }
+.comparison-answer table { min-width: 620px; }
+.comparison-answer th, .comparison-answer td { text-align: left; white-space: normal; vertical-align: top; line-height: 1.5; }
+.comparison-answer > p { margin: 0; padding: 17px 19px; line-height: 1.65; }
