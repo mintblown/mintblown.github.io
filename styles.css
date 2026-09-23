@@ -17,6 +17,8 @@ h1 { max-width: 700px; margin: 14px 0; font-size: clamp(2.4rem, 5vw, 4.2rem); li
 .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 28px #203e411b; }
 .project-card:focus-visible { outline: 3px solid #d48c50; outline-offset: 4px; }
 .project-icon { display: grid; place-items: center; flex: 0 0 106px; width: 106px; height: 106px; border-radius: 20px; background: #e5f3f0; }
+.project-card--grade6 .project-icon { background: #fff0df; }
+.project-card--grade6 .kicker, .project-card--grade6 .card-link { color: #a9523e; }
 .project-card--physics .project-icon { background: #f4eafd; }
 .project-card--grade9 { grid-column: auto; }
 .project-card--grade9 .project-icon { background: #f8e8d9; }

@@ -1,0 +1,80 @@
+:root { font-family: Arial, sans-serif; color: #29353b; background: #fffaf3; --accent: #b55440; --muted: #665f58; --line: #eaded2; --soft: #f8e2d3; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.site-header, .home-main, .article-main, footer { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 0; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; font-size: 1.12rem; font-weight: 800; }
+.brand-mark { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 11px; background: #ffe0cd; color: var(--accent); font-size: 1.5rem; }
+.all-projects, .back-link, .next-link { color: var(--accent); font-weight: 700; text-decoration: none; }
+.all-projects:hover, .back-link:hover, .next-link:hover { text-decoration: underline; }
+.brand:focus-visible, .all-projects:focus-visible, .back-link:focus-visible, .next-link:focus-visible, .topic-card:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #bb774c; outline-offset: 3px; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3, .topic-card strong { letter-spacing: -.03em; }
+.hero { margin-top: 22px; padding: clamp(38px, 7vw, 76px); border-radius: 28px; background: var(--soft); }
+.eyebrow, .kicker { margin: 0 0 15px; color: var(--accent); font-size: .77rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.hero h1 { max-width: 770px; margin-bottom: 18px; font-size: clamp(2.35rem, 5vw, 4.15rem); line-height: 1.1; }
+.hero p:last-child { max-width: 650px; margin: 0; color: #645a52; font-size: 1.1rem; line-height: 1.65; }
+.topics { padding: 55px 0 90px; }
+.section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; margin-bottom: 22px; color: var(--muted); }
+.section-heading h2 { margin: 0; color: #29353b; font-size: 1.7rem; }
+.topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.topic-card { display: flex; gap: 22px; min-height: 225px; padding: 27px; border: 1px solid var(--line); border-radius: 22px; background: white; color: inherit; text-decoration: none; box-shadow: 0 9px 23px #243c560b; transition: transform .2s, box-shadow .2s; }
+.topic-card:hover { transform: translateY(-4px); box-shadow: 0 15px 29px #243c561c; }
+.icon-tile { display: grid; place-items: center; flex: 0 0 90px; width: 90px; height: 90px; border-radius: 19px; background: #fff0e5; }
+.icon-tile img { width: 75px; height: 75px; object-fit: contain; }
+.sinus-icon { color: var(--accent); font-size: 3.5rem; line-height: 1; }
+.card-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; color: var(--muted); line-height: 1.55; }
+.card-copy strong { color: #29353b; font-size: 1.5rem; line-height: 1.2; }
+.card-copy .kicker { margin: 0; }
+.card-link { margin-top: auto; padding-top: 13px; color: var(--accent); font-weight: 800; }
+footer { padding-bottom: 30px; color: #7a8794; font-size: .87rem; }
+.article-main { max-width: 870px; padding: 12px 0 90px; }
+.back-link { display: inline-block; margin-bottom: 27px; }
+.article-hero { padding: 40px; border-radius: 26px; background: var(--soft); }
+.article-hero h1 { margin-bottom: 12px; font-size: clamp(2.2rem, 5vw, 3.3rem); line-height: 1.12; }
+.article-hero p:last-child { max-width: 680px; margin-bottom: 0; color: #645a52; line-height: 1.65; }
+.article-main article > p, .article-section p { color: #485765; font-size: 1.04rem; line-height: 1.72; }
+.intro { margin: 33px 0 24px; }
+.article-section { margin-top: 34px; }
+.article-section h2 { margin-bottom: 11px; font-size: 1.55rem; }
+.sketch { margin: 20px 0 26px; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: white; }
+.sketch img { display: block; width: 100%; height: auto; }
+.sketch figcaption { padding: 9px 9px 2px; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+.formula { margin: 16px 0; padding: 16px 20px; border-radius: 13px; background: #fff0e5; font-size: 1.18rem; font-weight: 700; line-height: 1.55; }
+.formula small { display: block; margin-top: 7px; color: var(--muted); font-size: .82rem; font-weight: 400; }
+.key-point { margin-top: 28px; padding: 20px 24px; border-left: 4px solid #779bbb; border-radius: 0 14px 14px 0; background: #fff0e5; line-height: 1.65; }
+.key-point p { margin: 0; }
+.next { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .topic-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .site-header, .home-main, .article-main, footer { width: calc(100% - 28px); } .all-projects { font-size: .85rem; } .article-hero { padding: 27px; } .topic-card { gap: 15px; padding: 20px; } .icon-tile { flex-basis: 65px; width: 65px; height: 65px; } .icon-tile img { width: 55px; height: 55px; } .sketch { padding: 6px; } }
+
+/* Thermometer kalibrieren */
+.calibration-intro { margin: 30px 0; }
+.panel-explanations { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+.panel-explanations div { display: flex; flex-direction: column; gap: 7px; padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: white; line-height: 1.5; }
+.panel-explanations strong { color: var(--accent); }
+.temperature-help { margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+.temperature-help summary { padding: 16px 19px; color: var(--accent); font-weight: 800; cursor: pointer; }
+.temperature-help p { margin: 0; padding: 0 19px 14px; line-height: 1.6; }
+.step-card { margin-bottom: 16px; padding: 20px 23px; border-radius: 16px; background: var(--soft); }
+.step-card h2 { margin-bottom: 9px; }
+.step-card p:last-child { margin-bottom: 0; line-height: 1.6; }
+.thermo-board { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: white; }
+.thermo-board svg { display: block; width: 100%; height: auto; cursor: crosshair; touch-action: none; }
+.panel-labels text { fill: #222; font: 700 25px Arial, sans-serif; text-anchor: middle; paint-order: stroke; stroke: white; stroke-width: 7px; stroke-linejoin: round; }
+.cal-line { stroke: #176f8d; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 15 10; }
+.cal-tick { stroke: #176f8d; stroke-width: 6; stroke-linecap: round; }
+.cal-label { fill: #176f8d; font: 700 28px Arial, sans-serif; paint-order: stroke; stroke: white; stroke-width: 7px; }
+.interaction-status { margin: 13px 0; color: var(--muted); font-weight: 700; line-height: 1.5; }
+.calibration-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.calibration-actions button, .reading-step button { padding: 11px 16px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent); color: white; font: inherit; font-weight: 800; cursor: pointer; }
+.calibration-actions button:not(:first-child) { background: white; color: var(--accent); }
+.calibration-actions button:disabled { opacity: .45; cursor: not-allowed; }
+.reading-step { margin-top: 27px; padding: 22px 24px; border-left: 4px solid var(--accent); border-radius: 0 15px 15px 0; background: var(--soft); }
+.reading-step[hidden] { display: none; }
+.reading-step h2 { margin-bottom: 8px; }
+.reading-step form label { display: block; margin-bottom: 8px; font-weight: 800; }
+.reading-step form div { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.reading-step input { width: 115px; padding: 11px; border: 1px solid #c8ab98; border-radius: 9px; font: inherit; }
+.answer-result { margin-top: 13px; font-weight: 700; line-height: 1.55; }
+@media (max-width: 650px) { .panel-explanations { grid-template-columns: 1fr; } .panel-labels text { font-size: 31px; } }
