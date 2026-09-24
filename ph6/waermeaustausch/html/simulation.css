@@ -1,0 +1,24 @@
+.experiment { margin-top: 28px; padding: 24px; border: 1px solid var(--line); border-radius: 22px; background: white; }
+.experiment-heading, .controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.clock { text-align: right; color: var(--muted); }
+.clock output { display: block; color: #29353b; font-size: 1.8rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.clock small { font-size: .7rem; }
+.apparatus { max-width: 640px; margin: auto; }
+.apparatus svg, #chart { display: block; width: 100%; height: auto; }
+.readings { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.reading { padding: 16px; border-radius: 14px; background: #faf6f1; border-top: 4px solid currentColor; }
+.reading span, .reading output { display: block; }
+.reading output { margin-top: 8px; font-size: clamp(1.6rem, 5vw, 2.5rem); font-weight: 800; font-variant-numeric: tabular-nums; }
+.top { color: #ad4230; } .bottom { color: #156a91; }
+.controls { justify-content: flex-start; }
+.controls button { padding: 12px 16px; border: 1px solid var(--accent); border-radius: 10px; font: inherit; }
+.controls button { background: var(--accent); color: white; cursor: pointer; font-weight: 700; min-width: 100px; }
+.controls button.secondary { background: white; color: var(--accent); }
+.controls button:disabled { opacity: .5; cursor: default; }
+#status { margin: 16px 0 0; color: var(--muted); line-height: 1.5; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .9rem !important; }
+#chart { background: white; border: 1px solid var(--line); border-radius: 14px; }
+.curve { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.curve.top { stroke: #ad4230; } .curve.bottom { stroke: #156a91; stroke-dasharray: 8 4; }
+li { margin-bottom: 12px; line-height: 1.6; }
+@media (max-width: 480px) { .experiment { padding: 16px; } .experiment-heading { font-size: .85rem; } .reading { padding: 12px; } }
