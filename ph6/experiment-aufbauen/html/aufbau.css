@@ -1,0 +1,59 @@
+.workbench { margin-top: 28px; padding: 22px; background: white; border: 1px solid var(--line); border-radius: 22px; }
+.bench-heading, .dock-legend, .bench-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.bench-heading { justify-content: space-between; margin-bottom: 16px; }
+.bench-heading h2 { margin: 0; }
+.dock-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.dock-legend i { width: 12px; height: 12px; border-radius: 50%; }
+.mount-type { background: #8742aa; } .hook-type { background: #bc5900; } .connected { background: white; border: 3px solid #166db4; }
+#scene { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; touch-action: none; user-select: none; }
+.part { cursor: grab; outline: none; }
+.part.dragging { cursor: grabbing; }
+.part > rect { stroke: #29353b; stroke-width: 2.5; }
+.part:focus-visible > rect:not(.hit-area), .part.selected > rect:not(.hit-area) { stroke: #b55440; stroke-width: 4; }
+.part text { text-anchor: middle; font: 700 19px Arial, sans-serif; fill: #29353b; pointer-events: none; }
+.detail { fill: none; stroke: #c69a7d; stroke-width: 2; }
+.part .hit-area { fill: transparent; stroke: none; }
+.dock { fill: var(--port-color, #8742aa); stroke: white; stroke-width: 3; }
+.dock.joined { stroke: #166db4; stroke-width: 5; }
+.ground-label { font: 16px Arial, sans-serif; fill: #665f58; }
+#status { line-height: 1.5; min-height: 1.5em; }
+.bench-actions button { padding: 11px 16px; background: white; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
+.bench-actions button:disabled { opacity: .45; cursor: default; }
+.help { margin-bottom: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+@media(max-width:480px) { .workbench { padding: 12px; } .dock-legend { font-size: .85rem; } }
+
+.grab-line { fill: none; stroke: transparent; stroke-width: 36; pointer-events: stroke; }
+.metal-line { fill: none; stroke: #526570; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.rope-line { fill: none; stroke: #947044; stroke-width: 5; stroke-linecap: round; }
+.ball-body { fill: #e4edf0; stroke: #29353b; stroke-width: 2.5; }
+.part .side-label { text-anchor: start; }
+.part.selected .metal-line, .part:focus-visible .metal-line,
+.part.selected .rope-line, .part:focus-visible .rope-line,
+.part.selected .ball-body, .part:focus-visible .ball-body { stroke: #b55440; }
+
+.slide-track { stroke: #8742aa; stroke-width: 4; stroke-dasharray: 5 5; pointer-events: none; }
+.bench-actions select { max-width: 100%; padding: 10px; font: inherit; border: 1px solid var(--line); border-radius: 8px; }
+
+[hidden] { display: none !important; }
+.pendulum-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.pendulum-controls label { font-weight: 700; }
+.pendulum-controls input { flex: 1; min-width: 140px; accent-color: var(--accent); }
+#pendulum-scene { display: block; width: 100%; height: auto; background: #fffaf3; margin: 18px 0; border-radius: 12px; touch-action: none; }
+#pendulum-bob { cursor: grab; touch-action: none; }
+#pendulum-bob:active { cursor: grabbing; }
+#pendulum-bob:focus-visible { outline: none; stroke: #166db4; stroke-width: 4; }
+.pendulum-readings { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 18px; font-size: .9rem; color: var(--muted); }
+.pendulum-readings output, .pendulum-chart output { font-variant-numeric: tabular-nums; }
+.plots-heading { margin-top: 30px; }
+.pendulum-chart { margin-top: 20px; }
+.pendulum-chart h3 { font-size: 1rem; margin-bottom: 8px; }
+.pendulum-chart svg { display: block; width: 100%; border: 1px solid var(--line); border-radius: 10px; touch-action: pan-y; }
+.pendulum-chart svg:focus-visible { outline: 3px solid #bb774c; }
+.pendulum-chart text { fill: #665f58; font: 15px Arial,sans-serif; }
+.plot-grid { fill: none; stroke: #eaded2; }
+.plot-axis { fill: none; stroke: #8a8278; }
+.plot-curve { fill: none; stroke: #ad4230; stroke-width: 2.5; }
+#velocity-chart .plot-curve { stroke: #156a91; }
+.plot-cursor { stroke: #88949a; stroke-dasharray: 4 4; }
+.plot-dot { fill: #29353b; }
+.pendulum-chart output { display: block; padding: 8px 0; font-size: .9rem; }
