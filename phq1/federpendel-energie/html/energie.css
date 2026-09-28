@@ -6,7 +6,7 @@
 .formula-pair > div { padding: 16px; border-radius: 13px; background: #edf3fa; text-align: center; overflow-x: auto; }
 .formula-pair strong { display: block; }
 .energy-lab, .drive-lab { margin: 22px 0; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: #f8fbfe; }
-#spring-model { display: block; width: 100%; height: auto; background: white; border-radius: 10px; }
+#pendulum-model { display: block; width: 100%; height: auto; background: white; border-radius: 10px; }
 .energy-lab > label, .drive-controls > label { display: block; margin: 16px 0 7px; font-weight: 700; }
 input[type="range"] { width: 100%; accent-color: var(--accent); }
 .energy-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 18px; }

@@ -30,3 +30,22 @@ button:focus-visible, input:focus-visible, .plot-scroll:focus-visible { outline:
 #feedback { margin: 16px 0 0; min-height: 3em; }
 #feedback.success { color: #236341; font-weight: 700; }
 @media(max-width:600px) { .answer-grid { grid-template-columns: 1fr; } .answer-card { padding: 18px; } }
+
+.solved-card { margin-top: 28px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: #f0e9f6; }
+.solved-card h2 { font-size: 1.4rem; }
+#solved-empty { color: var(--muted); line-height: 1.5; }
+#solved-list { margin: 0; padding-left: 26px; }
+#solved-list li { padding: 14px 0; border-bottom: 1px solid #d8cce3; }
+#solved-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+#solved-list li::marker { color: var(--purple); font-weight: 700; }
+#solved-list p { margin: 0; line-height: 1.7; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+#solved-list p:first-child { font-weight: 700; }
+
+[hidden] { display: none !important; }
+.history-info { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+.solved-card button { padding: 12px 16px; border: 0; border-radius: 10px; background: var(--purple); color: white; font: inherit; cursor: pointer; }
+.solved-card button:disabled { opacity: .5; cursor: default; }
+#qr-result { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+#history-qr { display: block; width: min(100%,440px); height: auto; background: white; shape-rendering: crispEdges; margin: 18px auto; }
+#qr-payload { display: block; overflow-wrap: anywhere; padding: 12px 0; }
+#qr-result details { margin-bottom: 20px; }

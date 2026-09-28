@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interaktive Selbstlerneinheit zur Energieübertragung beim Federpendel: Halfpipe, kinetische und potenzielle Energie, Reibung, Anregung und Dämpfung.">
-  <title>Energie beim Federpendel · Physik Q1</title>
+  <meta name="description" content="Interaktive Selbstlerneinheit zur Energieübertragung beim Fadenpendel: Halfpipe, kinetische und potenzielle Energie, Reibung, Anregung und Dämpfung.">
+  <title>Energie beim Fadenpendel · Physik Q1</title>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="energie.css">
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
@@ -15,12 +15,12 @@
   <main class="article-main">
     <a class="back-link" href="../../index.html">← Alle Themen</a>
     <article>
-      <header class="article-hero"><p class="eyebrow">Federpendel · Selbstlerneinheit</p><h1>Wo bleibt die Energie?</h1><p>Ein Skateboarder in der Halfpipe hilft dir, den ständigen Wechsel der Energie beim Federpendel zu verstehen.</p></header>
+      <header class="article-hero"><p class="eyebrow">Fadenpendel · Selbstlerneinheit</p><h1>Wo bleibt die Energie?</h1><p>Ein Skateboarder in der Halfpipe hilft dir, den ständigen Wechsel der Energie beim Fadenpendel zu verstehen.</p></header>
 
       <section class="article-section learning-intro">
         <h2>Dein Lernweg</h2>
         <p>Arbeite die sechs Stationen der Reihe nach durch. Vermute zuerst. Öffne danach die Erklärung. In den interaktiven Modellen kannst du die Bewegung selbst steuern.</p>
-        <nav class="energy-nav" aria-label="Stationen"><a href="#halfpipe">1 · Halfpipe</a><a href="#pendel">2 · Federpendel</a><a href="#reibung">3 · Reibung</a><a href="#anregung">4 · Anregung</a><a href="#grenzfall">5 · Federgabel</a><a href="#experten">6 · Für Experten</a></nav>
+        <nav class="energy-nav" aria-label="Stationen"><a href="#halfpipe">1 · Halfpipe</a><a href="#pendel">2 · Fadenpendel</a><a href="#reibung">3 · Reibung</a><a href="#anregung">4 · Anregung</a><a href="#grenzfall">5 · Federgabel</a><a href="#experten">6 · Für Experten</a></nav>
       </section>
 
       <section class="learning-step" id="halfpipe">
@@ -35,27 +35,28 @@
       </section>
 
       <section class="learning-step" id="pendel">
-        <span class="step-number">2</span><h2>Das Federpendel macht etwas Ähnliches</h2>
-        <p>Beim Federpendel übernimmt die potenzielle Energie der Schwingung die Rolle der Lageenergie in der Halfpipe. Wir messen die Auslenkung \(x\) von der Ruhelage aus.</p>
+        <span class="step-number">2</span><h2>Das Fadenpendel macht etwas Ähnliches</h2>
+        <p>Beim Fadenpendel schwingt eine Masse an einem Faden der Länge \(l\). Wie in der Halfpipe wechseln sich Lageenergie und Bewegungsenergie ab. Die Höhe \(h\) messen wir über dem tiefsten Punkt; der Winkel \(\varphi\) beschreibt die Auslenkung gegenüber der senkrechten Ruhelage.</p>
         <div class="formula-pair">
-          <div><strong>Potenzielle Energie der Schwingung</strong>\[E_{\mathrm{pot}}=\frac{1}{2}D x^2\]</div>
+          <div><strong>Lageenergie</strong>\[E_{\mathrm{pot}}=mgh\]</div>
           <div><strong>Bewegungsenergie</strong>\[E_{\mathrm{kin}}=\frac{1}{2}m v^2\]</div>
         </div>
-        <p>Bei einem senkrechten Federpendel wirken Feder und Gewichtskraft zusammen. Misst man \(x\) von der Ruhelage aus, beschreibt die Formel oben die Änderung der gesamten potenziellen Energie gegenüber der Ruhelage.</p>
+        <p>Es gilt \(h=l(1-\cos\varphi)\). Am tiefsten Punkt setzen wir die Lageenergie gleich null. Der ideale Faden ist masselos und bleibt gleich lang; die Masse betrachten wir als punktförmig.</p>
         <p>Bewege den Regler durch eine ganze Schwingung. Beobachte Ort, Geschwindigkeit und Energie.</p>
         <div class="energy-lab">
-          <svg id="spring-model" viewBox="0 0 800 250" role="img" aria-labelledby="spring-title spring-desc"><title id="spring-title">Federpendel und Energie</title><desc id="spring-desc">Ein waagerechtes Federpendel. Seine Position und die Energieanteile ändern sich mit dem Phasenregler.</desc></svg>
+          <svg id="pendulum-model" viewBox="0 0 800 360" role="img" aria-labelledby="pendulum-title pendulum-desc"><title id="pendulum-title">Fadenpendel und Energie</title><desc id="pendulum-desc">Ein Fadenpendel mit Aufhängung, Kreisbahn und markierter Höhe über dem tiefsten Punkt. Winkel, Geschwindigkeit und Energieanteile ändern sich mit dem Zeitregler.</desc></svg>
           <label for="phase">Zeitpunkt in einer Schwingung</label><input id="phase" type="range" min="0" max="1000" value="0" step="1">
-          <div class="energy-bars" aria-label="Energieanteile"><div><span>Potenzielle Energie</span><div class="bar-track"><span id="bar-pot"></span></div><output id="pot-value">100 %</output></div><div><span>Bewegungsenergie</span><div class="bar-track"><span id="bar-kin"></span></div><output id="kin-value">0 %</output></div></div>
+          <div class="energy-bars" aria-label="Energieanteile"><div><span>Lageenergie</span><div class="bar-track"><span id="bar-pot"></span></div><output id="pot-value">100 %</output></div><div><span>Bewegungsenergie</span><div class="bar-track"><span id="bar-kin"></span></div><output id="kin-value">0 %</output></div></div>
           <p id="energy-readout" class="lab-readout" aria-live="polite"></p>
         </div>
         <button class="reveal-answer" type="button" aria-expanded="false" aria-controls="answer-energy">Was bleibt ohne Reibung gleich?<span>Erklärung anzeigen ↓</span></button>
-        <div class="learning-answer" id="answer-energy" hidden><p>Die Summe bleibt gleich:</p><div class="formula">\[E_{\mathrm{ges}}=E_{\mathrm{pot}}+E_{\mathrm{kin}}=\text{konstant}\]</div><p>Am Umkehrpunkt gilt \(v=0\). Dort ist nur potenzielle Energie der Schwingung vorhanden. In der Ruhelage gilt \(x=0\). Dort ist die Bewegungsenergie am größten.</p><p>Beide Energien sind nie negativ. Das liegt an \(x^2\) und \(v^2\).</p></div>
+        <div class="learning-answer" id="answer-energy" hidden><p>Die Summe bleibt gleich:</p><div class="formula">\[E_{\mathrm{ges}}=E_{\mathrm{pot}}+E_{\mathrm{kin}}=\text{konstant}\]</div><p>Am Umkehrpunkt gilt \(v=0\). Dort ist nur Lageenergie vorhanden. Am tiefsten Punkt gilt \(h=0\). Dort ist die Bewegungsenergie am größten.</p><p>Beide Energien sind nie negativ. Die Höhe \(h\) über dem tiefsten Punkt und das Quadrat \(v^2\) sind nie negativ.</p></div>
       </section>
 
       <section class="learning-step" id="reibung">
         <span class="step-number">3</span><h2>Reibung bremst die Bewegung</h2>
-        <p>Eine echte Halfpipe und ein echtes Federpendel haben Reibung. Rollen, Lager und Luft werden warm. Dabei wird mechanische Energie an die Umgebung übertragen.</p>
+        <p>Eine echte Halfpipe und ein echtes Fadenpendel haben Reibung. In der Halfpipe wirken Rollreibung und Luftwiderstand, beim Pendel Reibung an der Aufhängung und Luftwiderstand. Dabei wird mechanische Energie an die Umgebung übertragen.</p>
+        <p>Die folgenden Pendeldiagramme zeigen kleine Auslenkungen: Dann gilt näherungsweise \(\sin\varphi\approx\varphi\). Winkel und Zeit sind auf eine feste Winkelskala bzw. auf \(1/\omega_0\) normiert, mit \(\omega_0=\sqrt{g/l}\).</p>
         <div class="damping-choice" role="group" aria-label="Dämpfungsstärke wählen"><button type="button" data-damping="0" aria-pressed="true">Keine Reibung</button><button type="button" data-damping="0.18" aria-pressed="false">Wenig Reibung</button><button type="button" data-damping="0.55" aria-pressed="false">Viel Reibung</button></div>
         <svg id="damping-plot" class="lesson-plot" viewBox="0 0 820 360" role="img" aria-labelledby="damping-title damping-desc"><title id="damping-title">Auslenkung bei verschiedener Reibung</title><desc id="damping-desc">Ein Zeitdiagramm zeigt eine Schwingung mit wählbarer Dämpfung.</desc></svg>
         <p id="damping-text" class="lab-readout" aria-live="polite"></p>
@@ -64,14 +65,14 @@
       </section>
 
       <section class="learning-step" id="anregung">
-        <span class="step-number">4</span><h2>Mit den Beinen neue Energie zuführen</h2>
-        <p>Ein Skateboarder kann sich in der Halfpipe passend zur Bewegung strecken und beugen. So führt er regelmäßig Energie zu. Beim Federpendel kann eine äußere Kraft dasselbe tun.</p>
+        <span class="step-number">4</span><h2>Im richtigen Takt neue Energie zuführen</h2>
+        <p>Ein Skateboarder kann sich in der Halfpipe passend zur Bewegung strecken und beugen. So führt er regelmäßig Energie zu. Ein Fadenpendel kann man durch regelmäßiges Anschubsen anregen, ähnlich wie eine Schaukel. Im Modell wirkt eine periodische Kraft entlang der Kreisbahn.</p>
         <div class="drive-lab">
           <div class="drive-controls">
             <label for="drive-frequency">Takt der äußeren Kraft</label><input id="drive-frequency" type="range" min="40" max="160" value="100" step="1"><output id="drive-frequency-value">1,00 · Eigenfrequenz</output>
             <div><button id="drive-start" type="button">Start</button><button id="drive-pause" type="button" class="secondary">Pause</button><button id="drive-reset" type="button" class="secondary">Zurücksetzen</button></div>
           </div>
-          <svg id="drive-plot" class="lesson-plot" viewBox="0 0 820 360" role="img" aria-labelledby="drive-title drive-desc"><title id="drive-title">Periodisch angeregtes Federpendel</title><desc id="drive-desc">Ein Zeitdiagramm zeigt die Auslenkung eines gedämpften Pendels unter einer periodischen äußeren Kraft.</desc></svg>
+          <svg id="drive-plot" class="lesson-plot" viewBox="0 0 820 360" role="img" aria-labelledby="drive-title drive-desc"><title id="drive-title">Periodisch angeregtes Fadenpendel</title><desc id="drive-desc">Ein Zeitdiagramm zeigt die Auslenkung eines gedämpften Pendels unter einer periodischen äußeren Kraft.</desc></svg>
           <p id="drive-status" class="lab-readout" aria-live="polite"></p>
         </div>
         <button class="reveal-answer" type="button" aria-expanded="false" aria-controls="answer-drive">Wann wächst die Schwingung besonders stark?<span>Erklärung anzeigen ↓</span></button>
@@ -89,16 +90,16 @@
 
       <section class="learning-step expert" id="experten">
         <span class="step-number">6</span><h2>Für Experten: alles in einer Gleichung</h2>
-        <p>In der letzten Selbstlerneinheit stand für das ideale Federpendel:</p>
-        <div class="formula">\[m\,\ddot{x}(t)+D\,x(t)=0\]</div>
-        <p>Jetzt kommen zwei neue Einflüsse hinzu. Die Dämpfungskraft wird vereinfacht als proportional zur Geschwindigkeit beschrieben. Die äußere Kraft wirkt periodisch.</p>
-        <div class="formula expert-formula">\[m\,\ddot{x}(t)+b\,\dot{x}(t)+D\,x(t)=F_0\sin(\Omega t)\]</div>
-        <div class="equation-map"><p><strong>\(m\,\ddot{x}\)</strong><span>Trägheit der Masse</span></p><p><strong>\(b\,\dot{x}\)</strong><span>Dämpfung durch Reibung</span></p><p><strong>\(D\,x\)</strong><span>Rücktreibende Federkraft</span></p><p><strong>\(F_0\sin(\Omega t)\)</strong><span>periodische Anregung von außen</span></p></div>
-        <p>Setzt man \(b=0\) und \(F_0=0\), erhält man wieder die Gleichung aus der letzten Einheit. Die neue Gleichung fasst also das ideale Pendel, die Reibung und die Anregung zusammen.</p>
-        <details><summary>Zusatz: Wo steckt der aperiodische Grenzfall?</summary><p>Ohne äußere Anregung gilt \(F_0=0\). Der aperiodische Grenzfall liegt bei</p><div class="formula">\[b_{\mathrm{krit}}=2\sqrt{mD}\]</div><p>Diese Formel ist ein Ausblick. Wichtig ist zunächst die Bedeutung: schnellste Rückkehr zur Ruhelage ohne Überschwingen.</p></details>
+        <p>Die Gewichtskraft zieht das Fadenpendel zur Ruhelage zurück. Entlang der Kreisbahn gilt mit der Bogenlänge \(s=l\varphi\):</p>
+        <div class="formula">\[m l\,\ddot{\varphi}+mg\sin\varphi=0\]</div>
+        <p>Für kleine Winkel (im Bogenmaß) gilt \(\sin\varphi\approx\varphi\). Mit einer zur Bahngeschwindigkeit \(v=l\dot\varphi\) proportionalen Reibungskraft und einer periodischen tangentialen Anregung folgt:</p>
+        <div class="formula expert-formula">\[m l\,\ddot{\varphi}+b l\,\dot{\varphi}+mg\,\varphi=F_0\sin(\Omega t)\]</div>
+        <div class="equation-map"><p><strong>\(m l\,\ddot\varphi\)</strong><span>Masse mal tangentiale Beschleunigung</span></p><p><strong>\(b l\,\dot\varphi\)</strong><span>Dämpfung durch Reibung</span></p><p><strong>\(mg\,\varphi\)</strong><span>Betrag und Vorzeichen des rückstellenden Terms für kleine Winkel</span></p><p><strong>\(F_0\sin(\Omega t)\)</strong><span>periodische Kraft entlang der Kreisbahn</span></p></div>
+        <p>Ohne Reibung und Anregung gilt für kleine Winkel \(\omega_0=\sqrt{g/l}\) und \(T=2\pi\sqrt{l/g}\). Für größere Winkel muss der Term \(mg\sin\varphi\) verwendet werden; die Schwingung ist dann nicht genau sinusförmig.</p>
+        <details><summary>Zusatz: Wo steckt der aperiodische Grenzfall?</summary><p>Im Modell für kleine Winkel ohne äußere Anregung liegt der aperiodische Grenzfall bei</p><div class="formula">\[b_{\mathrm{krit}}=2m\sqrt{g/l}\]</div><p>Bei einer Auslenkung aus der Ruhe kehrt das Pendel damit besonders schnell zurück, ohne über die Ruhelage hinauszuschwingen. Die Federgabel aus Station 5 nutzt dasselbe Prinzip der Dämpfung.</p></details>
       </section>
 
-      <section class="path-summary"><h2>Das Wichtigste</h2><p>Beim idealen Federpendel wechseln sich Spannenergie und Bewegungsenergie ab. Reibung überträgt mechanische Energie an die Umgebung; die Amplitude sinkt. Eine periodische äußere Kraft kann neue Energie zuführen. Nahe der Eigenfrequenz kann Resonanz entstehen. Starke Dämpfung kann Schwingungen verhindern; im aperiodischen Grenzfall kehrt das System besonders schnell und ohne Überschwingen zurück.</p><a class="next-link" href="../../federpendel-selbstlernen/html/index.html">Das Zeitgesetz noch einmal ansehen →</a></section>
+      <section class="path-summary"><h2>Das Wichtigste</h2><p>Beim idealen Fadenpendel wechseln sich Lageenergie und Bewegungsenergie ab. Reibung überträgt mechanische Energie an die Umgebung; die Amplitude sinkt. Eine periodische äußere Kraft kann neue Energie zuführen. Nahe der Eigenfrequenz kann Resonanz entstehen. Starke Dämpfung kann Schwingungen verhindern; im aperiodischen Grenzfall kehrt das System besonders schnell und ohne Überschwingen zurück.</p><a class="next-link" href="../../federpendel-selbstlernen/html/index.html">Zum Vergleich: das Zeitgesetz des Federpendels →</a></section>
     </article>
   </main>
   <footer>Physik Q1 · Schwingungen <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
