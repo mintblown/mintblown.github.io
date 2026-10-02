@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game of Life · Strukturen</title>
+  <link rel="stylesheet" href="life.css"><link rel="stylesheet" href="structures.css">
+  <script defer src="engine.js"></script><script defer src="life.js"></script><script defer src="structures.js"></script>
+</head>
+<body>
+<main>
+  <canvas id="life" width="256" height="256" data-initial="empty" aria-label="Conways Game of Life, 256 mal 256 Zellen; orange: Vorschau"></canvas>
+  <div class="controls">
+    <button id="toggle" type="button" aria-pressed="false">Start</button>
+    <input id="speed" type="range" min="1" max="60" value="15" aria-label="Geschwindigkeit" aria-valuetext="15 Generationen pro Sekunde" title="Geschwindigkeit">
+    <button id="reset" type="button">Zurücksetzen</button>
+  </div>
+  <form id="placement" novalidate>
+    <label class="choose">Struktur<select id="structure"><option value="">Bitte auswählen</option><option value="block">Block</option><option value="blinker">Blinker · Oszillator</option><option value="toad">Kröte · Oszillator</option><option value="beacon">Leuchtfeuer · Oszillator</option><option value="glider">Glider</option><option value="gun">Cannon · Gosper-Gleiterkanone</option><option value="lwss">Spaceship · LWSS</option></select></label>
+    <div id="placement-fields" hidden>
+      <div class="placement-grid">
+        <figure><canvas id="pattern-preview" width="160" height="160" aria-label="Vorschau der ausgewählten Struktur"></canvas><figcaption>Vorschau</figcaption></figure>
+        <div class="fields">
+          <label>Zustand (Phase)<input id="phase" type="number" min="0" max="0" step="1" value="0" required></label>
+          <label>Drehung ↻<select id="rotation"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></label>
+          <label>X (0–255)<input id="x" type="number" min="0" max="255" step="1" value="126" required></label>
+          <label>Y (0–255)<input id="y" type="number" min="0" max="255" step="1" value="126" required></label>
+          <button type="submit">Hinzufügen</button>
+        </div>
+      </div>
+      <p class="hint">Position: linke obere Ecke · Orange: noch nicht hinzugefügt</p>
+    </div>
+    <p id="placement-status" role="status"></p>
+  </form>
+</main>
+</body>
+</html>

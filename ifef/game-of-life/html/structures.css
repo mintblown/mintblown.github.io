@@ -1,0 +1,14 @@
+body { display: block; }
+main { margin-inline: auto; width: 100%; }
+#life { width: 100%; margin-inline: auto; }
+#placement { margin-top: 24px; padding: 18px; border: 1px solid #395147; border-radius: 12px; }
+label { display: flex; flex-direction: column; gap: 8px; font-size: .9rem; }
+select, input[type="number"] { width: 100%; min-width: 0; min-height: 44px; padding: 8px; border: 1px solid #577561; border-radius: 6px; background: #182a20; color: #e7f5eb; font: inherit; }
+.placement-grid { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; margin-top: 20px; }
+figure { margin: 0; }
+figcaption { text-align: center; color: #ffbd76; margin-top: 8px; font-size: .85rem; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end; }
+.hint { color: #c1ccbf; font-size: .8rem; margin-bottom: 0; }
+#placement-status:empty { display: none; }
+#placement-status[data-error="true"] { color: #ffbd76; }
+@media (max-width: 480px) { .placement-grid { grid-template-columns: 1fr; } figure { width: 128px; margin-inline: auto; } }

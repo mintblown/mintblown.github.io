@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game of Life</title>
+  <link rel="stylesheet" href="life.css">
+  <script defer src="engine.js"></script>
+  <script defer src="life.js"></script>
+</head>
+<body>
+<main>
+  <canvas id="life" width="256" height="256" aria-label="Conways Game of Life, 256 mal 256 Zellen"></canvas>
+  <div class="controls">
+    <button id="toggle" type="button" aria-pressed="false">Start</button>
+    <input id="speed" type="range" min="1" max="60" value="15" aria-label="Geschwindigkeit" aria-valuetext="15 Generationen pro Sekunde" title="Geschwindigkeit">
+    <button id="reset" type="button">Zurücksetzen</button>
+  </div>
+</main>
+</body>
+</html>

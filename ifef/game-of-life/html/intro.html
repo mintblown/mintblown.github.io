@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game of Life · Schritt für Schritt</title>
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="intro.css">
+  <script defer src="engine.js"></script><script defer src="intro.js"></script>
+</head>
+<body>
+<main>
+  <a href="../../index.html">← Zur IF-EF-Übersicht</a>
+  <h1>Game of Life</h1>
+  <div id="board" role="img" aria-label="16 mal 16 Zellen. Schwarz: lebendig. Weiß: tot."></div>
+  <div class="controls"><button id="step" type="button">Einzelschritt · Änderungen zeigen</button><button id="reset" type="button" class="secondary">Zurücksetzen</button></div>
+  <p id="step-status" role="status"></p>
+  <div class="legend" aria-label="Farblegende"><span><i class="dies"></i>Rot: stirbt</span><span><i class="born"></i>Grün: entsteht</span><span><i class="survives"></i>Blau: bleibt lebendig</span></div>
+  <section class="panel">
+    <h2>Die Regeln</h2>
+    <p>Jede Zelle hat <strong>acht Nachbarn</strong>, auch diagonal. Zähle nur die lebenden Nachbarn im bisherigen Spielfeld.</p>
+    <ul><li><strong>Geburt:</strong> Eine tote Zelle mit genau drei lebenden Nachbarn wird lebendig.</li><li><strong>Überleben:</strong> Eine lebende Zelle mit zwei oder drei lebenden Nachbarn bleibt lebendig.</li><li><strong>Tod:</strong> Eine lebende Zelle mit weniger als zwei oder mehr als drei lebenden Nachbarn stirbt.</li></ul>
+    <p>Alle Änderungen passieren <strong>gleichzeitig</strong>. Die Ränder sind verbunden: Rechts geht es links weiter, unten wieder oben.</p>
+    <p>Der erste Klick markiert die Änderungen. Der nächste Klick übernimmt sie: <strong>Schwarz ist lebendig, Weiß ist tot.</strong> Zurücksetzen erzeugt ein neues zufälliges Feld.</p>
+  </section>
+  <p><a href="index.html">Zum großen Spielfeld →</a> · <a href="structures.html">Strukturen ausprobieren →</a></p>
+  <noscript><p>Bitte aktiviere JavaScript für das Spielfeld.</p></noscript>
+</main>
+</body>
+</html>
