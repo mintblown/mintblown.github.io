@@ -1,0 +1,20 @@
+label { display: block; margin-bottom: 8px; }
+#input-help, .examples { font-size: .9rem; }
+.examples button { padding: 7px 12px; }
+#input-status { margin-bottom: 0; }
+#input-status[data-error="true"] { color: #a12828; font-weight: 700; }
+.sem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+.sem-column { --accent: #785421; --tint: #fff3db; display: flex; flex-direction: column; min-width: 0; }
+.exponent { --accent: #235f97; --tint: #eaf3fe; }
+.mantissa { --accent: #6e4191; --tint: #f4eafb; }
+.bit-card { background: var(--tint); border: 1px solid var(--accent); border-top: 5px solid var(--accent); border-radius: 18px; padding: 18px 10px; text-align: center; }
+.bit-card h3 { color: var(--accent); font-size: 1.8rem; margin: 0; }
+.bit-card h3 span { display: block; font-size: .85rem; margin-top: 4px; }
+.binary { font: 700 clamp(2rem, 4.5vw, 3.4rem)/1.3 ui-monospace, monospace; letter-spacing: .08em; margin: 20px 0 12px; white-space: nowrap; }
+.decimal { margin: 0; font-weight: 700; }
+.explanation { flex: 1; background: white; border: 1px solid #dce5e5; border-top: 4px solid var(--accent); border-radius: 14px; margin-top: 14px; padding: 18px; overflow-wrap: anywhere; }
+.explanation h4 { margin: 0 0 12px; color: var(--accent); font-size: 1.05rem; }
+.calculation { font-family: ui-monospace, monospace; background: #f5f7f6; border-radius: 8px; padding: 10px; overflow-wrap: anywhere; white-space: pre-line; }
+.total { font-size: clamp(1.1rem, 2.5vw, 1.5rem); background: #eaf4f0; font-weight: 700; }
+#byte { font-family: ui-monospace, monospace; overflow-wrap: anywhere; }
+@media (max-width: 700px) { .sem-grid { grid-template-columns: 1fr; } .binary { font-size: 3rem; } .explanation { margin-top: 8px; } }

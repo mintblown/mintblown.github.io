@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Negative Ganzzahlen · IF EF</title>
+  <meta name="description" content="8-Bit-Zweierkomplement kurz erklärt: Bits invertieren und 1 addieren, mit eigenem Beispiel.">
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="negative-ints.css">
+  <script defer src="negative-ints.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main>
+  <a href="index.html">← Zum Speicherraster und Umrechner</a>
+  <header class="hero"><p class="eyebrow">06 · Ganze Zahlen mit acht Bits</p><h1>Wie speichert man ein Minus?</h1><p>Im Zweierkomplement reicht der Wertebereich von −128 bis 127. Steht vorne eine 1, ist die Zahl negativ.</p></header>
+  <section class="panel">
+    <h2>Der Trick: invertieren + 1</h2>
+    <p>Schreibe den <strong>Betrag</strong> als acht Bits. Vertausche dann jede 0 mit einer 1 und jede 1 mit einer 0. Addiere zum Schluss 1.</p>
+    <form id="int-form" novalidate><label for="negative">Deine negative Ganzzahl (−128 bis −1)</label><div class="controls"><input id="negative" type="text" value="-25" autocomplete="off" spellcheck="false" aria-describedby="int-status"><button type="submit">Schritte zeigen</button></div></form>
+    <p id="int-status" role="status"></p>
+    <div id="int-result" hidden>
+      <ol class="int-steps">
+        <li><strong>1 · Betrag binär schreiben</strong><output id="magnitude-bits"></output><p id="magnitude-text"></p></li>
+        <li><strong>2 · Alle Bits invertieren</strong><output id="inverted-bits"></output><p>Jede 0 wird 1, jede 1 wird 0.</p></li>
+        <li><strong>3 · Eins addieren</strong><output id="negative-bits"></output><p id="addition-text"></p></li>
+      </ol>
+      <h3>Zurücklesen: Das erste Bit zählt −128</h3>
+      <p>Die Stellenwerte sind <strong>−128, 64, 32, 16, 8, 4, 2, 1</strong>. Addiere die Stellenwerte der gesetzten Bits:</p>
+      <p id="signed-sum" class="readout"></p>
+      <p id="reverse-trick"></p>
+      <p id="minimum-note" class="readout" hidden>Bei −128 gibt es eine Besonderheit: Der Betrag 128 lässt sich als Bitmuster schreiben, liegt aber außerhalb des positiven 8-Bit-int-Bereichs. Deshalb ergibt erneutes Invertieren + 1 wieder 10000000. Als vorzeichenbehafteter int bleibt das −128.</p>
+    </div>
+    <noscript><p>Beispiel −25: <code>00011001</code> → invertieren: <code>11100110</code> → +1: <code>11100111</code>. Aktiviere JavaScript für eigene Beispiele.</p></noscript>
+  </section>
+  <p><strong>Merke:</strong> Nur das erste Bit umzuschalten reicht nicht. Im Zweierkomplement heißt Vorzeichen wechseln: <strong>alle Bits invertieren + 1</strong>. Wir behalten immer nur acht Bits; ein Übertrag ganz links entfällt.</p>
+  <a class="button" href="index.html">Im Speicher ausprobieren</a>
+</main><footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body></html>

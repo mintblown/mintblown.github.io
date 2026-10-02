@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daten im Speicher · IF EF</title>
+  <meta name="description" content="Interaktive Hilfe zu IF_EF_08: Speicher lesen und schreiben und 8-Bit-Werte als ASCII, int und E4M3 verstehen.">
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="speicher.css">
+  <script defer src="e4m3-codec.js"></script>
+  <script defer src="speicher.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main>
+  <a href="../../index.html">← Zur Projektübersicht</a>
+  <header class="hero"><p class="eyebrow">04 · Hilfe zum Arbeitsblatt IF_EF_08</p><h1>Daten im Speicher</h1><p>Ein Byte, acht Bit. Erst die Interpretation macht daraus ein Zeichen oder eine Zahl.</p></header>
+  <noscript><p>Bitte aktivieren Sie JavaScript, um das Speicherraster und die Umrechnung zu nutzen.</p></noscript>
+  <section class="panel" aria-labelledby="memory-title">
+    <h2 id="memory-title">Speicherraster</h2>
+    <p>Die Vorgaben entsprechen dem Arbeitsblatt. Leere Zellen sind noch nicht belegt. Jede Adresse bezeichnet genau ein Byte; Adressen werden dezimal angegeben.</p>
+    <div class="table-wrap"><table><caption>Speicher · Bit 7 bis Bit 0</caption><thead><tr><th scope="col">Adresse (dez.)</th><th scope="col">7</th><th scope="col">6</th><th scope="col">5</th><th scope="col">4</th><th scope="col">3</th><th scope="col">2</th><th scope="col">1</th><th scope="col">0</th></tr></thead><tbody id="memory"></tbody></table></div>
+    <form id="memory-form">
+      <h3>Speicherbereich lesen oder schreiben</h3>
+      <div class="range-fields"><label>Von Adresse<input id="start" type="number" min="0" max="16" step="1" value="0" required></label><label>Bis Adresse (einschließlich)<input id="end" type="number" min="0" max="16" step="1" value="2" required></label></div>
+      <label for="bytes">Binärwerte zum Schreiben</label>
+      <textarea id="bytes" rows="3" spellcheck="false" placeholder="01000011 00011001 00101010" aria-describedby="bytes-help"></textarea>
+      <p id="bytes-help">Pro Adresse genau acht Bits. Mehrere Bytes durch Leerzeichen oder Zeilenumbrüche trennen. Schreiben ersetzt den ausgewählten Bereich vollständig.</p>
+      <div class="controls"><button type="submit" value="read">Bereich lesen</button><button type="submit" value="write">Bereich schreiben</button><button type="button" class="secondary" id="reset">Arbeitsblatt-Vorgaben wiederherstellen</button></div>
+      <p id="memory-status" class="status" role="status"></p>
+      <pre id="readout" class="readout" aria-label="Gelesener Speicherbereich" aria-live="polite">Noch kein Bereich gelesen.</pre>
+    </form>
+    <p class="small">Änderungen gelten bis zum Neuladen dieser Seite.</p>
+  </section>
+  <section class="panel" aria-labelledby="convert-title">
+    <h2 id="convert-title">8 Bit umwandeln</h2>
+    <p><a href="negative-ints.html">Negative Ganzzahlen: Zweierkomplement kurz erklärt →</a></p>
+    <p><a href="e4m3.html">Gleitkommazahlen verstehen: E4M3 Schritt für Schritt →</a></p>
+    <p>Wählen Sie die Interpretation und eine Richtung. Der Umrechner verarbeitet jeweils genau ein Byte.</p>
+    <label for="kind">Interpretation</label><select id="kind"><option value="ascii">ASCII · ein Zeichen</option><option value="int">int · −128 bis 127</option><option value="float">float · E4M3</option></select>
+    <div class="conversion-grid">
+      <form id="decode-form"><label for="binary">Binärdarstellung · acht Bits</label><input id="binary" value="01000011" pattern="[01]{8}" maxlength="8" required spellcheck="false" inputmode="numeric"><button type="submit">Binär → Wert</button></form>
+      <form id="encode-form"><label for="value" id="value-label">ASCII-Zeichen oder Steuerzeichenname</label><input id="value" value="C" required autocomplete="off" spellcheck="false"><button type="submit">Wert → Binär</button></form>
+    </div>
+    <p id="conversion-result" class="readout" role="status">Wählen Sie eine Umwandlungsrichtung.</p>
+    <details><summary>Wie werden die acht Bits interpretiert?</summary>
+      <p><strong>ASCII:</strong> Standard-ASCII verwendet die Codes 0–127; im Byte bleibt das höchste Bit 0. Steuerzeichen können als Name eingegeben werden, zum Beispiel NUL, TAB, LF oder CR. NUL (<code>00000000</code>) markiert auf dem Arbeitsblatt das Textende. SPACE steht für das Leerzeichen, DEL für das Löschzeichen.</p>
+      <p><strong>int:</strong> Vorzeichenbehaftete Ganzzahl im Zweierkomplement, von −128 bis 127. Bei führender 1 wird vom vorzeichenlosen Bytewert 256 abgezogen.</p>
+      <p><strong>float (E4M3):</strong> Ein Vorzeichenbit, vier Exponentenbits und drei Nachkommabits: <code>S EEEE MMM</code>. Hier gilt die Variante E4M3FN mit Bias 7. Für normale Zahlen: (−1)<sup>S</sup> · 2<sup>E−7</sup> · (1 + M/8). Für E = 0: (−1)<sup>S</sup> · 2<sup>−6</sup> · M/8.</p>
+      <p>Der endliche Wertebereich reicht von −448 bis 448. Nicht exakt darstellbare Zahlen werden auf den nächsten darstellbaren Wert gerundet; bei gleichem Abstand gewinnt die Darstellung mit letztem Bit 0. Kleinste positive Zahl: 0,001953125. Positive und negative Null sowie NaN werden unterstützt; Unendlich und Werte außerhalb des Bereichs werden zurückgewiesen.</p>
+      <p>Das Arbeitsblatt nutzt ein Ein-Byte-Modell. Die Java-Typen int und double im Programm benötigen in Java mehr als acht Bit. Formatdetails: <a href="https://onnx.ai/onnx/technical/float8.html">ONNX: E4M3FN</a>.</p>
+    </details>
+  </section>
+</main><footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body></html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gleitkommazahlen verstehen · IF EF</title>
+  <meta name="description" content="Eigene Zahlen als E4M3 darstellen: Vorzeichen, Exponent und Mantisse mit dynamischen Erklärungen und Rechenwegen.">
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="e4m3.css">
+  <script defer src="e4m3-codec.js"></script><script defer src="e4m3.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main>
+  <a href="index.html">← Zum Speicherraster und Umrechner</a>
+  <header class="hero"><p class="eyebrow">05 · Gleitkommazahlen verstehen</p><h1>Eine Zahl. Drei Bausteine.</h1><p>Wie passen Zahlen mit Nachkommastellen in acht Bits? Zerlege deine Zahl in Vorzeichen, Exponent und Mantisse.</p></header>
+  <section class="panel">
+    <h2>Probiere deine Zahl aus</h2>
+    <p>Bei E4M3 teilen wir ein Byte auf: <strong>1 Bit für S</strong> (Vorzeichen), <strong>4 Bits für E</strong> (Exponent) und <strong>3 Bits für M</strong> (Mantissenfeld). Der Exponent verschiebt das Binärkomma – daher der Name „Gleitkommazahl“.</p>
+    <form id="number-form" novalidate><label for="number">Deine Dezimalzahl</label><div class="controls"><input id="number" type="text" value="5,5" autocomplete="off" spellcheck="false" aria-describedby="input-help input-status"><button type="submit">Zahl erklären</button></div></form>
+    <p id="input-help">Komma oder Punkt sind möglich. Wertebereich: −448 bis 448. Die Erklärung passt sich beim Eingeben an.</p>
+    <div class="controls examples" aria-label="Beispielzahlen"><span>Entdecken:</span><button type="button" class="secondary" data-example="5,5">5,5</button><button type="button" class="secondary" data-example="-2">−2</button><button type="button" class="secondary" data-example="7,6">7,6 · Rundung</button><button type="button" class="secondary" data-example="0,001953125">Sehr kleine Zahl</button><button type="button" class="secondary" data-example="0">Null</button></div>
+    <p id="input-status" role="status"></p>
+  </section>
+  <noscript><p class="panel">Bitte aktiviere JavaScript für die Darstellung und die Erklärungen zu deiner Zahl.</p></noscript>
+  <section id="result" aria-labelledby="result-title" hidden>
+    <h2 id="result-title">Deine Zahl in acht Bits</h2>
+    <p id="rounding" class="readout"></p>
+    <div class="sem-grid">
+      <article class="sem-column sign"><header class="bit-card"><h3>S <span>Vorzeichen · 1 Bit</span></h3><p id="s-bits" class="binary"></p><p id="s-decimal" class="decimal"></p></header><div class="explanation"><h4>1 · Welches Vorzeichen?</h4><p id="s-explain"></p><p id="s-calc" class="calculation"></p></div></article>
+      <article class="sem-column exponent"><header class="bit-card"><h3>E <span>Exponent · 4 Bits</span></h3><p id="e-bits" class="binary"></p><p id="e-decimal" class="decimal"></p></header><div class="explanation"><h4>2 · Wohin wandert das Komma?</h4><p id="e-explain"></p><p id="e-sum" class="calculation"></p><p id="e-calc" class="calculation"></p></div></article>
+      <article class="sem-column mantissa"><header class="bit-card"><h3>M <span>Mantissenfeld · 3 Bits</span></h3><p id="m-bits" class="binary"></p><p id="m-decimal" class="decimal"></p></header><div class="explanation"><h4>3 · Welche Ziffern hat die Zahl?</h4><p id="m-explain"></p><p id="m-sum" class="calculation"></p><p id="m-fraction" class="calculation"></p><p id="m-calc" class="calculation"></p></div></article>
+    </div>
+    <section class="panel reconstruction"><h2>Die drei Teile zusammensetzen</h2><p id="normalization"></p><p id="formula" class="calculation"></p><p id="calculation" class="calculation total"></p><p id="byte"></p></section>
+  </section>
+  <details><summary>Warum wird manchmal gerundet?</summary><p>Mit acht Bits gibt es nur 256 Bitmuster. Viele Dezimalzahlen liegen zwischen zwei darstellbaren Werten. Wir nehmen den nächstgelegenen Wert. Bei genau gleichem Abstand wählen wir das Bitmuster, dessen letztes Bit 0 ist. Probiere zum Beispiel 7,6 oder 1,0625.</p><p>Die Schrittweite wächst mit dem Exponenten: Zwischen 1 und 2 beträgt sie 0,125, zwischen 4 und 8 bereits 0,5. Sehr kleine Beträge können auf Null gerundet werden.</p></details>
+  <details><summary>Welches E4M3 verwenden wir?</summary><p>Wie im Speicher-Umrechner verwenden wir <strong>E4M3FN mit Bias 7</strong>. Normalisierte Zahlen besitzen eine gedachte führende 1. Bei E = 0 gelten besondere Regeln für Null und sehr kleine (subnormale) Zahlen: Der Exponent ist −6 und die führende Ziffer ist 0.</p><p>E = 15 und M = 7 ist für NaN („keine Zahl“) reserviert. E4M3FN hat keine Unendlich-Darstellung. Hier untersuchen wir endliche Zahlen von −448 bis 448; größere Beträge werden zurückgewiesen. Auch −0 kannst du eingeben.</p><p>Das ist ein Lernmodell mit einem Byte. Java verwendet für float und double größere Formate. <a href="https://onnx.ai/onnx/technical/float8.html">Formatreferenz: ONNX – E4M3FN</a>.</p></details>
+  <a class="button" href="index.html">Mit den Bits im Speicher weiterarbeiten</a>
+</main><footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body></html>
