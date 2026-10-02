@@ -75,6 +75,11 @@ document.addEventListener('visibilitychange', () => { lastTime = null; elapsed =
 reset();
 
 const lifeBoard = {
+  restore(points) {
+    pause();
+    engine.current.fill(0); engine.next.fill(0);
+    this.add(points);
+  },
   preview(points) { preview = points; draw(); },
   add(points) {
     for (const [x, y] of points) engine.current[((y + SIZE) % SIZE) * SIZE + (x + SIZE) % SIZE] = 1;

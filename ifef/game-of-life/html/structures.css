@@ -11,4 +11,12 @@ figcaption { text-align: center; color: #ffbd76; margin-top: 8px; font-size: .85
 .hint { color: #c1ccbf; font-size: .8rem; margin-bottom: 0; }
 #placement-status:empty { display: none; }
 #placement-status[data-error="true"] { color: #ffbd76; }
+#macro-panel { margin-top: 24px; padding: 18px; border: 1px solid #395147; border-radius: 12px; }
+#macro-panel h2 { margin-top: 0; font-size: 1.2rem; }
+#macro-panel .controls { flex-wrap: wrap; }
+#import-macro { max-width: 100%; }
+.log-scroll { overflow: auto; max-height: 320px; margin-top: 16px; }
+.log-scroll table { width: 100%; border-collapse: collapse; text-align: left; font-size: .9rem; }
+.log-scroll th, .log-scroll td { padding: 10px; border-bottom: 1px solid #395147; white-space: nowrap; }
+#macro-status[data-error="true"] { color: #ffbd76; }
 @media (max-width: 480px) { .placement-grid { grid-template-columns: 1fr; } figure { width: 128px; margin-inline: auto; } }

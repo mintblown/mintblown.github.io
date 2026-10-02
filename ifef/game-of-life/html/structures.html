@@ -8,6 +8,7 @@
 </head>
 <body>
 <main>
+  <a class="overview-link" href="../index.html">← Zur Game-of-Life-Übersicht</a>
   <canvas id="life" width="256" height="256" data-initial="empty" aria-label="Conways Game of Life, 256 mal 256 Zellen; orange: Vorschau"></canvas>
   <div class="controls">
     <button id="toggle" type="button" aria-pressed="false">Start</button>
@@ -31,6 +32,13 @@
     </div>
     <p id="placement-status" role="status"></p>
   </form>
+  <section id="macro-panel" aria-labelledby="macro-title">
+    <h2 id="macro-title">Startbedingungen · Protokoll</h2>
+    <p class="hint">Speichert die Platzierungen in ihrer Reihenfolge, inklusive Phase, Drehung und Position. Beim Laden werden alle Strukturen auf ein leeres, pausiertes Feld gesetzt. Simulationsschritte werden nicht gespeichert. Zurücksetzen leert auch das Protokoll.</p>
+    <div class="controls"><button id="export-macro" type="button">CSV exportieren</button><label>CSV als Makro laden<input id="import-macro" type="file" accept=".csv,text/csv"></label></div>
+    <p id="macro-status" role="status"></p>
+    <div class="log-scroll"><table><thead><tr><th>Nr.</th><th>Struktur</th><th>Phase</th><th>Drehung</th><th>X</th><th>Y</th></tr></thead><tbody id="placement-log"></tbody></table></div>
+  </section>
 </main>
 </body>
 </html>

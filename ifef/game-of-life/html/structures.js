@@ -17,6 +17,8 @@ const patterns = {
 };
 const field = id => document.getElementById(id);
 const thumbnail = field('pattern-preview').getContext('2d');
+let placementLog = [];
+const patternNames = { block: 'Block', blinker: 'Blinker', toad: 'Kröte', beacon: 'Leuchtfeuer', glider: 'Glider', gun: 'Gosper-Gleiterkanone', lwss: 'LWSS' };
 function phaseCells(pattern, phase) {
   // One generation can expand the pattern by at most one cell per side.
   const padding = phase + 2;
@@ -48,9 +50,10 @@ function selection() {
   if (!pattern) throw Error('Bitte eine Struktur auswählen.');
   const rotation = Number(field('rotation').value);
   if (![0, 90, 180, 270].includes(rotation)) throw Error('Bitte eine Drehung in 90°-Schritten wählen.');
-  const cells = rotateCells(phaseCells(pattern, integer('phase', pattern.period - 1)), rotation);
+  const phase = integer('phase', pattern.period - 1);
+  const cells = rotateCells(phaseCells(pattern, phase), rotation);
   const x = integer('x', 255), y = integer('y', 255);
-  return { cells, points: cells.map(([dx, dy]) => [(x + dx) % 256, (y + dy) % 256]) };
+  return { entry: { structure: field('structure').value, phase, rotation, x, y }, cells, points: cells.map(([dx, dy]) => [(x + dx) % 256, (y + dy) % 256]) };
 }
 function drawPattern(cells) {
   thumbnail.fillStyle = '#101916'; thumbnail.fillRect(0, 0, 160, 160);
@@ -85,7 +88,10 @@ for (const id of ['phase', 'x', 'y']) field(id).addEventListener('input', previe
 field('placement').addEventListener('submit', event => {
   event.preventDefault();
   try {
-    lifeBoard.add(selection().points);
+    const selected = selection();
+    lifeBoard.add(selected.points);
+    placementLog.push(selected.entry);
+    renderLog();
     field('placement-status').dataset.error = 'false';
     field('placement-status').textContent = 'Hinzugefügt.';
   } catch (error) {
@@ -94,6 +100,86 @@ field('placement').addEventListener('submit', event => {
   }
 });
 field('life').addEventListener('boardreset', () => {
+  placementLog = []; renderLog();
+  field('macro-status').textContent = '';
   field('structure').value = ''; field('placement-fields').hidden = true;
   field('placement-status').textContent = ''; drawPattern([]);
 });
+
+function renderLog() {
+  field('placement-log').replaceChildren();
+  placementLog.forEach((entry, index) => {
+    const row = document.createElement('tr');
+    for (const value of [index + 1, patternNames[entry.structure], entry.phase, `${entry.rotation}°`, entry.x, entry.y]) {
+      const cell = document.createElement('td'); cell.textContent = value; row.append(cell);
+    }
+    field('placement-log').append(row);
+  });
+}
+function exportCSV(entries) {
+  return '\uFEFFnr,struktur,phase,drehung,x,y\r\n' + entries.map((entry, index) =>
+    [index + 1, entry.structure, entry.phase, entry.rotation, entry.x, entry.y].join(',')).join('\r\n') + '\r\n';
+}
+function parseCSV(text) {
+  const lines = text.replace(/^\uFEFF/, '').trim().split(/\r\n|\n|\r/);
+  const delimiter = lines[0].includes(';') ? ';' : ',';
+  const fields = line => line.split(delimiter).map(value => {
+    const trimmed = value.trim();
+    return /^"[^"\r\n]*"$/.test(trimmed) ? trimmed.slice(1, -1) : trimmed;
+  });
+  if (fields(lines[0]).join(',') !== 'nr,struktur,phase,drehung,x,y') throw Error('CSV-Kopf erwartet: nr,struktur,phase,drehung,x,y');
+  return lines.slice(1).map((line, index) => {
+    const values = fields(line);
+    const [order, structure, phase, rotation, x, y] = values;
+    const validNumbers = [order, phase, rotation, x, y].every(value => /^\d+$/.test(value));
+    if (values.length !== 6 || !validNumbers || Number(order) !== index + 1 || !Object.hasOwn(patterns, structure)
+      || Number(phase) >= patterns[structure].period || ![0, 90, 180, 270].includes(Number(rotation)) || Number(x) > 255 || Number(y) > 255) {
+      throw Error(`CSV-Zeile ${index + 2}: ungültige Struktur, Phase, Drehung, Koordinaten oder Reihenfolge.`);
+    }
+    return { structure, phase: Number(phase), rotation: Number(rotation), x: Number(x), y: Number(y) };
+  });
+}
+function restoreMacro(text) {
+  // Validate and prepare the entire file before changing the board or log.
+  const entries = parseCSV(text);
+  const points = [];
+  const cache = new Map();
+  for (const entry of entries) {
+    const key = `${entry.structure}/${entry.phase}/${entry.rotation}`;
+    if (!cache.has(key)) cache.set(key, rotateCells(phaseCells(patterns[entry.structure], entry.phase), entry.rotation));
+    for (const [dx, dy] of cache.get(key)) points.push([(entry.x + dx) % 256, (entry.y + dy) % 256]);
+  }
+  lifeBoard.restore(points);
+  placementLog = entries; renderLog();
+  field('structure').value = ''; field('placement-fields').hidden = true;
+  field('placement-status').textContent = ''; drawPattern([]);
+  return entries.length;
+}
+field('export-macro').addEventListener('click', () => {
+  const url = URL.createObjectURL(new Blob([exportCSV(placementLog)], { type: 'text/csv;charset=utf-8' }));
+  const link = document.createElement('a'); link.href = url; link.download = 'game-of-life-startbedingungen.csv';
+  document.body.append(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  field('macro-status').dataset.error = 'false';
+  field('macro-status').textContent = `${placementLog.length} Platzierungen exportiert.`;
+});
+let importVersion = 0;
+field('import-macro').addEventListener('change', async event => {
+  const version = ++importVersion;
+  const file = event.target.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    if (version !== importVersion) return;
+    const count = restoreMacro(text);
+    field('macro-status').dataset.error = 'false';
+    field('macro-status').textContent = `${count} Platzierungen geladen. Die Startbedingungen sind wiederhergestellt.`;
+  } catch (error) {
+    if (version !== importVersion) return;
+    field('macro-status').dataset.error = 'true';
+    field('macro-status').textContent = `${error.message} Feld und Protokoll wurden nicht verändert.`;
+  } finally {
+    if (version === importVersion) field('import-macro').value = '';
+  }
+});
+renderLog();
