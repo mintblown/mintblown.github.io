@@ -1,0 +1,24 @@
+main { padding-top: 24px; }
+.discovery, .object-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.class-diagram { border: 2px solid #21313c; background: #f7fbfa; }
+.class-diagram h3 { text-align: center; padding: 16px; margin: 0; }
+.class-diagram > div { border-top: 2px solid #21313c; padding: 16px; }
+.class-diagram h4 { margin: 0 0 12px; }
+.name-row { display: flex; align-items: center; gap: 8px; margin: 7px 0; }
+.name-row input { width: 100%; min-width: 0; padding: 7px; }
+.name-row label { min-width: 26px; }
+.attribute-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.attribute-fields label, .methods label { display: block; }
+.attribute-fields input, .attribute-fields select, .methods input { width: 100%; min-width: 0; margin-top: 6px; }
+#object-picture { display: grid; width: 100%; border: 1px solid #667b73; background: white; }
+#object-picture span { aspect-ratio: 1; border: 1px solid #dce5e5; }
+#object-picture .alive { background: #126b64; }
+.methods { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: end; }
+.methods button { margin-top: 12px; }
+.small { font-size: .85rem; color: #526367; }
+#object-status[data-error="true"] { color: #a12828; }
+#object-caption { white-space: pre-line; }
+.binary-field { grid-column: 1 / -1; }
+.binary-field textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #8caba7; border-radius: 10px; font: 1rem/1.5 ui-monospace, monospace; overflow-wrap: anywhere; resize: vertical; }
+#object-caption { overflow-wrap: anywhere; }
+@media(max-width: 700px) { .discovery, .object-layout, .methods { grid-template-columns: 1fr; } }

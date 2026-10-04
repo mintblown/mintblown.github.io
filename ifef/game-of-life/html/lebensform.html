@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Die Klasse Lebensform · IF EF</title>
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="lebensform.css">
+  <script defer src="engine.js"></script><script defer src="lebensform.js"></script>
+</head>
+<body><main>
+  <a href="../index.html">← Zur Game-of-Life-Übersicht</a>
+  <header class="hero"><p class="eyebrow">04 · Objekte und Klassen entdecken</p><h1>Was ist eine Lebensform?</h1><p>Untersuche ein einzelnes Objekt. Welche Eigenschaften beschreiben es? Was kann es tun? Gib deinen Beobachtungen eigene Namen.</p></header>
+  <section class="panel"><h2>1 · Entdecken und benennen</h2>
+    <p>Verändere unten jeweils einen Wert. Beobachte das Bild und die Objektkarte. Trage dann passende Namen in das Klassendiagramm ein. Deine Namen erscheinen auch an den Bedienelementen.</p>
+    <div class="discovery"><div class="class-diagram"><h3>Lebensform</h3><div><h4>Attribute · Was das Objekt hat</h4><div id="attribute-names"></div></div><div><h4>Methoden · Was das Objekt tut</h4><div id="method-names"></div></div></div>
+    <div><h3>Deine Entdeckungsaufträge</h3><ol><li>Verändere A und B einzeln. Welche Ausdehnung beschreibt welcher Wert?</li><li>Rufe M1 mit n = 90 auf. Vergleiche den Winkel, die Vorschau und den Binärstring.</li><li>Rufe M2 mit n = 1 auf. Beobachte D und G. Was bedeutet die Zahl n hier?</li><li>Ändere E und F. Was ändert sich an der Objektkarte?</li><li>Ändere bei G genau eine 0 zu einer 1. Setze die Attribute. Welche Zelle verändert sich?</li></ol>
+    <details><summary>Namensvorschläge vergleichen</summary><p>Attribute: <strong>länge, breite, winkel, phase, position x, position y, bild</strong>.</p><p>Methoden: <strong>drehe(n), entwickle(n), platziere()</strong>.</p><button id="suggest-names" type="button">Vorschläge ins Diagramm übernehmen</button></details>
+    <p class="small">Deine Einträge und das Objekt bleiben beim Neuladen nicht erhalten.</p></div></div>
+  </section>
+  <section class="panel"><h2>2 · Ein Objekt ausprobieren</h2><p><strong>lebensform1 : Lebensform</strong></p>
+    <div class="object-layout"><div><div id="object-picture" role="img" aria-label="Bild der Lebensform"></div><p id="object-caption" class="readout"></p><p class="small">A und B legen den Bildrahmen in Zellen fest. E und F speichern eine spätere Position. Hier gibt es noch kein Spielfeld.</p></div>
+    <form id="attributes-form" novalidate><div id="attribute-fields" class="attribute-fields"></div><p id="binary-help" class="small">G: Binärstring mit genau A × B Bits. Bei 0° zeilenweise von oben links: 1 = lebendig, 0 = tot. Keine Leerzeichen oder Zeilenumbrüche.</p><button type="submit">Attribute setzen</button></form></div>
+    <h3>Methoden aufrufen</h3><div class="methods">
+      <form id="rotate-form" novalidate><label for="rotate-n">n · Grad, in 90°-Schritten</label><input id="rotate-n" type="number" step="90" value="90"><button id="rotate-button" type="submit">M1(n)</button></form>
+      <form id="develop-form" novalidate><label for="develop-n">n · Schritte (0–30)</label><input id="develop-n" type="number" min="0" max="30" step="1" value="1"><button id="develop-button" type="submit">M2(n)</button></form>
+      <div><button id="place-button" type="button" disabled>M3()</button><p class="small">Später: das Objekt an seiner Position auf das GoL-Feld setzen.</p></div>
+    </div><p id="object-status" role="status"></p>
+    <details><summary>Unsere Modellvereinbarungen</summary><p>Das Attribut bild enthält die Rohdaten des Objekts bei Drehung 0°: einen Binärstring mit genau breite × länge Bits. Länge und Breite beschreiben den ungedrehten Bildrahmen; Länge bedeutet hier Höhe. Die ersten breite Bits bilden die oberste Zeile, die nächsten die zweite Zeile und so weiter.</p><p>Beim Setzen der Attribute müssen Maße und Stringlänge zusammenpassen. Der Winkel bestimmt die Drehung der Vorschau. Er verändert die Rohdaten nicht. Die Phase ist eine gespeicherte Angabe; ihr direktes Setzen berechnet das Bild nicht neu.</p><p>drehe(n) erhöht den Winkel um n Grad im Uhrzeigersinn. Nur die Vorschau dreht sich: Binärstring, Länge und Breite bleiben unverändert. entwickle(n) berechnet n Schritte nach den GoL-Regeln in der ungedrehten Darstellung, aktualisiert den Binärstring und erhöht die Phase. Die Vorschau zeigt das Ergebnis weiterhin im eingestellten Winkel. Der Bildrahmen bleibt dabei fest; außerhalb sind alle Zellen tot, dort entstehende Zellen werden nicht gespeichert. Die Position bleibt erhalten.</p></details>
+  </section><noscript><p>Bitte aktiviere JavaScript für das Diagramm und den Objektbereich.</p></noscript>
+</main></body></html>

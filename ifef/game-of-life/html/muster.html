@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muster im Spiel des Lebens · IF EF</title>
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="muster.css">
+  <script defer src="muster-data.js"></script><script defer src="muster.js"></script>
+</head>
+<body><main>
+  <a href="../index.html">← Zur Game-of-Life-Übersicht</a>
+  <header class="hero"><h1>Muster im Spiel des Lebens</h1><p>Schwarze Felder leben, weiße Felder sind tot. Klicke auf ein Feld, um seine lebenden Nachbarn zu zählen und seine nächste Veränderung zu erkennen.</p></header>
+  <section class="panel">
+    <label for="pattern">Struktur</label>
+    <select id="pattern"><option value="block">1 · Der Block</option><option value="blinker">2 · Der Blinker</option><option value="pulsar">3 · Der Pulsar</option><option value="glider">4 · Der Gleiter</option><option value="lwss">5 · Das kleine Raumschiff</option><option value="gun">6 · Die Gosper-Kanone</option></select>
+    <p id="generation" role="status"></p>
+    <div class="board-scroll"><div id="pattern-board" role="group" aria-label="Spielfeld mit anklickbaren Zellen"></div></div>
+    <div class="controls"><button id="next" type="button">Weiter</button><button id="reset-pattern" type="button" class="secondary">Reset</button></div>
+    <p id="cell-status" role="status">Wähle ein Feld. Die Nachbarzahl erscheint für zwei Sekunden.</p>
+    <div class="legend"><span class="death">Rot: stirbt</span><span class="same">Blau: bleibt unverändert</span><span class="birth">Grün: wird geboren</span></div>
+    <p class="small">„Weiter“ zeigt die nächste Generation eines Durchlaufs. Danach startet die Sequenz wieder beim Ausgangszustand. Größe und Position des Spielfelds bleiben unverändert. Die Ränder sind nicht verbunden. Bei der Gosper-Kanone wird das Feld nicht für weiterfliegende Gleiter vergrößert.</p>
+  </section>
+  <section class="panel"><h2 id="pattern-title"></h2><h3>Was passiert?</h3><p id="pattern-description"></p><h3>Wie groß muss das Spielfeld sein?</h3><p id="pattern-space"></p><p class="small">Die Darstellung verwendet eine feste Größe für die gezeigte Sequenz. Während eines Durchlaufs bleibt rund um das Muster mindestens eine tote Zellreihe frei.</p></section>
+  <section class="panel"><h2>Ein Durchlauf</h2><p>Ein Durchlauf dauert so lange, bis ein Muster wieder genauso aussieht wie am Anfang. Es kann dann an einer anderen Stelle sein. Bei der Kanone wiederholt sich der Kanonenkörper; die abgeschossenen Gleiter kommen hinzu.</p><p>Auf einem festen Spielfeld muss zwischen dem Muster und dem Rand während des ganzen Durchlaufs mindestens eine tote Zelle frei bleiben.</p><h3>Nachbarn zählen – wie beim Blinker auf dem Blatt</h3><p>Gezählt werden die acht umliegenden Felder, auch diagonal. Die angeklickte Zelle zählt nicht mit. Lebende Zellen überleben mit zwei oder drei lebenden Nachbarn. Tote Zellen werden mit genau drei lebenden Nachbarn geboren. Alle anderen lebenden Zellen sterben. Alle Veränderungen erfolgen gleichzeitig.</p></section>
+  <noscript><p>Bitte aktiviere JavaScript für die Muster und Nachbarzählung.</p></noscript>
+</main></body></html>

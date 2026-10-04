@@ -1,5 +1,6 @@
 'use strict';
 const patterns = {
+  fpentomino: { maxPhase: 0, cells: [[1, 0], [2, 0], [0, 1], [1, 1], [1, 2]] },
   block: { period: 1, cells: [[0, 0], [1, 0], [0, 1], [1, 1]] },
   blinker: { period: 2, cells: [[0, 0], [1, 0], [2, 0]] },
   toad: { period: 2, cells: [[1, 0], [2, 0], [3, 0], [0, 1], [1, 1], [2, 1]] },
@@ -18,7 +19,7 @@ const patterns = {
 const field = id => document.getElementById(id);
 const thumbnail = field('pattern-preview').getContext('2d');
 let placementLog = [];
-const patternNames = { block: 'Block', blinker: 'Blinker', toad: 'Kröte', beacon: 'Leuchtfeuer', glider: 'Glider', gun: 'Gosper-Gleiterkanone', lwss: 'LWSS' };
+const patternNames = { fpentomino: 'F-Pentomino', block: 'Block', blinker: 'Blinker', toad: 'Kröte', beacon: 'Leuchtfeuer', glider: 'Glider', gun: 'Gosper-Gleiterkanone', lwss: 'LWSS' };
 function phaseCells(pattern, phase) {
   // One generation can expand the pattern by at most one cell per side.
   const padding = phase + 2;
@@ -50,7 +51,7 @@ function selection() {
   if (!pattern) throw Error('Bitte eine Struktur auswählen.');
   const rotation = Number(field('rotation').value);
   if (![0, 90, 180, 270].includes(rotation)) throw Error('Bitte eine Drehung in 90°-Schritten wählen.');
-  const phase = integer('phase', pattern.period - 1);
+  const phase = integer('phase', (pattern.maxPhase ?? pattern.period - 1));
   const cells = rotateCells(phaseCells(pattern, phase), rotation);
   const x = integer('x', 255), y = integer('y', 255);
   return { entry: { structure: field('structure').value, phase, rotation, x, y }, cells, points: cells.map(([dx, dy]) => [(x + dx) % 256, (y + dy) % 256]) };
@@ -79,7 +80,7 @@ function previewSelection() {
 field('structure').addEventListener('change', () => {
   const pattern = patterns[field('structure').value];
   field('placement-fields').hidden = !pattern;
-  field('phase').value = '0'; field('phase').max = String(pattern ? pattern.period - 1 : 0);
+  field('phase').value = '0'; field('phase').max = String(pattern ? (pattern.maxPhase ?? pattern.period - 1) : 0);
   if (pattern) previewSelection();
   else { lifeBoard.preview([]); field('placement-status').textContent = ''; }
 });
@@ -133,7 +134,7 @@ function parseCSV(text) {
     const [order, structure, phase, rotation, x, y] = values;
     const validNumbers = [order, phase, rotation, x, y].every(value => /^\d+$/.test(value));
     if (values.length !== 6 || !validNumbers || Number(order) !== index + 1 || !Object.hasOwn(patterns, structure)
-      || Number(phase) >= patterns[structure].period || ![0, 90, 180, 270].includes(Number(rotation)) || Number(x) > 255 || Number(y) > 255) {
+      || Number(phase) > (patterns[structure].maxPhase ?? patterns[structure].period - 1) || ![0, 90, 180, 270].includes(Number(rotation)) || Number(x) > 255 || Number(y) > 255) {
       throw Error(`CSV-Zeile ${index + 2}: ungültige Struktur, Phase, Drehung, Koordinaten oder Reihenfolge.`);
     }
     return { structure, phase: Number(phase), rotation: Number(rotation), x: Number(x), y: Number(y) };
