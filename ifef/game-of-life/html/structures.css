@@ -1,6 +1,7 @@
 body { display: block; }
 main { margin-inline: auto; width: 100%; }
-#life { width: 100%; margin-inline: auto; }
+.simulation-board { margin-inline: auto; height: calc(100svh - 32px); height: calc(100dvh - 32px); }
+#life { margin-inline: auto; }
 #placement { margin-top: 24px; padding: 18px; border: 1px solid #395147; border-radius: 12px; }
 label { display: flex; flex-direction: column; gap: 8px; font-size: .9rem; }
 select, input[type="number"] { width: 100%; min-width: 0; min-height: 44px; padding: 8px; border: 1px solid #577561; border-radius: 6px; background: #182a20; color: #e7f5eb; font: inherit; }
@@ -20,3 +21,4 @@ figcaption { text-align: center; color: #ffbd76; margin-top: 8px; font-size: .85
 .log-scroll th, .log-scroll td { padding: 10px; border-bottom: 1px solid #395147; white-space: nowrap; }
 #macro-status[data-error="true"] { color: #ffbd76; }
 @media (max-width: 480px) { .placement-grid { grid-template-columns: 1fr; } figure { width: 128px; margin-inline: auto; } }
+@media (max-height: 400px) and (orientation: landscape) { .simulation-board { height: calc(100svh - 16px); height: calc(100dvh - 16px); } }

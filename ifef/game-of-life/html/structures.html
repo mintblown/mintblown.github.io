@@ -8,13 +8,17 @@
 </head>
 <body>
 <main>
+  <section class="simulation-board" aria-label="Simulation">
   <a class="overview-link" href="../index.html">← Zur Game-of-Life-Übersicht</a>
-  <canvas id="life" width="256" height="256" data-initial="empty" aria-label="Conways Game of Life, 256 mal 256 Zellen; orange: Vorschau"></canvas>
+  <div class="board-viewport">
+    <canvas id="life" width="256" height="256" data-initial="empty" aria-label="Conways Game of Life, 256 mal 256 Zellen; orange: Vorschau"></canvas>
+  </div>
   <div class="controls">
     <button id="toggle" type="button" aria-pressed="false">Start</button>
     <input id="speed" type="range" min="1" max="60" value="15" aria-label="Geschwindigkeit" aria-valuetext="15 Generationen pro Sekunde" title="Geschwindigkeit">
     <button id="reset" type="button">Zurücksetzen</button>
   </div>
+  </section>
   <form id="placement" novalidate>
     <label class="choose">Struktur<select id="structure"><option value="">Bitte auswählen</option><option value="block">Block</option><option value="blinker">Blinker · Oszillator</option><option value="toad">Kröte · Oszillator</option><option value="beacon">Leuchtfeuer · Oszillator</option><option value="fpentomino">F-Pentomino</option><option value="glider">Glider</option><option value="gun">Cannon · Gosper-Gleiterkanone</option><option value="lwss">Spaceship · LWSS</option></select></label>
     <div id="placement-fields" hidden>
