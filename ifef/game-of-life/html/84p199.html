@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>84P199 · Game of Life</title>
+  <link rel="stylesheet" href="life.css">
+  <link rel="stylesheet" href="84p199.css">
+  <script defer src="engine.js"></script>
+  <script defer src="life.js"></script>
+  <script defer src="84p199.js"></script>
+</head>
+<body class="synthesis-page">
+<main>
+  <section class="simulation-board" aria-label="84P199-Simulation">
+    <header><a class="overview-link" href="lebensform.html">Zur Klasse Lebensform →</a><h1>84P199</h1><p>Welche Grundstrukturen stecken in diesem Oszillator?</p></header>
+    <div class="board-viewport"><canvas id="life" width="100" height="100" data-initial="empty" aria-label="84P199-Synthese, 100 mal 100 Zellen"></canvas></div>
+    <div class="controls">
+      <button id="toggle" type="button" aria-pressed="false">Start</button>
+      <input id="speed" type="range" min="1" max="60" value="15" aria-label="Geschwindigkeit" aria-valuetext="15 Generationen pro Sekunde" title="Geschwindigkeit">
+      <button id="reset" type="button">Reset</button>
+    </div>
+  </section>
+  <aside class="structure-cards" aria-label="Vier Grundstrukturen aufdecken">
+    <button class="structure-card" data-pattern="block" type="button" aria-pressed="false" aria-label="Grundstruktur 1 aufdecken"><span class="card-inner"><span class="card-front" aria-hidden="true">?</span><span class="card-back" aria-hidden="true"><canvas width="120" height="120"></canvas><strong>Block</strong></span></span></button>
+    <button class="structure-card" data-pattern="glider" type="button" aria-pressed="false" aria-label="Grundstruktur 2 aufdecken"><span class="card-inner"><span class="card-front" aria-hidden="true">?</span><span class="card-back" aria-hidden="true"><canvas width="120" height="120"></canvas><strong>Glider</strong></span></span></button>
+    <button class="structure-card" data-pattern="blinker" type="button" aria-pressed="false" aria-label="Grundstruktur 3 aufdecken"><span class="card-inner"><span class="card-front" aria-hidden="true">?</span><span class="card-back" aria-hidden="true"><canvas width="120" height="120"></canvas><strong>Blinker</strong></span></span></button>
+    <button class="structure-card" data-pattern="lright" type="button" aria-pressed="false" aria-label="Grundstruktur 4 aufdecken"><span class="card-inner"><span class="card-front" aria-hidden="true">?</span><span class="card-back" aria-hidden="true"><canvas width="120" height="120"></canvas><strong>L-Tetromino</strong></span></span></button>
+  </aside>
+</main>
+</body>
+</html>

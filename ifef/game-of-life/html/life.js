@@ -1,5 +1,5 @@
 'use strict';
-const SIZE = 256;
+const SIZE = document.getElementById('life').width;
 const engine = new LifeEngine(SIZE);
 let preview = [];
 const canvas = document.getElementById('life');
