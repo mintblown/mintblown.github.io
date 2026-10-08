@@ -1,5 +1,7 @@
 'use strict';
 const patterns = {
+  lleft: { maxPhase: 0, cells: [[1, 0], [1, 1], [0, 2], [1, 2]] },
+  lright: { maxPhase: 0, cells: [[0, 0], [0, 1], [0, 2], [1, 2]] },
   fpentomino: { maxPhase: 0, cells: [[1, 0], [2, 0], [0, 1], [1, 1], [1, 2]] },
   block: { period: 1, cells: [[0, 0], [1, 0], [0, 1], [1, 1]] },
   blinker: { period: 2, cells: [[0, 0], [1, 0], [2, 0]] },
@@ -19,7 +21,7 @@ const patterns = {
 const field = id => document.getElementById(id);
 const thumbnail = field('pattern-preview').getContext('2d');
 let placementLog = [];
-const patternNames = { fpentomino: 'F-Pentomino', block: 'Block', blinker: 'Blinker', toad: 'Kröte', beacon: 'Leuchtfeuer', glider: 'Glider', gun: 'Gosper-Gleiterkanone', lwss: 'LWSS' };
+const patternNames = { lleft: 'J-Tretromino', lright: 'L-Tretromino', fpentomino: 'F-Pentomino', block: 'Block', blinker: 'Blinker', toad: 'Kröte', beacon: 'Leuchtfeuer', glider: 'Glider', gun: 'Gosper-Gleiterkanone', lwss: 'LWSS' };
 function phaseCells(pattern, phase) {
   // One generation can expand the pattern by at most one cell per side.
   const padding = phase + 2;
