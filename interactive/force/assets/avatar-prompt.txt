@@ -1,0 +1,6 @@
+Datei: physiker.png
+Erstellt mit: eingebautem Imagegen-Tool, transparenter Hintergrund.
+Für die Website proportional auf 256 Pixel Höhe verkleinert.
+
+Finaler Prompt:
+Use case: illustration-story. Asset type: small PNG character sprite for an interactive physics learning map. Create one friendly little physicist avatar, full body, standing, front three-quarter view, round glasses, tousled gray hair, white lab coat, teal shirt, brown shoes, holding a small notebook. Hand-drawn colorful storybook game illustration with clear dark outlines, readable at 70px tall, matching a whimsical illustrated island map. Single centered isolated character, feet fully visible, close framing with modest padding, genuinely transparent background, no scenery, no lettering, no watermark.

@@ -1,0 +1,6 @@
+Datei: pruefung.png
+Erstellt mit: eingebautem Imagegen-Tool, transparenter Hintergrund.
+Für die Website proportional auf maximal 256 Pixel verkleinert.
+
+Finaler Prompt:
+Use case: illustration-story. Asset type: PNG checkpoint icon for a physics learning adventure map. A single small wooden examination checkpoint sign: carved warm wooden shield on two short feet with a cream parchment inset showing a large dark ink question mark, small golden star at the top. Friendly hand-drawn storybook game style, bold clean dark outlines, softly shaded, readable at 48 pixels, front three-quarter view. Centered complete isolated object, tight framing with modest padding. Truly transparent background. No environment, no extra objects, no words, no watermark. The same neutral icon will be placed on red, green and purple paths.
