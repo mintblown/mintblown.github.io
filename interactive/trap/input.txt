@@ -1,0 +1,120 @@
+PROJEKTAUFTRAG FÜR CODEX
+Interaktive Physik-Lernlandkarte: Mission Mausefallenauto
+
+ZIEL UND KONTEXT
+Entwickle eine lokal lauffähige Sammlung interaktiver Selbstlernseiten für den Physikunterricht der Sekundarstufe I. Schülerinnen und Schüler konstruieren in Gruppen ein Mausefallenauto mit möglichst großer Fahrstrecke. Die Seiten helfen beim eigenständigen Experimentieren, Verstehen, Berechnen und Verbessern. Vorwissen: erste Realexperimente zu Reibung, Kräfteaddition und Flaschenzug.
+
+Gestalterische Referenz: https://mintblow.ing/interactive/force
+Prüfe, ob diese Seite erreichbar ist, und analysiere ihre Darstellungs- und Interaktionsprinzipien. Falls nicht erreichbar, vermerke dies und verwende ein eigenständiges, reduziertes, anschauliches Physik-Labor-Design. Übernimm keine fremden geschützten Assets.
+
+LERNLANDKARTE UND NAVIGATION
+- Eine Startseite zeigt eine grafische Erfinderinsel mit dem Basecamp „Mausefallenauto“ in der Mitte, sechs Werkstätten und einem Testgelände.
+- Die sechs Lernstationen sind frei und unabhängig erreichbar. Das Testgelände dient als gemeinsamer Abschluss, darf aber ebenfalls jederzeit eingesehen werden.
+- Stationen: 1 Federenergie, 2 Hebelwerkstatt, 3 Übersetzung, 4 Radwerkstatt, 5 Reibungsforschung, 6 Rechenwerkstatt, 7 Testgelände.
+- Bei vorhandenen Bild- oder SVG-Assets im Projektverzeichnis diese zuerst prüfen und nach Möglichkeit verwenden. Keine ungeprüften Dateipfade voraussetzen.
+- Fortschritt und Messwerte im Browser lokal speichern; keine Anmeldung.
+
+EINHEITLICHER AUFBAU JE STATION (EINE HTML-SEITE)
+1. Forscherfrage mit konkretem Bezug zum Mausefallenauto.
+2. Kurze Erklärung mit klarer SVG-Skizze; keine langen Textwände.
+3. Eine zentrale interaktive Übung ODER ein angeleitetes Realexperiment mit digitalem Messprotokoll.
+4. Auswertung und Erkenntnis mit unmittelbarem, konstruktivem Feedback.
+5. Eine kurze Transferfrage zur eigenen Konstruktion.
+Ziel: etwa 10–15 Minuten pro Station (Realexperimente bei Bedarf länger). Die Lernenden sollen Zusammenhänge selbst entdecken, bevor eine fertige Regel eingeblendet wird.
+
+STATION 1 – FEDERENERGIE: WIE STARK ZIEHT DIE MAUSEFALLE?
+Verbindliches REALexperiment, nicht durch Simulation ersetzen.
+- Mausefalle sicher befestigen; Spannarm kontrolliert bewegen und gegen unbeabsichtigtes Zuschnappen sichern. Lehrkraft gibt Sicherheits- und Aufbauhinweise.
+- Den Winkel alpha des Spannarms gegenüber einer festgelegten Referenz ablesen.
+- Federkraftmesser am festgelegten Angriffspunkt am Hebelende ansetzen und bei JEDEM Winkel senkrecht (90°) zum Spannarm, also tangential zur Kreisbahn, ziehen. Die Richtung muss beim Verändern des Winkels entsprechend mitgedreht werden; ein stets vertikaler Kraftmesser wäre falsch.
+- Zugkraft F für mehrere Winkel messen und selbst in eine editierbare Tabelle eintragen (alpha in Grad, F in N); Messwerte nicht automatisch erfinden.
+- Automatisch ein F-alpha-Diagramm aus den Messwerten zeichnen. Bei Änderungen Diagramm aktualisieren.
+- Festhalten, dass das Drehmoment M = F * l nur bei senkrechter Kraftrichtung und festem Hebelarm l unmittelbar gilt. Optional l erfassen, M(alpha) berechnen und die gespeicherte Energie näherungsweise aus der Fläche unter M(alpha) mit Winkeln in Radiant bestimmen.
+- Keine allgemeingültige Federkennlinie vorgeben. Die konkrete Mausefalle kann von einem ideal linearen Modell abweichen.
+- Erkenntnisfrage: Wie verändert sich die Antriebskraft im Verlauf des Entspannens? Transfer: Welche Konsequenz hat dies für das Anfahren und die Fahrt?
+
+STATION 2 – HEBELWERKSTATT: WIE LANG SOLLTE DER HEBEL SEIN?
+Verbindliches REALexperiment mit einem sicheren Hebelmodell und Federkraftmessern oder Gewichten.
+- Drehpunkt, Kraftangriffspunkte und senkrechte Hebelarme markieren.
+- Bei unterschiedlichen Hebelarmen Kräfte im Gleichgewicht messen und in eine Tabelle eingeben.
+- Automatisch F1*l1 und F2*l2 berechnen und vergleichen; optional Messwerte visualisieren.
+- Erkenntnis: Hebelgesetz im Gleichgewicht F1*l1 ≈ F2*l2; Unterschiede durch Reibung/Messunsicherheit besprechen.
+- Danach eine kleine SVG-Visualisierung des Mausefallenarms: Bei gleichem Federdrehmoment führt ein längerer Hebel zu kleinerer tangentialer Zugkraft am Ende, aber größerem Weg des Hebelendes bei gleichem Drehwinkel. Nicht behaupten, dass jede Hebellänge automatisch die reale Reichweite erhöht.
+- Transfer: Welche Hebellänge ist für unser Auto sinnvoll und warum?
+
+STATION 3 – ÜBERSETZUNG: WAS BEWIRKT DIE ANTRIEBSACHSE?
+- Interaktives SVG einer Achse mit aufgewickeltem Faden und Antriebsrad.
+- Achsradius ändern; Fadenlänge vorgeben; Anzahl der Achsumdrehungen und bei gegebener Zugkraft das Drehmoment betrachten.
+- Formeln: n = L/(2*pi*r_Achse), M_Achse = F_Faden*r_Achse (ideale Annahmen).
+- Klar zwischen Kraft, Drehmoment, Weg und Umdrehungen unterscheiden.
+- Transfer: Warum kann eine dünnere Achse mehr Umdrehungen ermöglichen, aber die verfügbare Antriebskraft am Boden reduzieren?
+
+STATION 4 – RADWERKSTATT: GROSSE ODER KLEINE RÄDER?
+- SVG eines rollenden Rades mit veränderbarem Radius und einstellbarer Umdrehungszahl.
+- Umfang U = 2*pi*r und Weg s = n*U sichtbar machen.
+- Bei schlupffreiem Rollen Strecke für verschiedene Radgrößen vergleichen.
+- Transfer: Vor- und Nachteile großer Räder diskutieren, inklusive Masse/Trägheit und praktischer Bauweise, ohne pauschale Optimalgröße zu behaupten.
+
+STATION 5 – REIBUNGSFORSCHUNG: WO GEHT ENERGIE VERLOREN?
+- An das vorhandene Vorwissen aus Reibungsexperimenten anknüpfen.
+- Anschauliche interaktive Modellansicht mit getrennten Reglern für Lagerreibung, Rollwiderstand und Haftung/Schlupf der Antriebsräder.
+- Ein qualitatives oder transparent vereinfachtes Modell verwenden; keine willkürlichen Zahlen als exakte reale Fahrstrecken ausgeben.
+- Unterschied zwischen unerwünschten Verlusten und nötiger Haftreibung erklären.
+- Transfer: Welche zwei Maßnahmen testen wir an unserem Auto?
+
+STATION 6 – RECHENWERKSTATT: WIE WEIT KANN DAS AUTO ROLLEN?
+- Rechner mit Eingaben: abwickelbare Fadenlänge L, wirksamer Achsradius r_Achse, Radradius r_Rad.
+- Ideale geometrische Strecke während vollständiger Fadenabwicklung: s_ideal = L * r_Rad / r_Achse.
+- Rechenweg über n = L/(2*pi*r_Achse) und Radumfang 2*pi*r_Rad interaktiv visualisieren.
+- Voraussetzungen ausdrücklich anzeigen: konstanter wirksamer Achsradius, kein Schlupf, vollständige Fadenabwicklung, gekoppelte Rad- und Achsrotation.
+- Unbedingt unterscheiden: Diese geometrische Strecke ist weder automatisch die tatsächlich erreichte Fahrstrecke noch eine obere Schranke; das Auto kann nach Fadenende weiterrollen oder vorher stehen bleiben.
+- Transfer: Eigene Maße eingeben und Prognose dokumentieren.
+
+ZUSÄTZLICHE STATION – GOLDENE REGEL: SCHIEFE EBENE
+Verbindliches REALexperiment als optionale zusätzliche Lernseite, idealerweise zwischen Hebelwerkstatt und Rechenwerkstatt in der Navigation.
+- Einen Wagen auf dieselbe Hubhöhe über unterschiedlich lange Rampen ziehen.
+- Rampenlänge s, Hubhöhe h, Zugkraft F (möglichst gleichförmige Bewegung) und Gewichtskraft F_G messen und selbst eingeben.
+- Tabelle berechnet F*s und F_G*h; beide vergleichen.
+- Reibung, Messabweichungen und das Unterschied zwischen idealer und realer Arbeit thematisieren: Bei Reibung ist F*s in der Regel größer als F_G*h.
+- Erkenntnis: Kraftersparnis erfordert längeren Weg; keine Energie entsteht aus dem Nichts.
+- Transfer: Verbindung zu Hebel, Übersetzung und Mausefallenauto herstellen.
+- Diese Station darf als Vertiefung markiert sein, aber nicht in einer versteckten Unterseite verschwinden.
+
+STATION 7 – TESTGELÄNDE: THEORIE TRIFFT WIRKLICHKEIT
+- Die Gruppe dokumentiert Bauparameter, berechnete geometrische Strecke und tatsächlich gemessene Gesamtfahrstrecke.
+- Mehrere Testläufe mit Datum/Versuchsnummer, geänderter Variable und Ergebnis erfassen.
+- Ergebnisse tabellarisch und grafisch vergleichen; Abweichung berechnen.
+- Kein pauschales Urteil „näher an der berechneten Strecke ist besser“: Ausrollen nach dem Abwickeln ist möglich.
+- Gruppen planen jeweils eine gezielte Änderung und messen erneut.
+- Optional CSV-Export des Versuchsprotokolls.
+
+GESTALTUNG UND TECHNIK
+- HTML5, CSS und Vanilla JavaScript; keine Frameworks, keine Build-Tools, keine Serverpflicht.
+- Pro Station eine eigene HTML-Datei; gemeinsame CSS- und JS-Module sind erwünscht.
+- SVG für technische Skizzen, Schieberegler-Visualisierungen und Diagramme.
+- Responsiv für Tablets und Desktop; Touch- und Mausbedienung, verständliche Tastaturbedienung soweit möglich.
+- Klare Einheiten, sinnvolle Eingabegrenzen, Dezimalkomma berücksichtigen, Eingaben validieren.
+- Messwerttabellen: Zeilen hinzufügen, ändern und löschen; Diagramme und berechnete Spalten aktualisieren sich sofort.
+- localStorage für Fortschritt, Messdaten und Einstellungen; Möglichkeit zum Zurücksetzen.
+- Messwerte nie als echte Experimente ausgeben, wenn sie aus einem Modell stammen; Simulation und reale Messung optisch klar trennen.
+- Keine externen Abhängigkeiten, die offline scheitern. Geeignete, verständliche Code-Kommentare und kurze README mit Startanleitung.
+- Einheitlicher, aufgeräumter visueller Stil, angelehnt an ein interaktives Physiklabor; wenig Text, gute Kontraste, große Bedienelemente.
+
+ARBEITSREIHENFOLGE
+1. Bestehendes Projektverzeichnis und vorhandene Assets prüfen, ohne Dateien unbedacht zu überschreiben.
+2. Referenzseite untersuchen; falls nicht erreichbar, das transparent dokumentieren.
+3. Dateistruktur, gemeinsame Navigation und ein wiederverwendbares Layout erstellen.
+4. Federenergie als vollständigen Prototyp umsetzen: Realexperiment-Anleitung, geometrisch korrekte 90°-Messskizze, Tabelle und F-alpha-Diagramm.
+5. Hebelwerkstatt und Goldene Regel mit Realexperimenten umsetzen.
+6. Übersetzung, Radwerkstatt, Reibungsforschung, Rechenwerkstatt und Testgelände ergänzen.
+7. Alle Formeln, Einheiten, Messdateneingaben, Speichervorgänge und Touchbedienung testen.
+8. README mit Dateistruktur, Modellannahmen und Bedienung erstellen.
+
+ABNAHMEKRITERIEN
+- Jede Station funktioniert eigenständig im Browser und besitzt eine kurze Erklärung plus zentrale Interaktion.
+- Federenergie, Hebelwerkstatt und Goldene Regel verwenden echte, selbst eingetragene Messdaten.
+- Der Federkraftmesser ist in der Versuchsskizze und Anleitung bei jedem Winkel SENKRECHT zum Spannarm ausgerichtet, nicht bloß vertikal.
+- Die Messwertdiagramme und Berechnungen reagieren auf Änderungen.
+- Die Reichweitenberechnung ist physikalisch korrekt eingegrenzt.
+- Die Lernlandkarte ermöglicht freien Zugang und führt zurück zum Basecamp.
+- Das Ergebnis ist für Schülerinnen und Schüler ohne Anmeldung und ohne externe Dienste nutzbar.
