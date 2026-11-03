@@ -1,0 +1,98 @@
+# Mission Mausefallenauto
+
+Interaktive Lerninsel für Physik in Klasse 9. Acht frei zugängliche Stationen verbinden vorbereitete Realexperimente, virtuelle Modelle und den Bau eines Mausefallenautos. Keine Prüfungen, Freischaltungen, Anmeldung oder externen Dienste. Die analogen Dokubögen sind nicht Teil dieser Umsetzung.
+
+## Start
+
+`interactive/trap/index.html` direkt im Browser öffnen. Alternativ von der Hauptseite unter „Mission Mausefallenauto“ aufrufen. Installation, Build und Server sind nicht erforderlich. Alle Dateien einschließlich `trap.png` zusammen behalten. Die lokale Speicherung hängt von den Browsereinstellungen ab; insbesondere bei direkt geöffneten Dateien können sich Browser unterschiedlich verhalten. Ein Hinweis auf der Seite meldet Speicherprobleme.
+
+Falls für die Schulgeräte eine HTTP-Vorschau bevorzugt wird, aus dem Repository `python3 -m http.server 8000` starten und `http://localhost:8000/interactive/trap/` aufrufen. Das ist eine Option, keine Voraussetzung. Im bestehenden GitHub-Pages-Hosting genügen die statischen Projektdateien; in dieser Umsetzung wurde kein Deployment angestoßen.
+
+## Lernweg und Unterricht
+
+| Station | Schwerpunkt | Art |
+| --- | --- | --- |
+| Zugkraft der Falle | Tangentiale Haltekraft bei verschiedenen Armwinkeln; Kraft-Winkel-Diagramm | Realexperiment |
+| Hebelwerkstatt | Hebelbalken im Gleichgewicht; Übertragung auf Armlänge, Kraft und Weg | Realexperiment und Modell |
+| Goldene Regel | Gleiche Hubhöhe über verschiedene Rampen; Brücke zu Arbeit und Energie | Verbindliches Realexperiment |
+| Übersetzung | Dünne Antriebsachse versus fest gekoppelte Wickelscheibe; Fahrradgang als Analogie | Ideales Modell |
+| Radwerkstatt | Umfang, Umdrehungszahl und Strecke; Bauabwägungen | Ideales Modell |
+| Reibungsforschung | Lagerreibung, Rollwiderstand, notwendige Haftung und Schlupf | Qualitatives Modell |
+| Rechenwerkstatt | Eigene Maße und geometrische Strecke während der Fadenabwicklung | Rechner |
+| Testgelände | Wiederholungen, gezielte Änderungen, Fadenende und Gesamtstrecke | Realexperiment |
+
+Etwa 10–15 Minuten pro Station, bei Messungen und beim Bauen entsprechend länger. Insgesamt eine Unterrichtsreihe, keine einzelne Unterrichtsstunde. Werkstätten bleiben unabhängig zugänglich. Die Erkenntnisse werden erst durch bewusstes Aufklappen sichtbar. Jedes Experiment führt mit einer Transferfrage zur eigenen Konstruktion zurück. Die Markierung „bearbeitet“ ist eine Selbsteinschätzung und wird nicht automatisch aus Messdaten vergeben.
+
+Vorwissen: Kräfte, Reibung und Kreisumfang; der Kreisumfang wird wiederholt. Drehmoment und Radiant werden nicht eingeführt. Arbeit und Energie werden aus der Goldenen Regel entwickelt. Es gibt keine Energieintegration aus dem Kraft-Winkel-Diagramm.
+
+### Material und Sicherheit
+
+Die Lehrkraft bereitet Mausefallen mit sicherer Befestigung und Sicherung gegen Zuschnappen, Winkelablesung, passende Federkraftmesser, Hebelbalken und Gewichte sowie Wagen und Rampen vor. Für die Rampen sind gleiche Hubhöhen bei verschiedenen Längen und Steigungen bis etwa 20 % vorgesehen. Die Seiten ersetzen keine Einweisung. Anpassungen und Umbauten nur an gesicherten Fallen.
+
+Bei der Kraftmessung bleibt der Angriffspunkt fest; die Zugrichtung des Kraftmessers wird bei jedem Winkel rechtwinklig zum Arm mitgedreht. Der Winkel wird relativ zur festgelegten entspannten Armstellung gemessen. Der tatsächliche Verlauf wird nicht vorgegeben. Die gezeichnete Federkraftmesser-Anordnung dient nur der Geometrie.
+
+## Modelle und fachliche Grenzen
+
+- **Hebel:** F₁·l₁ ≈ F₂·l₂ bei Gleichgewicht und senkrechten Kräften. Die Tabelleneinheit N·cm wird als Produktvergleich verwendet, ohne Drehmoment als neue Größe einzuführen. Der Armvergleich nutzt relative Kraft bezogen auf 15 cm Arm, keine erfundene Kraftmessung. Bogenweg des Armendes ist nicht generell gleich nutzbarer Fadenweg.
+- **Übersetzung:** n = L/(2πr_Wicklung). Die angenommene Fadenzugkraft wird für den Vergleich konstant gehalten. F_Boden,ideal = F_Faden·r_Wicklung/r_Rad beschreibt ideale Kraftübertragung vor Verlusten und ohne Schlupf. Achse, Wickelscheibe und Antriebsrad sind fest gekoppelt. Größere Wickelstelle: mehr Schub, weniger Umdrehungen. Mehrere Fadenlagen können den wirksamen Radius verändern.
+- **Rad:** U = 2πr, s = nU bei schlupffreiem Rollen. Die Zeichnung verwendet einen an die gewählten Maße angepassten gemeinsamen Maßstab für Rad und Weg.
+- **Rampe:** W = F·s gilt hier für annähernd konstante Kraft in Bewegungsrichtung bei gleichförmigem Ziehen. F_G·h ist die Zunahme an Höhenenergie. Unterschiede können durch Reibung, nicht gleichförmige Bewegung oder Messunsicherheit entstehen. Die Produkte erscheinen zunächst als N·m; die aufklappbare Auswertung führt Joule ein.
+- **Reibung:** Die Regler sind qualitative, voneinander unabhängige Stufen. Modellgrenzen wie die Haftungsschwelle sind didaktisch gesetzt, keine realen Reibwerte. Es werden keine realen Fahrstrecken daraus berechnet. Haftreibung bei idealem Rollen ist nicht pauschal ein Energieverlust.
+- **Rechner:** s_geometrisch = L·r_Rad/r_Wicklung. Konstanter Wickelradius, vollständige Fadenabwicklung ohne Durchrutschen und gekoppelte Rotation vorausgesetzt. Kein Energie- oder Beschleunigungsmodell. Das Ergebnis ist weder garantierte Gesamtstrecke noch obere Grenze: Das Auto kann vorher stehen bleiben oder danach ausrollen.
+- **Testgelände:** Geometrische Strecke, Strecke bis Fadenende beziehungsweise vorzeitigem Stopp und Gesamtstrecke werden getrennt dargestellt. Beobachtungen entscheiden, ob vollständig abgewickelt wurde. Δ gesamt = Gesamtstrecke − geometrische Strecke; keine Qualitätsnote. Ausrollen wird nur bei zwei konsistenten Messstrecken berechnet.
+
+## Daten und Sicherung
+
+Reale Messtabellen beginnen leer. Zeilen können ergänzt, bearbeitet und gelöscht werden. Einheiten und Wertebereiche werden geprüft; Dezimalkomma und Dezimalpunkt sind möglich. Ungültige und fehlende Werte werden nicht als 0 gezeichnet. F-alpha-Messpunkte werden im Diagramm nach Winkel sortiert; Verbindungslinien sind Orientierung, keine behauptete Federkennlinie.
+
+Unter `mission-mausefallenauto-v1` werden Einstellungen, Messdaten und selbst gesetzte Bearbeitet-Häkchen im localStorage dieses Browsers gespeichert. Keine Namen oder Konten erforderlich, keine Übertragung. Beim Wechsel von Gerät, Browser, Origin oder beim Löschen der Browserdaten wird der lokale Stand nicht mitgenommen. Änderungen aus einem zweiten Tab sperren die Eingabe im älteren Tab bis zum Neuladen, damit alte Daten neuere nicht überschreiben.
+
+### Bau-Doku aus dem aktuellen Stand
+
+**Bau-Doku erstellen** steht bei den Projektdatei-Buttons auf der Karte und jeder Stationsseite. Der Button erzeugt einen eigenständigen Dokument-Snapshot in einem neuen Tab, einschließlich der Daten aus allen anderen Stationen:
+
+- aktuelle eigene Rechenmaße, geometrische Prognose und Rechenweg;
+- sämtliche ausgefüllten Messwertzeilen aus Feder-, Hebel- und Rampenversuch;
+- Testläufe mit Baumaßen, Datum, Beobachtungen, Messstrecken und berechneten Differenzen;
+- die vier zugehörigen Diagrammarten mit Achsen und Legenden;
+- gespeicherte Modelleinstellungen und Bearbeitet-Häkchen.
+
+Die Doku verwendet die gleichen Berechnungen, Wertebereiche und Diagrammfunktionen wie die Stationsseiten. Unvollständige und ungültige Eingaben bleiben dokumentiert und werden gekennzeichnet; fehlende Messwerte werden nicht erfunden. Lange Balkendiagramme werden für lesbaren Ausdruck in Gruppen aufgeteilt. Reale Messdaten und Modellannahmen bleiben unterscheidbar. Noch unberührte Regler-Standardwerte werden nicht als selbst eingegebene Daten aufgeführt.
+
+Im Dokument stehen **Drucken / als PDF speichern** und **Dokument als HTML speichern** bereit. Die HTML-Datei enthält sämtliche Tabellen, Diagramme und Druckformatierung und benötigt nach dem Download keine Verbindung zur Lernseite. Bei blockiertem neuem Tab wird sie direkt heruntergeladen. Sie ist eine Zusammenfassung des Erstellungszeitpunkts, keine automatisch aktualisierte Ansicht. Zum Weiterarbeiten weiterhin die JSON-Projektdatei verwenden. Analoge Notizen und bereits extern gespeicherte Screenshots werden nicht automatisch übernommen.
+
+### Gesamtes Projekt speichern und laden
+
+Auf der Karte und jeder Stationsseite stehen **Projekt speichern** und **Projekt laden** zur Verfügung. Speichern lädt eine JSON-Datei mit allen Messwerttabellen (auch unvollständigen Eingaben), Modelleinstellungen, eigenen Rechenmaßen und Bearbeitet-Häkchen herunter. Die Datei kann beispielsweise in der Gruppenablage gespeichert und auf einem anderen Gerät wieder eingelesen werden. Diagramme und berechnete Spalten entstehen aus den geladenen Daten neu; Screenshots und CSV-Dateien sind nicht eingebettet.
+
+Beim Laden werden Dateiformat, Version und Datenstruktur geprüft. Fremde, beschädigte und über 5 MB große Dateien werden abgewiesen. Vor dem Ersetzen erscheint eine Bestätigung mit Tabellenzeilen und bearbeiteten Stationen. Abbrechen oder fehlerhafte Dateien lassen den vorhandenen Stand unverändert. Kann der Browser die geladenen Daten nicht speichern, bleibt der bisherige Stand erhalten und es erscheint eine Fehlermeldung. Nach erfolgreichem Laden aktualisiert sich die Seite. Die Übernahme ersetzt den gesamten bisherigen Projektstand und führt keine Gruppenstände zusammen. Bei Bedarf vorher eine eigene Sicherungsdatei speichern.
+
+**Jedes erzeugte Diagramm fordert ausdrücklich zur manuellen Sicherung per Screenshot auf.** Screenshots gehören in die eigene Gruppenablage. Das Testgelände bietet zusätzlich CSV-Export mit Baumaßen, Messungen, Beobachtungen und berechneten Werten. CSV ist eine Sicherung, kein Importformat. Das Zurücksetzen betrifft nur dieses Projekt und fragt vorher nach.
+
+## Dateien
+
+- `index.html`, `map.js`, `map-model.js`: Lerninsel mit Reisefigur, verbundenem Wegenetz und Direktzugängen. Bei Ankunft erscheint der Startlink direkt über der Figur. Beim Wechsel zwischen Werkstätten reist die Figur über den Rundweg; mit reduzierter Bewegung erfolgt der Wechsel ohne lange Animation.
+- `glossary.js`: kurze Fachbegriff-Erklärungen per Mouseover, Tastaturfokus oder Tippen; Escape schließt die Erklärung. Die Lektionstexte wurden sprachlich vereinfacht, fachliche Begriffe bleiben erhalten.
+- `insel-prompt.txt`: finaler Bildprompt und Erzeugungsverfahren für die neue Insel.
+- `insel-v2.png`: neu generierte Insel mit allen acht Stationen und passenden kurzen Thementiteln. `trap.png` bleibt als ursprüngliche Illustration erhalten. Das SVG-Wegenetz ergänzt die dargestellten Wege mit einem Rundweg außerhalb des Basecamps. Die Figur folgt ausschließlich diesen SVG-Pfaden.
+- Acht Stations-HTML-Dateien: eigenständige, direkt erreichbare Anleitungen mit gemeinsamem Layout.
+- `style.css`: Layout, Touch-/Tastaturbedienung, Tabletansicht und reduzierte Bewegung.
+- `model.js`: reine Berechnungen und Zahlenparser.
+- `shared.js`: Speicherung, Formatierung und Zurücksetzen.
+- `backup.js`: versionierte JSON-Projektdateien, Validierung, Export und Import mit Bestätigung.
+- `station.js`: SVG-Modelle und Bedienelemente.
+- `tables.js`: editierbare Messwerttabellen, SVG-Diagramme und CSV-Export; gemeinsame Auswertung auch für die Bau-Doku.
+- `document.js`: eigenständige druckbare Bau-Doku mit eingebetteten Diagrammen und HTML-Download.
+- `input.txt`: ursprünglicher Auftrag, unverändert. Die Gesprächsentscheidungen konkretisieren die Umsetzung wie oben beschrieben.
+
+## Referenz und Prüfung
+
+Die Online-Referenz `https://mintblow.ing/interactive/force` war über den Webzugriff bei der Umsetzung nicht abrufbar. Stattdessen wurden die vorhandenen lokalen Dateien in `interactive/force` analysiert: illustrierte Karte, farbige Ortsmarkierungen, Reisefigur, Laborfarben, SVG-Interaktionen. Für dieses Projekt gibt es eigene Stationsseiten und freien Zugang ohne Prüfungen. Vorhandene fremde Prüfungs-/Avatar-Assets wurden nicht übernommen.
+
+- `node tests/model.test.js`: 32 Tests für Zahlenparser, Einheiten, Formeln, Übersetzung, Arbeit und Messkonsistenz; keine Pakete erforderlich. In der aktuellen Umgebung wurden sie mit JavaScriptCore ausgeführt, da Node nicht installiert ist.
+- `node tests/document.test.js`: 23 Tests für alle vier Diagrammarten, eigene Maße und Prognose, Datenvollständigkeit, unveränderten Originalstand, ungültige/offene Werte, sichere Textdarstellung, unabhängige HTML-Datei und lesbare Diagrammaufteilung. Mit JavaScriptCore ausgeführt.
+- `node tests/backup.test.js`: 23 Tests für vollständige Wiederherstellung, leere und unvollständige Daten, Dezimalkomma, unabhängige Datenkopien und Ablehnung fremder/beschädigter/zu großer Dateien. In dieser Umgebung mit JavaScriptCore ausgeführt.
+- `tests/browser.html`: 92 Integrationschecks in Chrome mit separatem temporärem Profil ausgeführt. Prüft alle Stationen, freie Navigation, reale Dateneingaben, Diagramme, ungültige Werte, Dezimalkomma, Speicherung, Löschen/Ergänzen, Rechenmaß-Übernahme, CSV und sichere Textdarstellung. Nur in einem separaten Testprofil ausführen, da vorübergehend lokale Daten geschrieben werden. Der vorherige Speicherstand wird anschließend wiederhergestellt.
+- `node tests/map.test.js`: 668 Prüfungen aller Start-Ziel-Kombinationen auf zusammenhängende, vorhandene Straßen und erreichbare Stationen. Mit JavaScriptCore ausgeführt.
+- Syntax, lokale Links/Assets und eindeutige HTML-IDs geprüft.
+- Eine zusätzliche visuelle Screenshot-Prüfung wurde nicht freigegeben und daher nicht ausgeführt. Physische Touchgeräte und Safari/Firefox wurden nicht separat getestet.

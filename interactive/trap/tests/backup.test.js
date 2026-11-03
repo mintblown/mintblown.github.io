@@ -1,0 +1,32 @@
+/* Run with node tests/backup.test.js. Tests only in-memory fixtures, no browser data. */
+(function () {
+  'use strict';
+  const B=typeof TrapBackup!=='undefined'?TrapBackup:require('../backup.js');
+  let count=0;
+  const assert=(v,msg)=>{if(!v)throw new Error(msg);count++;};
+  const rejects=(value,msg)=>{let rejected=false;try{B.decode(typeof value==='string'?value:JSON.stringify(value));}catch(_){rejected=true;}assert(rejected,msg);};
+  const state={tables:{spring:[{angle:'90',force:'2,5'},{angle:'',force:''}],trials:[{date:'2026-11-03',change:'<Text> bleibt Text',length:'100',axle:'3',wheel:'6',unwind:'18',total:'23'}]},controls:{federkraft:{'arm-angle':'65'},rechnen:{'calc-length':'100','calc-axle':'3','calc-wheel':'6'}},explored:{federkraft:true,hebel:false}};
+  const encoded=B.encode(state),restored=B.decode(encoded);
+  assert(JSON.stringify(restored)===JSON.stringify(state),'Full round trip: measurements, settings, progress');
+  assert(restored.tables.spring[0].force==='2,5','Comma preserved');
+  assert(restored.tables.spring[1].force==='','Unfinished row preserved');
+  assert(restored.tables.trials[0].change==='<Text> bleibt Text','Text preserved without interpretation');
+  restored.tables.spring[0].force='5';assert(state.tables.spring[0].force==='2,5','Independent decoded copy');
+  assert(JSON.stringify(B.decode(B.encode({tables:{},controls:{},explored:{}})))==='{"tables":{},"controls":{},"explored":{}}','Empty project round trip');
+  assert(B.decode('\uFEFF'+encoded).tables.spring.length===2,'UTF-8 BOM accepted');
+  const file=JSON.parse(encoded);
+  rejects('not JSON','Malformed JSON');rejects('date;total\n1;2','CSV rejected');rejects(null,'Null rejected');rejects([],'Array rejected');
+  rejects({...file,format:'another-app'},'Foreign project');rejects({...file,version:2},'Future version');
+  rejects({...file,data:{tables:{},controls:{}}},'Missing progress');
+  rejects({...file,data:{...state,explored:{federkraft:'yes'}}},'Invalid progress type');
+  rejects({...file,data:{...state,controls:{unknown:{}}}},'Unknown station');
+  rejects({...file,data:{...state,controls:{hebel:{unexpected:'1'}}}},'Unknown control');
+  rejects({...file,data:{...state,tables:{spring:[{angle:90,force:'1'}]}}},'Invalid measurement type');
+  rejects({...file,data:{...state,tables:{spring:[{angle:'90'}]}}},'Damaged measurement row');
+  rejects({...file,data:{...state,tables:{spring:{}}}},'Invalid table');
+  rejects({...file,data:{...state,tables:{spring:[{angle:'90',force:'x'.repeat(301)}]}}},'Oversized cell');
+  rejects(' '.repeat(B.MAX_BYTES+1),'Oversized file');
+  rejects('{"format":"mission-mausefallenauto","version":1,"data":{"tables":{},"controls":{},"explored":{"__proto__":true}}}','Prototype property rejected');
+  if(typeof console!=='undefined')console.log('PASS: '+count+' project backup checks');
+  return count;
+})();

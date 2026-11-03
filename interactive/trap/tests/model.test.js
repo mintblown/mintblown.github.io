@@ -1,0 +1,36 @@
+/* Run with node tests/model.test.js; no dependencies. Also executable in JavaScriptCore. */
+(function () {
+  'use strict';
+  const M=typeof TrapModel!=='undefined'?TrapModel:require('../model.js');
+  let count=0;
+  const assert=(ok,label)=>{if(!ok)throw new Error(label);count++;};
+  const near=(a,b)=>Math.abs(a-b)<1e-9;
+  assert(M.number('1,25')===1.25,'decimal comma');
+  assert(M.number(' 0.5 ')===.5,'whitespace and point');
+  for(const bad of ['',null,undefined,'1,2,3','1e3','1 cm','Infinity','NaN'])assert(M.number(bad)===null,'reject invalid numeric input '+bad);
+  const drive=M.drive(1,.003,.06);
+  assert(near(drive.distance,20),'convert meters consistently');
+  assert(near(drive.turns,1/(2*Math.PI*.003)),'turns from circumference');
+  assert(near(M.drive(1,.006,.06).distance,10),'double axle halves geometric distance');
+  assert(near(M.drive(1,.003,.12).distance,40),'double wheel doubles geometric distance');
+  for(const dims of [[0,.003,.06],[1,0,.06],[1,.003,-1],[null,.003,.06],[Infinity,.003,.06]])assert(M.drive(...dims)===null,'reject invalid dimensions');
+  const thin=M.transmission(1,.003,.06,2),wide=M.transmission(1,.015,.06,2);
+  assert(near(thin.turns,wide.turns*5),'thin axle increases rotations');
+  assert(near(wide.groundForce,thin.groundForce*5),'winding disc increases ideal drive force');
+  assert(near(thin.groundForce*thin.distance,2),'ideal force-distance product conserved');
+  const lever=M.lever(2,20,4,10);
+  assert(lever.left===40&&lever.right===40&&lever.difference===0,'balanced lever');
+  assert(M.lever(0,10,2,10)===null,'invalid lever input');
+  const ramp=M.ramp(1,.1,1.4,10);
+  assert(near(ramp.pullWork,1.4)&&near(ramp.liftWork,1),'work values');
+  assert(near(ramp.difference,.4),'loss comparison');
+  assert(M.ramp(.1,.2,1,10)===null,'impossible ramp rejected');
+  assert(M.friction(20,20,10).slipping,'low grip permits slip');
+  assert(!M.friction(20,20,80).slipping,'sufficient grip');
+  assert(M.friction(101,20,80)===null,'invalid qualitative control rejected');
+  const trial=M.trial(1,.003,.06,18,23);
+  assert(near(trial.afterRoll,5)&&near(trial.difference,3),'coasting beyond geometric prediction allowed');
+  assert(M.trial(1,.003,.06,20,19)===null,'total smaller than unwind rejected');
+  if(typeof console!=='undefined')console.log('PASS: '+count+' physics and validation checks');
+  return count;
+})();
