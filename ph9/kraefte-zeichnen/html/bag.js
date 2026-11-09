@@ -1,9 +1,10 @@
+/* Gemeinsame Einheit mit phef/kraefte-zeichnen/html/: Neue Features ggf. in BEIDEN Versionen ergänzen; EF enthält zusätzliche Aufgaben 4 und 5. */
 'use strict';
 (() => {
 const ns='http://www.w3.org/2000/svg';
 const stages=Array.from({length:3},()=>({arrows:[],done:false,pending:null}));
 const colors=['#246ba0','#b85e12','#8051a0'];
-const titles=['1 · Einzelne Gegenstände','2 · Kräfte aneinanderfügen','3 · Gesamte Gewichtskraft'];
+const titles=['1 – Einzelne Gegenstände','2 – Kräfte aneinanderfügen','3 – Gesamte Gewichtskraft'];
 const tasks=[
  'Zeichne am Angriffspunkt des Apfels (0,2 kg) und am Angriffspunkt der Flasche (0,5 kg) jeweils die Gewichtskraft nach unten.',
  'Beginne am Angriffspunkt der Tüte mit der Gewichtskraft des Apfels. Setze danach die Gewichtskraft der Flasche an die Spitze des ersten Pfeils. Beide Pfeile zeigen nach unten.',
