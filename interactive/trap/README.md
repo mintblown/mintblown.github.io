@@ -1,6 +1,6 @@
 # Mission Mausefallenauto
 
-Interaktive Lerninsel für Physik in Klasse 9. Acht frei zugängliche Stationen verbinden vorbereitete Realexperimente, virtuelle Modelle und den Bau eines Mausefallenautos. Keine Prüfungen, Freischaltungen, Anmeldung oder externen Dienste. Die analogen Dokubögen sind nicht Teil dieser Umsetzung.
+Interaktive Lerninsel für Physik in Klasse 9. Aktuell sind die drei Stationen Zugkraft, Hebel und Goldene Regel freigegeben. Die übrigen fünf Stationen bleiben vorerst deaktiviert: Kartenbereiche sind mit grauen Overlays markiert, Links sind gesperrt und direkte Seitenaufrufe zeigen einen Hinweis. Es gibt keine Prüfungen, Anmeldung oder externen Dienste. Die analogen Dokubögen sind nicht Teil dieser Umsetzung.
 
 ## Start
 
@@ -8,28 +8,62 @@ Interaktive Lerninsel für Physik in Klasse 9. Acht frei zugängliche Stationen 
 
 Falls für die Schulgeräte eine HTTP-Vorschau bevorzugt wird, aus dem Repository `python3 -m http.server 8000` starten und `http://localhost:8000/interactive/trap/` aufrufen. Das ist eine Option, keine Voraussetzung. Im bestehenden GitHub-Pages-Hosting genügen die statischen Projektdateien; in dieser Umsetzung wurde kein Deployment angestoßen.
 
+## Einwilligung und Speicherung
+
+`boot.js` zeigt vor jedem Start einen Einwilligungsdialog. Erst nach aktiver
+Zustimmung werden die eigentlichen Projekt-Skripte geladen. Eine zweite, optionale
+Checkbox erlaubt das Speichern für später. Beide Checkboxen sind zunächst leer.
+Ohne Speicheroption wird localStorage weder gelesen noch geschrieben; bestehende
+Projektstände bleiben unangetastet. Der aktuelle Stand geht dann beim Neuladen,
+Schließen oder Wechseln der Seite verloren. Manuelles Speichern einer Projektdatei
+und Screenshots bleiben möglich. Das Laden einer Projektdatei benötigt derzeit den
+Speichermodus, da der Import den Browserstand ersetzt und die Seite neu lädt.
+Mit Speicheroption werden Messwerte, Modelleinstellungen und Bearbeitet-Häkchen
+unter `mission-mausefallenauto-v1` ausschließlich lokal gespeichert. Es gibt keine
+Übermittlung dieser Projektdaten an den Betreiber. Der Widerruf am Seitenende
+löscht im Speichermodus den lokalen Stand; im Sitzungsmodus beendet er die Seite,
+ohne ältere Speicherstände anzufassen. Die Einwilligung selbst wird nicht gespeichert.
+Deaktivierte Stationsseiten laden keine Projekt-Skripte und greifen nicht auf
+localStorage zu. Alle vorhandenen Messdaten anderer Stationen bleiben erhalten.
+
+## Basecamp und Bau-Doku
+
+Im Basecamp können freiwillig Name, Gruppenname und Gruppenmitglieder eingegeben
+werden. Direkt darunter stehen Bau-Doku, Projekt speichern und Projekt laden.
+Die Gruppenangaben werden gemäß der Auswahl beim Start nur im aktuellen
+Seitenzustand oder zusätzlich im lokalen Browserstand gehalten und sind Teil der
+JSON-Projektdatei. Ältere Dateien ohne Gruppenangaben bleiben lesbar. Der
+Einwilligungstext nennt diese Angaben ausdrücklich.
+
+Die Bau-Doku beginnt mit **1 · Name und Gruppe**, danach folgt
+**2 · Unser Bearbeitungsstand**. Baumaße und Prognose stehen anschließend als
+Abschnitt 3; Messreihen und Modelleinstellungen folgen. Mehrzeilige Mitgliederlisten
+bleiben in der Darstellung erhalten, alle Namensangaben werden als Text ausgegeben.
+
 ## Lernweg und Unterricht
 
 | Station | Schwerpunkt | Art |
 | --- | --- | --- |
 | Zugkraft der Falle | Tangentiale Haltekraft bei verschiedenen Armwinkeln; Kraft-Winkel-Diagramm | Realexperiment |
 | Hebelwerkstatt | Hebelbalken im Gleichgewicht; Übertragung auf Armlänge, Kraft und Weg | Realexperiment und Modell |
-| Goldene Regel | Gleiche Hubhöhe über verschiedene Rampen; Brücke zu Arbeit und Energie | Verbindliches Realexperiment |
+| Goldene Regel | Mindestens fünf Hubhöhen; Arbeit und Energie; optionale Abhebekraft mit geometrischer Kräfteaddition | Verbindliches Realexperiment mit Zusatzaufgabe |
 | Übersetzung | Dünne Antriebsachse versus fest gekoppelte Wickelscheibe; Fahrradgang als Analogie | Ideales Modell |
 | Radwerkstatt | Umfang, Umdrehungszahl und Strecke; Bauabwägungen | Ideales Modell |
 | Reibungsforschung | Lagerreibung, Rollwiderstand, notwendige Haftung und Schlupf | Qualitatives Modell |
 | Rechenwerkstatt | Eigene Maße und geometrische Strecke während der Fadenabwicklung | Rechner |
 | Testgelände | Wiederholungen, gezielte Änderungen, Fadenende und Gesamtstrecke | Realexperiment |
 
-Etwa 10–15 Minuten pro Station, bei Messungen und beim Bauen entsprechend länger. Insgesamt eine Unterrichtsreihe, keine einzelne Unterrichtsstunde. Werkstätten bleiben unabhängig zugänglich. Die Erkenntnisse werden erst durch bewusstes Aufklappen sichtbar. Jedes Experiment führt mit einer Transferfrage zur eigenen Konstruktion zurück. Die Markierung „bearbeitet“ ist eine Selbsteinschätzung und wird nicht automatisch aus Messdaten vergeben.
+Etwa 10–15 Minuten pro Station, bei Messungen und beim Bauen entsprechend länger. Insgesamt eine Unterrichtsreihe, keine einzelne Unterrichtsstunde. Die drei aktiven Werkstätten bleiben unabhängig zugänglich. Die Erkenntnisse werden erst durch bewusstes Aufklappen sichtbar. Jedes Experiment führt mit einer Transferfrage zur eigenen Konstruktion zurück. Die Markierung „bearbeitet“ ist eine Selbsteinschätzung und wird nicht automatisch aus Messdaten vergeben.
+
+In der Hebelwerkstatt wird zuerst die Gewichtskraft eines Masseplättchens bestimmt und auf der Seite festgehalten; bei mehreren gleichzeitig gemessenen Plättchen wird die Gesamtkraft durch ihre Anzahl geteilt. Danach folgen mindestens sechs Partner-Runden: A gibt links vor und B gleicht rechts aus, anschließend wechseln die Rollen. Das HTML-Protokoll bietet sechs leere Zeilen und zeigt die Rollen je Runde. Die vorbereitende Plättchenmessung bleibt auch in Projektdatei und Bau-Doku erhalten.
 
 Vorwissen: Kräfte, Reibung und Kreisumfang; der Kreisumfang wird wiederholt. Drehmoment und Radiant werden nicht eingeführt. Arbeit und Energie werden aus der Goldenen Regel entwickelt. Es gibt keine Energieintegration aus dem Kraft-Winkel-Diagramm.
 
 ### Material und Sicherheit
 
-Die Lehrkraft bereitet Mausefallen mit sicherer Befestigung und Sicherung gegen Zuschnappen, Winkelablesung, passende Federkraftmesser, Hebelbalken und Gewichte sowie Wagen und Rampen vor. Für die Rampen sind gleiche Hubhöhen bei verschiedenen Längen und Steigungen bis etwa 20 % vorgesehen. Die Seiten ersetzen keine Einweisung. Anpassungen und Umbauten nur an gesicherten Fallen.
+Die Lehrkraft bereitet Mausefallen mit sicherer Befestigung und Sicherung gegen Zuschnappen, eine Skizze zum Schätzen der Winkel, passende Federkraftmesser, Hebelbalken und Gewichte sowie Wagen und Rampen vor. Für die Rampen sind mindestens fünf verschiedene Hubhöhen bei gleicher Rampenlänge und Steigungen bis etwa 20 % vorgesehen. Ein zusätzlicher Längenvergleich ist bei gleichbleibender Höhe möglich. Die Seiten ersetzen keine Einweisung. Anpassungen und Umbauten nur an gesicherten Fallen.
 
-Bei der Kraftmessung bleibt der Angriffspunkt fest; die Zugrichtung des Kraftmessers wird bei jedem Winkel rechtwinklig zum Arm mitgedreht. Der Winkel wird relativ zur festgelegten entspannten Armstellung gemessen. Der tatsächliche Verlauf wird nicht vorgegeben. Die gezeichnete Federkraftmesser-Anordnung dient nur der Geometrie.
+Bei der Kraftmessung bleibt der Angriffspunkt fest; die Zugrichtung des Kraftmessers wird bei jedem Winkel rechtwinklig zum Arm mitgedreht. Der Winkel wird relativ zur festgelegten entspannten Armstellung anhand der Skizze sorgfältig geschätzt; eine exakte Winkelmessung ist nicht nötig. Jede Messreihe umfasst mindestens sechs verschiedene Winkel. Im Idealfall messen zwei Personen unabhängig nacheinander an derselben Falle und erfassen ihre Reihen auf getrennten iPads. Anschließend vergleichen sie Diagramme und mögliche Abweichungen nebeneinander; eine automatische Synchronisation gibt es nicht. Der tatsächliche Verlauf wird nicht vorgegeben. Die gezeichnete Federkraftmesser-Anordnung dient nur der Geometrie.
 
 ## Modelle und fachliche Grenzen
 
@@ -37,6 +71,7 @@ Bei der Kraftmessung bleibt der Angriffspunkt fest; die Zugrichtung des Kraftmes
 - **Übersetzung:** n = L/(2πr_Wicklung). Die angenommene Fadenzugkraft wird für den Vergleich konstant gehalten. F_Boden,ideal = F_Faden·r_Wicklung/r_Rad beschreibt ideale Kraftübertragung vor Verlusten und ohne Schlupf. Achse, Wickelscheibe und Antriebsrad sind fest gekoppelt. Größere Wickelstelle: mehr Schub, weniger Umdrehungen. Mehrere Fadenlagen können den wirksamen Radius verändern.
 - **Rad:** U = 2πr, s = nU bei schlupffreiem Rollen. Die Zeichnung verwendet einen an die gewählten Maße angepassten gemeinsamen Maßstab für Rad und Weg.
 - **Rampe:** W = F·s gilt hier für annähernd konstante Kraft in Bewegungsrichtung bei gleichförmigem Ziehen. F_G·h ist die Zunahme an Höhenenergie. Unterschiede können durch Reibung, nicht gleichförmige Bewegung oder Messunsicherheit entstehen. Die Produkte erscheinen zunächst als N·m; die aufklappbare Auswertung führt Joule ein.
+- **Zusatzmessung Rampe:** Die optionale Abhebekraft wird senkrecht von der Rampenoberfläche weg beim gerade eintretenden Kontaktverlust gemessen. Eine zweite Sicherung wirkt parallel zur Rampe gegen Herunterrollen. Im idealen Modell gilt F_Z = F_G · h/s und F_A = F_G · √(1 − (h/s)²). Zwei maßstäbliche Bilder zeigen Richtungen und die Spitze-an-Anfang-Addition zur Gegenkraft von F_G. Eigene, in getrennten Situationen gemessene Kräfte und das ideale Vergleichsmodell werden unterschieden; die verbleibende Vektorlücke wird nicht wegkorrigiert. Die Grundmessung benötigt keine Abhebekraft. Alte Projektdateien ohne das optionale Feld werden mit leerem Zusatzwert geladen. `ramp-forces.js` steuert Auswahl und Zeichnung.
 - **Reibung:** Die Regler sind qualitative, voneinander unabhängige Stufen. Modellgrenzen wie die Haftungsschwelle sind didaktisch gesetzt, keine realen Reibwerte. Es werden keine realen Fahrstrecken daraus berechnet. Haftreibung bei idealem Rollen ist nicht pauschal ein Energieverlust.
 - **Rechner:** s_geometrisch = L·r_Rad/r_Wicklung. Konstanter Wickelradius, vollständige Fadenabwicklung ohne Durchrutschen und gekoppelte Rotation vorausgesetzt. Kein Energie- oder Beschleunigungsmodell. Das Ergebnis ist weder garantierte Gesamtstrecke noch obere Grenze: Das Auto kann vorher stehen bleiben oder danach ausrollen.
 - **Testgelände:** Geometrische Strecke, Strecke bis Fadenende beziehungsweise vorzeitigem Stopp und Gesamtstrecke werden getrennt dargestellt. Beobachtungen entscheiden, ob vollständig abgewickelt wurde. Δ gesamt = Gesamtstrecke − geometrische Strecke; keine Qualitätsnote. Ausrollen wird nur bei zwei konsistenten Messstrecken berechnet.
@@ -92,7 +127,7 @@ Die Online-Referenz `https://mintblow.ing/interactive/force` war über den Webzu
 - `node tests/model.test.js`: 32 Tests für Zahlenparser, Einheiten, Formeln, Übersetzung, Arbeit und Messkonsistenz; keine Pakete erforderlich. In der aktuellen Umgebung wurden sie mit JavaScriptCore ausgeführt, da Node nicht installiert ist.
 - `node tests/document.test.js`: 23 Tests für alle vier Diagrammarten, eigene Maße und Prognose, Datenvollständigkeit, unveränderten Originalstand, ungültige/offene Werte, sichere Textdarstellung, unabhängige HTML-Datei und lesbare Diagrammaufteilung. Mit JavaScriptCore ausgeführt.
 - `node tests/backup.test.js`: 23 Tests für vollständige Wiederherstellung, leere und unvollständige Daten, Dezimalkomma, unabhängige Datenkopien und Ablehnung fremder/beschädigter/zu großer Dateien. In dieser Umgebung mit JavaScriptCore ausgeführt.
-- `tests/browser.html`: 92 Integrationschecks in Chrome mit separatem temporärem Profil ausgeführt. Prüft alle Stationen, freie Navigation, reale Dateneingaben, Diagramme, ungültige Werte, Dezimalkomma, Speicherung, Löschen/Ergänzen, Rechenmaß-Übernahme, CSV und sichere Textdarstellung. Nur in einem separaten Testprofil ausführen, da vorübergehend lokale Daten geschrieben werden. Der vorherige Speicherstand wird anschließend wiederhergestellt.
+- `tests/browser.html`: 168 Integrationschecks in Chrome mit separatem temporärem Profil ausgeführt. Prüft die drei aktiven Stationen, gesperrte Wege und Direktaufrufe, Einwilligung vor Initialisierung, optionale Speicherung, Sitzungsmodus, Widerruf, reale Messungen und die geometrische Kräfteaddition. Nur in einem separaten Testprofil ausführen, da vorübergehend lokale Daten geschrieben werden. Der vorherige Speicherstand wird anschließend wiederhergestellt.
 - `node tests/map.test.js`: 668 Prüfungen aller Start-Ziel-Kombinationen auf zusammenhängende, vorhandene Straßen und erreichbare Stationen. Mit JavaScriptCore ausgeführt.
 - Syntax, lokale Links/Assets und eindeutige HTML-IDs geprüft.
 - Eine zusätzliche visuelle Screenshot-Prüfung wurde nicht freigegeben und daher nicht ausgeführt. Physische Touchgeräte und Safari/Firefox wurden nicht separat getestet.

@@ -8,6 +8,10 @@
   const state={tables:{spring:[{angle:'90',force:'2,5'},{angle:'',force:''}],trials:[{date:'2026-11-03',change:'<Text> bleibt Text',length:'100',axle:'3',wheel:'6',unwind:'18',total:'23'}]},controls:{federkraft:{'arm-angle':'65'},rechnen:{'calc-length':'100','calc-axle':'3','calc-wheel':'6'}},explored:{federkraft:true,hebel:false}};
   const encoded=B.encode(state),restored=B.decode(encoded);
   assert(JSON.stringify(restored)===JSON.stringify(state),'Full round trip: measurements, settings, progress');
+  const withProfile={...state,profile:{name:'Ada',groupName:'Die Hebel',members:'Ada\nBen'}};
+  assert(JSON.stringify(B.decode(B.encode(withProfile)).profile)===JSON.stringify(withProfile.profile),'Names and multiline group members survive round trip');
+  rejects({...JSON.parse(encoded),data:{...state,profile:{name:42}}},'Reject invalid profile value');
+  rejects({...JSON.parse(encoded),data:{...state,profile:{name:'x'.repeat(151)}}},'Reject oversized profile value');
   assert(restored.tables.spring[0].force==='2,5','Comma preserved');
   assert(restored.tables.spring[1].force==='','Unfinished row preserved');
   assert(restored.tables.trials[0].change==='<Text> bleibt Text','Text preserved without interpretation');

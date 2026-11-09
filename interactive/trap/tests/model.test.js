@@ -25,6 +25,11 @@
   assert(near(ramp.pullWork,1.4)&&near(ramp.liftWork,1),'work values');
   assert(near(ramp.difference,.4),'loss comparison');
   assert(M.ramp(.1,.2,1,10)===null,'impossible ramp rejected');
+  const forceSum=M.rampForces(1,.6,6,8,10);
+  assert(near(forceSum.sum.x,0)&&near(forceSum.sum.y,10)&&near(forceSum.gap,0),'Ideal perpendicular force components add to opposite weight');
+  assert(near(forceSum.idealPull,6)&&near(forceSum.idealLift,8),'Incline components from measured geometry');
+  assert(near(M.rampForces(1,.6,7,8,10).gap,1),'Extra measured pull remains visible as vector gap');
+  assert(M.rampForces(1,1,6,8,10)===null&&M.rampForces(1,.1,1,null,10)===null,'Invalid geometry or absent lift has no force construction');
   assert(M.friction(20,20,10).slipping,'low grip permits slip');
   assert(!M.friction(20,20,80).slipping,'sufficient grip');
   assert(M.friction(101,20,80)===null,'invalid qualitative control rejected');

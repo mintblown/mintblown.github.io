@@ -12,9 +12,13 @@
     spring:[{angle:'90',force:'2,5'},{angle:'30',force:'1,2'},{angle:'',force:''}],
     lever:[{f1:'2',l1:'20',f2:'4',l2:'10'}],ramp:[{s:'1',h:'0,1',force:'1,4',weight:'10'}],
     trials:[{date:'2026-11-03',change:'<script>alert("x")</script>',length:'100',axle:'3',wheel:'6',unwind:'18',total:'23'}]},
-    controls:{rechnen:{'calc-length':'100','calc-axle':'3','calc-wheel':'6'},reibung:{grip:'25'},uebersetzung:{'winding-mode':'drum'}},explored:{federkraft:true}};
+    controls:{rechnen:{'calc-length':'100','calc-axle':'3','calc-wheel':'6'},reibung:{grip:'25'},uebersetzung:{'winding-mode':'drum'}},explored:{federkraft:true},profile:{name:'Ada',groupName:'Team <b>Hebel</b>',members:'Ada\nBen'}};
   const before=JSON.stringify(data),html=TrapDocument.render(data,new Date('2026-11-03T12:00:00Z'));
   assert(JSON.stringify(data)===before,'Document rendering never mutates state');
+  const headings=[...html.matchAll(/<h2>(.*?)<\/h2>/g)].map(match=>match[1]);
+  assert(headings[0]==='1 · Name und Gruppe'&&headings[1]==='2 · Unser Bearbeitungsstand','Identity first, progress second');
+  assert(html.includes('Ada')&&html.includes('Ada\nBen'),'Identity and multiline members shown');
+  assert(html.includes('Team &lt;b&gt;Hebel&lt;/b&gt;')&&!html.includes('Team <b>'),'Group names are escaped');
   assert((html.match(/<svg /g)||[]).length===4,'All four measurement diagrams embedded');
   assert(html.includes('20 m</strong>'),'Current construction prediction');
   assert(html.includes('2,5'),'Decimal-comma measurement preserved');

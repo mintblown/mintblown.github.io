@@ -5,7 +5,25 @@
   const $=id=>document.getElementById(id);
   const settings=state.controls[station]||(state.controls[station]={});
   const explored=$('explored');
-  if(explored){explored.checked=state.explored[station]===true;explored.onchange=()=>{state.explored[station]=explored.checked;save();};}
+  if(explored){
+    const reminder=document.createElement('p');
+    reminder.id='results-reminder';reminder.className='notice';
+    reminder.setAttribute('role','status');reminder.setAttribute('aria-live','polite');
+    reminder.textContent='Haltet eure Ergebnisse in Goodnotes fest: als Screenshots oder handschriftlich, gegebenenfalls in eurer Projektmappe. Sichert auch eure Beobachtungen und die Schlussfolgerungen für euer Mausefallenauto.';
+    explored.closest('.lesson-footer').after(reminder);
+    explored.setAttribute('aria-controls',reminder.id);
+    explored.checked=state.explored[station]===true;
+    reminder.hidden=!explored.checked;
+    const message=document.createElement('dialog');
+    message.id='results-message';message.className='results-dialog';
+    message.setAttribute('aria-labelledby','results-message-title');
+    message.setAttribute('aria-describedby','results-message-text');
+    message.innerHTML='<h2 id="results-message-title">Ergebnisse festhalten</h2><p id="results-message-text"></p><button type="button" class="button">Verstanden</button>';
+    message.querySelector('p').textContent=reminder.textContent;
+    message.querySelector('button').onclick=()=>message.close();
+    document.body.append(message);
+    explored.onchange=()=>{state.explored[station]=explored.checked;reminder.hidden=!explored.checked;save();if(explored.checked)message.showModal();};
+  }
   const svg=(label,content,width=640,height=340)=>`<svg class="diagram" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(label)}">${content}</svg>`;
   const text=(x,y,content,cls='',anchor='start')=>`<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${esc(content)}</text>`;
   const arrow=(x1,y1,x2,y2,color='#c9513f',size=9)=>{
@@ -39,8 +57,19 @@
     $('spring-view').innerHTML=svg(`Bei ${degrees} Grad ist der Kraftmesser senkrecht zum Spannarm und tangential zu seiner Kreisbahn ausgerichtet.`,content,640,345);
   });
   if(station==='hebel'){
+    function plateMeasurement(){
+      const count=M.number($('plate-count').value),force=M.number($('plate-total-force').value);
+      const validCount=Number.isInteger(count)&&count>0&&count<=100;
+      const validForce=force!==null&&force>0&&force<=200;
+      $('plate-count').setAttribute('aria-invalid',String($('plate-count').value.trim()!==''&&!validCount));
+      $('plate-total-force').setAttribute('aria-invalid',String($('plate-total-force').value.trim()!==''&&!validForce));
+      $('plate-force-result').textContent=validCount&&validForce
+        ? `Gewichtskraft eines Masseplättchens: ${fmt(force,3)} N ÷ ${count} = ${fmt(force/count,3)} N. Multipliziert diesen Wert in jeder Runde mit der Anzahl der Plättchen auf der jeweiligen Seite.`
+        : 'Bestimmt zuerst die Gewichtskraft: Tragt die Anzahl gleicher Plättchen (ganze Zahl von 1 bis 100) und die gemessene Gesamtgewichtskraft (größer als 0, bis 200 N) ein.';
+    }
     $('lever-view').innerHTML=svg('Waagerechter Hebelbalken: senkrechte Kräfte links und rechts; l1 und l2 sind die Abstände vom Drehpunkt.',`<path d="M300 118L278 158H322Z" fill="#52785c"/><rect x="70" y="100" width="460" height="16" rx="5" fill="#d9b678"/><circle cx="300" cy="108" r="6" fill="#345847"/><path d="M155 117V175M430 117V175" stroke="#4a675a" stroke-width="2"/><rect x="135" y="175" width="40" height="30" rx="4" fill="#8bb7aa"/><rect x="410" y="175" width="40" height="30" rx="4" fill="#8bb7aa"/>${arrow(155,155,155,226)}${arrow(430,155,430,226)}<path d="M155 80H300M300 80H430M155 72V88M300 72V88M430 72V88" stroke="#477360" stroke-width="2"/>${text(222,65,'l₁')}${text(362,65,'l₂')}${text(173,229,'F₁')}${text(448,229,'F₂')}${text(300,280,'Abstände am waagerechten Balken messen','','middle')}`,640,310);
     bind(()=>{
+      plateMeasurement();
       const length=Number($('lever-length').value),degrees=Number($('lever-angle').value),a=degrees*Math.PI/180,r=length*4.7,cx=245,cy=235,x=cx+r*Math.cos(a),y=cy-r*Math.sin(a);
       const startX=cx+r;
       const arc=degrees===0?'':`<path d="M${startX} ${cy}A${r} ${r} 0 0 0 ${x} ${y}" fill="none" stroke="#c8a152" stroke-dasharray="5 5" stroke-width="3"/>`;
@@ -50,7 +79,11 @@
     });
   }
   if(station==='goldene-regel'){
-    $('ramp-view').innerHTML=svg('Zwei Rampen erreichen dieselbe Höhe. Die längere Rampe steigt flacher an. Gemessen wird parallel zur Rampe bei gleichförmiger Bewegung.',`<path d="M50 240L310 210L310 240Z" fill="#dac79c" stroke="#aa9360" stroke-width="2"/><path d="M350 240L530 210L530 240Z" fill="#dac79c" stroke="#aa9360" stroke-width="2"/><g transform="translate(190,224) rotate(-6.58)"><rect x="-27" y="-25" width="54" height="20" rx="3" fill="#72a391"/><circle cx="-17" cy="-3" r="6" fill="#365c4c"/><circle cx="17" cy="-3" r="6" fill="#365c4c"/></g>${arrow(217,205,275,198)}<g transform="translate(440,225) rotate(-9.46)"><rect x="-27" y="-25" width="54" height="20" rx="3" fill="#72a391"/><circle cx="-17" cy="-3" r="6" fill="#365c4c"/><circle cx="17" cy="-3" r="6" fill="#365c4c"/></g>${arrow(466,205,506,198)}<path d="M555 210V240M547 210H563M547 240H563" stroke="#4b6c59" stroke-width="2"/>${text(571,218,'h')}${text(100,180,'längerer Weg s')}${text(385,163,'kürzerer Weg s')}${text(320,287,'Gleicher Wagen · gleiche Hubhöhe · Zugkraft parallel zur Rampe','','middle')}`,640,320);
+    const ramps=[{x:35,degrees:4,label:'h₁'},{x:350,degrees:10,label:'h₂'}].map(({x,degrees,label})=>{
+      const a=degrees*Math.PI/180,length=240,run=length*Math.cos(a),height=length*Math.sin(a),y=240;
+      return `<path d="M${x} ${y}L${x+run} ${y-height}L${x+run} ${y}Z" fill="#dac79c" stroke="#aa9360" stroke-width="2"/><g transform="translate(${x+run/2},${y-height/2}) rotate(${-degrees})"><rect x="-27" y="-25" width="54" height="20" rx="3" fill="#72a391"/><circle cx="-17" cy="-3" r="6" fill="#365c4c"/><circle cx="17" cy="-3" r="6" fill="#365c4c"/></g>${arrow(x+run/2+25,y-height/2-25,x+run/2+85,y-height/2-25-60*Math.tan(a))}<path d="M${x+run+15} ${y-height}V${y}" stroke="#4b6c59" stroke-width="2"/>${text(x+run+20,y-height/2,label)}${text(x+80,170,'gleiche Länge s')}`;
+    }).join('');
+    $('ramp-view').innerHTML=svg('Zwei beispielhafte Höhen bei derselben Rampenlänge. Die Zugkraft wird parallel zur jeweiligen Rampe gemessen.',ramps+text(320,287,'Gleicher Wagen · gleiche Rampenlänge · verschiedene Höhen','','middle'),660,320);
   }
   if(station==='uebersetzung'){
     const mode=$('winding-mode');

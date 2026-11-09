@@ -30,6 +30,14 @@
     return { pullWork: force * s, liftWork: weight * h, difference: force * s - weight * h,
       grade: h / Math.sqrt(s * s - h * h) * 100 };
   }
+  function rampForces(s,h,pull,lift,weight){
+    if(![s,h,pull,lift,weight].every(positive)||h>=s)return null;
+    const sin=h/s,cos=Math.sqrt(1-sin*sin);
+    const parallel={x:pull*cos,y:pull*sin},normal={x:-lift*sin,y:lift*cos};
+    const sum={x:parallel.x+normal.x,y:parallel.y+normal.y};
+    return {sin,cos,angle:Math.asin(sin)*180/Math.PI,idealPull:weight*sin,idealLift:weight*cos,
+      parallel,normal,sum,weight,gap:Math.hypot(sum.x,sum.y-weight)};
+  }
   // Qualitative indicators have no unit and cannot be interpreted as real distances.
   function friction(bearing, rolling, grip) {
     const values = [bearing, rolling, grip];
@@ -43,7 +51,7 @@
     return { ...prediction, afterRoll: total - unwind, difference: total - prediction.distance,
       unwindDifference: unwind - prediction.distance };
   }
-  const api = { number, drive, transmission, lever, ramp, friction, trial };
+  const api = { number, drive, transmission, lever, ramp, rampForces, friction, trial };
   root.TrapModel = api;
   if (typeof module !== 'undefined') module.exports = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

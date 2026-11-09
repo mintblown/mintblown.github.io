@@ -3,11 +3,11 @@
   'use strict';
   const FORMAT = 'mission-mausefallenauto', VERSION = 1, MAX_BYTES = 5 * 1024 * 1024;
   const fields = {
-    spring: ['angle','force'], lever: ['f1','l1','f2','l2'], ramp: ['s','h','force','weight'],
+    spring: ['angle','force'], lever: ['f1','l1','f2','l2'], ramp: ['s','h','force','weight','lift'],
     trials: ['date','change','length','axle','wheel','unwind','total']
   };
   const controls = {
-    federkraft: ['arm-angle'], hebel: ['lever-length','lever-angle'], 'goldene-regel': [],
+    federkraft: ['arm-angle'], hebel: ['lever-length','lever-angle','plate-count','plate-total-force'], 'goldene-regel': [],
     uebersetzung: ['winding-mode','winding-radius','string-length','string-force'],
     raeder: ['wheel-radius','wheel-turns','roll-progress'], reibung: ['bearing','rolling','grip'],
     rechnen: ['calc-length','calc-axle','calc-wheel'], testgelaende: []
@@ -22,7 +22,7 @@
     return Object.fromEntries(Object.entries(value));
   }
   function validate(data) {
-    requireObject(data,['tables','controls','explored'],'Projekt');
+    requireObject(data,['tables','controls','explored','profile'],'Projekt');
     for (const part of ['tables','controls','explored']) if (!object(data[part])) throw new Error('Messwerte, Einstellungen oder Bearbeitungsstand fehlen.');
     requireObject(data.tables,Object.keys(fields),'Messwerte');
     const tables={};
@@ -30,6 +30,7 @@
       if (!Array.isArray(rows) || rows.length>10000) throw new Error('Ungültige Messwerttabelle.');
       tables[name]=rows.map(row=>{
         const clean=strings(row,fields[name],'Messwertzeile');
+        if(name==='ramp'&&!Object.hasOwn(clean,'lift'))clean.lift='';
         if (fields[name].some(key=>!Object.hasOwn(clean,key))) throw new Error('Eine Messwertzeile ist unvollständig gespeichert.');
         return clean;
       });
@@ -38,7 +39,16 @@
     const settings=Object.fromEntries(Object.entries(data.controls).map(([station,values])=>[station,strings(values,controls[station],'Stationseinstellungen')]));
     requireObject(data.explored,Object.keys(controls),'Bearbeitungsstand');
     if (Object.values(data.explored).some(v=>typeof v!=='boolean')) throw new Error('Ungültiger Bearbeitungsstand.');
-    return {tables,controls:settings,explored:Object.fromEntries(Object.entries(data.explored))};
+    let profile;
+    if(data.profile!==undefined){
+      requireObject(data.profile,['name','groupName','members'],'Gruppenangaben');profile={};
+      for(const [key,max]of [['name',150],['groupName',150],['members',1000]]){
+        if(data.profile[key]===undefined)continue;
+        if(typeof data.profile[key]!=='string'||data.profile[key].length>max)throw new Error('Gruppenangaben: ungültiger oder zu langer Eintrag.');
+        profile[key]=data.profile[key];
+      }
+    }
+    return {tables,controls:settings,explored:Object.fromEntries(Object.entries(data.explored)),...(profile?{profile}: {})};
   }
   function encode(state) {
     return JSON.stringify({format:FORMAT,version:VERSION,savedAt:new Date().toISOString(),data:validate(state)},null,2);
@@ -56,10 +66,20 @@
   if (typeof document==='undefined' || !root.Trap) return;
   const storageStatus=document.getElementById('storage-status');
   if (!storageStatus) return;
-  const section=document.createElement('section');section.className='card project-files';section.setAttribute('aria-labelledby','project-files-title');
-  section.innerHTML='<h2 id="project-files-title">Euer Projekt zum Mitnehmen</h2><p>Speichert alle Messwerte, Modelleinstellungen und Bearbeitet-Häkchen gemeinsam in einer Datei. So könnt ihr auf einem anderen Gerät weiterarbeiten. Diagramme entstehen beim Laden neu; Screenshots und CSV-Dateien sind nicht in der Projektdatei enthalten.</p><div class="actions"><button type="button" class="button" id="save-project">Projekt speichern</button><button type="button" class="button secondary" id="load-project">Projekt laden</button></div><input id="project-file" type="file" accept=".json,application/json" hidden><p id="project-file-status" role="status" class="hint" aria-live="polite"></p>';
-  storageStatus.before(section);
+  const basecampActions=document.getElementById('basecamp-project-actions');
+  const section=document.createElement('section');section.className=basecampActions?'project-files':'card project-files';section.setAttribute('aria-labelledby',basecampActions?'basecamp-project-title':'project-files-title');
+  section.innerHTML='<h2 id="project-files-title">Euer Projekt zum Mitnehmen</h2><p>Speichert eure Namens- und Gruppenangaben, Messwerte, Modelleinstellungen und Bearbeitet-Häkchen gemeinsam in einer Datei. So könnt ihr auf einem anderen Gerät weiterarbeiten. Diagramme entstehen beim Laden neu; Screenshots und CSV-Dateien sind nicht in der Projektdatei enthalten.</p><div class="actions"><button type="button" class="button" id="save-project">Projekt speichern</button><button type="button" class="button secondary" id="load-project">Projekt laden</button></div><input id="project-file" type="file" accept=".json,application/json" hidden><p id="project-file-status" role="status" class="hint" aria-live="polite"></p>';
+  if(basecampActions){
+    section.querySelector('h2').remove();basecampActions.append(section);
+    const fields=[['project-name','name',150],['project-group','groupName',150],['project-members','members',1000]];
+    Trap.state.profile=Trap.state.profile||{};
+    fields.forEach(([id,key,max])=>{
+      const field=document.getElementById(id);field.value=typeof Trap.state.profile[key]==='string'?Trap.state.profile[key]:'';
+      field.addEventListener('input',()=>{Trap.state.profile[key]=field.value.slice(0,max);Trap.save();});
+    });
+  }else storageStatus.before(section);
   const status=document.getElementById('project-file-status'),input=document.getElementById('project-file'),load=document.getElementById('load-project');
+  if(!Trap.storageAllowed){load.disabled=true;load.title='Zum Laden einer Projektdatei bitte beim Start die Speicherung für später aktivieren.';status.textContent='Projekt speichern funktioniert auch ohne dauerhafte Browserspeicherung. Zum Laden einer Projektdatei aktiviert beim Start die Speicheroption.';}
   document.getElementById('save-project').onclick=()=>{
     try {
       const json=encode(Trap.state),blob=new Blob([json],{type:'application/json'});
@@ -70,7 +90,7 @@
   };
   load.onclick=()=>{input.value='';input.click();};
   input.onchange=async()=>{
-    const file=input.files[0];if(!file)return;
+    const file=input.files[0];if(!file||!Trap.storageAllowed)return;
     try {
       if(file.size>MAX_BYTES)throw new Error('Die Projektdatei ist zu groß (maximal 5 MB).');
       const restored=decode(await file.text());

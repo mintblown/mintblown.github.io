@@ -6,12 +6,12 @@
   const screenshot = '<p class="screenshot">Screenshot sichern: Haltet dieses Diagramm zusammen mit Achsenbeschriftungen und Legende als Screenshot fest. Legt ihn in eurer Gruppenablage ab; die lokale Browserspeicherung ersetzt diese Sicherung nicht.</p>';
   const specs = {
     spring: { caption: 'Eure gemessene tangentiale Haltekraft', fields: [
-      ['angle','Winkel α (°)',0,180],['force','Kraft F (N)',0,100]], outputs: [], chart:'spring-chart' },
-    lever: { caption:'Eure Hebel im Gleichgewicht', fields: [
+      ['angle','Winkel α (°; geschätzt)',0,180],['force','Kraft F (N)',0,100]], outputs: [], chart:'spring-chart' },
+    lever: { caption:'Partneraufgabe: mindestens sechs Hebelrunden im Gleichgewicht', fields: [
       ['f1','Kraft F₁ (N)',0,200,true],['l1','Hebelarm l₁ (cm)',0,100,true],['f2','Kraft F₂ (N)',0,200,true],['l2','Hebelarm l₂ (cm)',0,100,true]],
       outputs:['F₁ · l₁ (N·cm)','F₂ · l₂ (N·cm)','Differenz links − rechts (N·cm)'], chart:'lever-chart' },
-    ramp: { caption:'Eure Rampen bei gleicher Hubhöhe', fields:[
-      ['s','Rampenlänge s (m)',0,10,true],['h','Hubhöhe h (m)',0,2,true],['force','Zugkraft F (N)',0,200,true],['weight','Gewichtskraft F_G (N)',0,200,true]],
+    ramp: { caption:'Eure Messreihe mit mindestens fünf verschiedenen Höhen', fields:[
+      ['s','Rampenlänge s (m)',0,10,true],['h','Hubhöhe h (m)',0,2,true],['force','Zugkraft F (N)',0,200,true],['weight','Gewichtskraft F_G (N)',0,200,true],['lift','Abhebekraft senkrecht (N; optional)',0,200,true,true]],
       outputs:['F · s (N·m)','F_G · h (N·m)','Differenz (N·m)'],chart:'ramp-chart' },
     trials: { caption:'Eure Testläufe mit eigenen Baumaßen und Messwerten', fields:[
       ['date','Datum','date'],['change','Änderung / Beobachtung','text'],['length','Fadenlänge L (cm)',0,1000,true],['axle','Wickelradius (mm)',0,100,true],['wheel','Radradius (cm)',0,100,true],['unwind','Bis Fadenende / Stopp (m)',0,1000],['total','Gesamtstrecke (m)',0,1000]],
@@ -30,13 +30,14 @@
     spec.fields.forEach(field=>{
       const [key,,kind]=field;
       if (kind==='text' || kind==='date') return;
+      if(field[5] && String(row[key]??'').trim()===''){vals[key]=null;return;}
       vals[key]=value(row,field);
       if (vals[key]===null) (String(row[key]??'').trim()?invalid:missing).push(key);
     });
     let result=null, warning='';
     if(type==='spring' && !invalid.length && !missing.length) result={x:vals.angle,y:vals.force};
     if(type==='lever' && !invalid.length && !missing.length) result=M.lever(vals.f1,vals.l1,vals.f2,vals.l2);
-    if(type==='ramp' && !invalid.length && !missing.length){
+    if(type==='ramp' && !invalid.some(key=>key!=='lift') && !missing.length){
       if(vals.h>=vals.s){invalid.push('h','s');warning='Die Rampenlänge muss größer als die Hubhöhe sein.';}
       else {result=M.ramp(vals.s,vals.h,vals.force,vals.weight);if(result.grade>22)warning='Die berechnete Steigung liegt über etwa 20 %. Prüft Höhe und Rampenlänge sowie eure Einheiten.';}
     }
@@ -57,11 +58,13 @@
     if(type==='trials')return [result.prediction,result.afterRoll,result.difference];
     return [];
   }
-  function tableHTML(type){const spec=specs[type];return `<div class="table-scroll"><table><caption>${spec.caption}</caption><thead><tr><th scope="col">Nr.</th>${spec.fields.map(f=>`<th scope="col">${esc(f[1])}</th>`).join('')}${spec.outputs.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}<th scope="col">Zeile</th></tr></thead><tbody>${rows(type).map((row,i)=>`<tr data-row="${i}"><th scope="row">${i+1}</th>${spec.fields.map(field=>{const [key,label,kind,max,strict]=field;const inputType=kind==='date'?'date':'text';return `<td><input type="${inputType}" ${kind!=='text'&&kind!=='date'?'inputmode="decimal"':''} class="${kind==='text'?'wide':''}" data-field="${key}" value="${esc(row[key])}" aria-label="${esc(label)}, Messung ${i+1}" ${kind==='text'?'maxlength="300"':''} ${kind==='date'?'':'autocomplete="off"'}></td>`;}).join('')}${spec.outputs.map((_,j)=>`<td class="computed" data-output="${j}">—</td>`).join('')}<td><button type="button" class="button small secondary" data-delete="${i}" aria-label="Messung ${i+1} löschen">Löschen</button></td></tr>`).join('')}</tbody></table></div><button type="button" class="button secondary" data-add>＋ Messung hinzufügen</button><p class="table-message" role="status" data-message></p>`;}
+  function tableHTML(type){const spec=specs[type];return `<div class="table-scroll"><table><caption>${spec.caption}</caption><thead><tr>${type==='lever'?'<th scope="col">Runde</th><th scope="col">Vorgabe / Ausgleich</th>':'<th scope="col">Nr.</th>'}${spec.fields.map(f=>`<th scope="col">${esc(f[1])}</th>`).join('')}${spec.outputs.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}<th scope="col">Zeile</th></tr></thead><tbody>${rows(type).map((row,i)=>`<tr data-row="${i}"><th scope="row">${i+1}</th>${type==='lever'?`<td>${i%2===0?'A gibt vor · B gleicht aus':'B gibt vor · A gleicht aus'}</td>`:''}${spec.fields.map(field=>{const [key,label,kind,max,strict]=field;const inputType=kind==='date'?'date':'text';return `<td><input type="${inputType}" ${kind!=='text'&&kind!=='date'?'inputmode="decimal"':''} class="${kind==='text'?'wide':''}" data-field="${key}" value="${esc(row[key])}" aria-label="${esc(label)}, Messung ${i+1}" ${kind==='text'?'maxlength="300"':''} ${kind==='date'?'':'autocomplete="off"'}></td>`;}).join('')}${spec.outputs.map((_,j)=>`<td class="computed" data-output="${j}">—</td>`).join('')}<td><button type="button" class="button small secondary" data-delete="${i}" aria-label="Messung ${i+1} löschen">Löschen</button></td></tr>`).join('')}</tbody></table></div><button type="button" class="button secondary" data-add>＋ Messung hinzufügen</button><p class="table-message" role="status" data-message></p>`;}
   function initialize(type,host) {
     hosts[type]=host;
-    if(!Array.isArray(state.tables[type]))state.tables[type]=Array.from({length:type==='trials'?1:3},()=>blank(type));
+    if(!Array.isArray(state.tables[type]))state.tables[type]=Array.from({length:(type==='spring'||type==='lever')?6:type==='ramp'?5:1},()=>blank(type));
     state.tables[type]=state.tables[type].filter(r=>r && typeof r==='object').map(r=>Object.fromEntries(specs[type].fields.map(([key])=>[key,String(r[key]??'')])));
+    if(type==='spring'||type==='lever')while(state.tables[type].length<6)state.tables[type].push(blank(type));
+    if(type==='ramp')while(state.tables.ramp.length<5)state.tables.ramp.push(blank(type));
     render(type);
   }
   function render(type){const host=hosts[type];host.innerHTML=tableHTML(type);
@@ -81,12 +84,25 @@
     if(type==='ramp'){
       const complete=analyses.filter(a=>a.result);
       if(complete.length>1){
-        const heights=complete.map(a=>a.vals.h),weights=complete.map(a=>a.vals.weight);
-        if(Math.max(...heights)-Math.min(...heights)>.005) message.textContent+=' Für den Vergleich sollte die Hubhöhe gleich bleiben. Eure Höhen unterscheiden sich; prüft den Aufbau.';
+        const weights=complete.map(a=>a.vals.weight);
         if(Math.max(...weights)-Math.min(...weights)>.1) message.textContent+=' Verwendet denselben Wagen. Eure Gewichtskräfte unterscheiden sich; prüft Messung und Beladung.';
       }
     }
     if(!message.textContent)message.textContent=type==='trials'?'Leere Messfelder bleiben offen. Baumaße liefern nur die geometrische Vergleichsstrecke. Wiederholungen erhalten eigene Zeilen.':'Leere Felder bleiben offen. Nur vollständig und gültig ausgefüllte Messungen erscheinen im Diagramm. Komma oder Punkt sind möglich.';
+    if(type==='spring'){
+      const distinct=new Set(analyses.filter(a=>a.result).map(a=>a.result.x)).size;
+      message.textContent+=` ${distinct} von mindestens 6 verschiedenen Winkeln mit gültiger Kraftmessung aufgenommen.`;
+      if(distinct>=6)message.textContent+=' Vergleicht jetzt eure Messreihen auf den beiden iPads oder nehmt eine zweite Reihe zum Vergleich auf.';
+    }
+    if(type==='lever'){
+      const complete=analyses.filter(a=>a.result).length;
+      message.textContent+=` ${complete} von mindestens 6 Runden vollständig protokolliert. Tragt eine Runde erst ein, wenn ihr am echten Hebel Gleichgewicht hergestellt habt.`;
+    }
+    if(type==='ramp'){
+      const heights=new Set(analyses.filter(a=>a.result).map(a=>a.vals.h)).size;
+      message.textContent+=` ${heights} von mindestens 5 verschiedenen Höhen vollständig gemessen. Vergleicht F · s und F_G · h innerhalb jeder einzelnen Messung.`;
+      document.dispatchEvent(new CustomEvent('trap:ramp-updated'));
+    }
     chart(type,analyses);
   }
   function frame(title,svg){return `<div class="chart"><h3>${esc(title)}</h3>${svg}${screenshot}</div>`;}
