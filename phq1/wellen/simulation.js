@@ -64,7 +64,7 @@ function axes(span, limit) {
   return markup;
 }
 function drawPlots() {
-  const f = frequencies(), span = 4 / Math.min(...f);
+  const f = frequencies(), span = 40 / Math.min(...f);
   const x = Number($('posX').value), y = Number($('posY').value);
   const distances = [Math.hypot(x - 3, y), Math.hypot(x - 6, y)];
   // Shared scale covers both individual waves and their maximum possible sum.
