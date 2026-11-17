@@ -52,6 +52,7 @@ function render() {
     image.data[j+3] = 255;
   }
   context.putImageData(image, 0, 0);
+  $('field-image').setAttribute('href', canvas.toDataURL());
   drawPlots();
 }
 function axes(span, limit) {
