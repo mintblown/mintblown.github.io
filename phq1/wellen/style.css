@@ -4,5 +4,4 @@ nav{margin-bottom:26px}a{color:#2464bd}#right{fill:var(--red)}.red{background:va
 /* The field image and room geometry share one SVG coordinate system. */
 .layout > .card{min-width:0}
 .room-view{width:100%}
-.room-view #field{display:none}
 .room-view #room{position:static;display:block;width:100%;height:auto;aspect-ratio:540 / 580}

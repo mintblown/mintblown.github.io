@@ -2,7 +2,11 @@
 const $ = id => document.getElementById(id);
 const TAU = 2 * Math.PI, C = 343;
 let inverted = false, running = false, time = 0, last = null, frame;
-const canvas = $('field'), context = canvas.getContext('2d');
+// Keep the raster buffer outside the DOM; only its SVG image is displayed.
+const canvas = document.createElement('canvas');
+canvas.width = 405;
+canvas.height = 450;
+const context = canvas.getContext('2d');
 const w = canvas.width, h = canvas.height, n = w * h;
 const image = context.createImageData(w, h);
 const sources = [3, 6].map(x => {
