@@ -9,6 +9,25 @@ canvas.height = 450;
 const context = canvas.getContext('2d');
 const w = canvas.width, h = canvas.height, n = w * h;
 const image = context.createImageData(w, h);
+const fieldImage = $('field-image');
+// Decode each frame before displaying it. Replacing an SVG image URL every
+// animation frame can repeatedly cancel Safari's pending image loads.
+const decodedField = new Image();
+let fieldLoading = false, fieldDirty = false;
+decodedField.onload = () => {
+  fieldImage.setAttribute('href', decodedField.src);
+  fieldImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', decodedField.src);
+  fieldLoading = false;
+  if (fieldDirty) updateFieldImage();
+};
+decodedField.onerror = () => { fieldLoading = false; };
+function updateFieldImage() {
+  fieldDirty = true;
+  if (fieldLoading) return;
+  fieldDirty = false;
+  fieldLoading = true;
+  decodedField.src = canvas.toDataURL('image/png');
+}
 const sources = [3, 6].map(x => {
   const distance = new Float32Array(n), amplitude = new Float32Array(n);
   for (let y = 0; y < h; y++) for (let u = 0; u < w; u++) {
@@ -56,7 +75,7 @@ function render() {
     image.data[j+3] = 255;
   }
   context.putImageData(image, 0, 0);
-  $('field-image').setAttribute('href', canvas.toDataURL());
+  updateFieldImage();
   drawPlots();
 }
 function axes(span, limit) {

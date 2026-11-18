@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Baue eine Dämmung und teste sie im Sommer und Winter. Ein interaktives Modell für Klasse 6.">
+  <title>Das Wärmehaus · Physik Klasse 6</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="modell.js" defer></script>
+  <script src="labor.js" defer></script>
+</head>
+<body>
+  <header class="top"><a href="../index.html">← Physik · Klasse 6</a></header>
+  <main>
+    <h1>Das Wärmehaus</h1>
+    <p class="intro">Wie bleibt dein Haus im Sommer kühl und im Winter warm?</p>
+    <div class="tabs" role="tablist" aria-label="Versuche">
+      <button id="tab-labor" role="tab" aria-selected="true" aria-controls="labor">Material testen</button>
+      <button id="tab-bau" role="tab" aria-selected="false" aria-controls="bau" tabindex="-1">Haus dämmen</button>
+      <button id="tab-sommer" role="tab" aria-selected="false" aria-controls="sommer" tabindex="-1">☀ Sommertag</button>
+      <button id="tab-winter" role="tab" aria-selected="false" aria-controls="winter" tabindex="-1">❄ Wintertag</button>
+    </div>
+
+    <section id="labor" role="tabpanel" aria-labelledby="tab-labor">
+      <article class="card setup">
+        <h2>Ein Material, zwei Würfel</h2>
+        <p>Beide Betonwürfel haben 1 m³ Innenraum. Das gewählte Material dämmt sie von allen Seiten. Sonne fällt durch ein 0,5 m² großes Fenster.</p>
+        <div class="controls">
+          <label>Material <select id="sample"></select></label>
+          <label>Dicke <output id="sample-value" for="sample-thickness"></output><input type="range" id="sample-thickness" min="1" max="30" value="10"></label>
+          <label>Versuchszeit <output id="sample-time" for="sample-hour"></output><input type="range" id="sample-hour" min="0" max="8" step="0.25" value="4"></label>
+        </div>
+        <label class="shade-control"><input type="checkbox" id="sample-shade"> Fenster außen beschatten</label>
+      </article>
+      <div class="grid lab-results">
+        <article class="card summer">
+          <h3>☀ Sommer · Wärme draußen halten</h3>
+          <p>Start innen 20 °C · draußen 35 °C</p>
+          <div class="box-result">
+            <div class="cube" aria-hidden="true"><span class="rays">☀ ↘</span><span class="cube-top"></span><span class="cube-side"></span><span class="cube-front"></span><span class="cube-window"></span></div>
+            <div class="reading" id="box-summer"></div>
+          </div>
+          <canvas id="lab-summer" role="img"></canvas>
+        </article>
+        <article class="card winter">
+          <h3>❄ Winter · Wärme drinnen halten</h3>
+          <p>Start innen 20 °C · draußen −15 °C</p>
+          <div class="box-result">
+            <div class="cube" aria-hidden="true"><span class="rays">☀ ↘</span><span class="cube-top"></span><span class="cube-side"></span><span class="cube-front"></span><span class="cube-window"></span></div>
+            <div class="reading" id="box-winter"></div>
+          </div>
+          <canvas id="lab-winter" role="img"></canvas>
+        </article>
+      </div>
+      <p class="note">Gestrichelt: derselbe Würfel ohne zusätzliche Dämmung. Teste auch mit Schatten: Was ändert sich im Sommer?</p>
+    </section>
+
+    <section id="bau" role="tabpanel" aria-labelledby="tab-bau" hidden>
+      <div class="grid">
+        <article class="card house">
+          <div class="house-illustration">
+            <img src="haus.png" alt="Betonhaus mit zwei Südfenstern vorn und einem Ostfenster rechts">
+            <span class="sun-backdrop" aria-hidden="true"></span>
+            <div class="facade facade-south" aria-hidden="true"></div>
+            <div class="facade facade-east" aria-hidden="true"></div>
+            <button type="button" class="shutter shutter-south-left" data-shutter="southLeft" aria-label="Beschattung am linken Südfenster" aria-pressed="false"></button>
+            <button type="button" class="shutter shutter-south-right" data-shutter="southRight" aria-label="Beschattung am rechten Südfenster" aria-pressed="false"></button>
+            <button type="button" class="shutter shutter-east" data-shutter="east" aria-label="Beschattung am Ostfenster" aria-pressed="false"></button>
+          </div>
+          <div class="house-copy">
+            <h2>Dein Betonhaus</h2>
+            <p>10 m breit · 7 m tief · 5 m hoch</p>
+            <p>Fenster: Süden 8 m² · Osten und Westen je 4 m²</p>
+            <p>Klicke auf die Fenster, um die Rollläden zu öffnen oder zu schließen.</p>
+            <p id="facade-material">Außenfläche · Beton</p>
+            <button type="button" class="west-shutter" data-shutter="west" aria-label="Beschattung am Westfenster" aria-pressed="false">Westfenster (verdeckte Seite) · <span>offen</span></button>
+          </div>
+        </article>
+        <article class="card builder">
+          <h2>Deine Fassade</h2>
+          <p>Ziehe Material in die Box oder tippe es an. Maximal 3 Schichten und zusammen 30 cm.</p>
+          <div id="materials" class="materials" aria-label="Material hinzufügen"></div>
+          <div id="wall" class="wall" aria-label="Querschnitt durch die Fassade">
+            <div class="directions"><span>Außen</span><span>Innen</span></div>
+            <div id="layers" class="layers"></div>
+            <div class="concrete">Beton</div>
+            <p id="empty">Material hier ablegen</p>
+          </div>
+          <p id="total" class="total" role="status"></p>
+          <div id="layer-controls" class="layer-controls"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="sommer" role="tabpanel" aria-labelledby="tab-sommer" hidden></section>
+    <section id="winter" role="tabpanel" aria-labelledby="tab-winter" hidden></section>
+
+    <button class="action summary-toggle" id="summary-toggle" type="button" aria-controls="result-summary" aria-expanded="false" hidden>Kurzzusammenfassung anzeigen</button>
+    <dialog class="card result-summary" id="result-summary" aria-labelledby="result-summary-title" hidden>
+      <div class="summary-heading">
+        <h2 id="result-summary-title" tabindex="-1">Deine Kurzzusammenfassung</h2>
+        <button class="summary-close" type="button" aria-label="Kurzzusammenfassung schließen">×</button>
+      </div>
+      <div class="summary-overview">
+        <div class="summary-house"></div>
+        <div>
+          <p id="summary-build"></p>
+          <p id="summary-shutters"></p>
+        </div>
+      </div>
+      <div class="grid" id="summary-days"></div>
+    </dialog>
+
+    <details class="note">
+      <summary>Was steckt im Modell?</summary>
+      <p>Das Haus hat 20 cm dicke Betonwände. Dach, Boden, Fenster und Lüftung bleiben bei allen Entwürfen gleich. Sonnenlicht erwärmt Wände, Dach und Innenraum. Geschlossene Rollläden halten direkte Sonne vor dem Fenster ab. Die Dämmung wirkt nur an den Betonfassaden. Die Wetterkurven und Wärmeleitwerte sind Modellwerte.</p>
+      <p><a href="https://www.lea-hessen.de/media/phi_leawebinar_20250624_steiger_final.pdf">Richtwerte für Dämmstoffe (PDF)</a> · <a href="https://www.fixit.ch/bautrends-loesungen/waermedaemmverbundsystem-wdvs">Aerogel-Dämmplatte</a> · <a href="https://www.ziegel.de/sites/default/files/2023-06/GEG_Leitfaden_2023.pdf">Ziegelmauerwerk (PDF)</a></p>
+    </details>
+  </main>
+
+  <template id="day-template">
+    <form class="card prediction">
+      <label></label>
+      <textarea rows="3" required placeholder="Schreib deine Vermutung auf."></textarea>
+      <button class="action" type="submit">Ergebnis anzeigen</button>
+    </form>
+    <article class="card day" hidden>
+      <h2 tabindex="-1"></h2>
+      <p class="day-intro"></p>
+      <p class="build-summary"></p>
+      <p class="shutter-summary"></p>
+      <div class="metrics"></div>
+      <div class="chart-legend"></div>
+      <canvas role="img"></canvas>
+      <label class="time-control">Uhrzeit <output></output><input type="range" min="0" max="24" step="0.25" value="15"></label>
+    </article>
+  </template>
+</body>
+</html>
