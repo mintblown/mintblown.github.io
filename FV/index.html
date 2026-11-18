@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-gxRoTGrybbjaFTyfPLH8OvrL2rxjZ2hezzPNrWPL5eY='; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-mTP/jEqWbHoI62O4mRYpj6HwCCN6EIyYpXzRpcI78vY='; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'">
 <title>Förderverein · Bilanz</title>
 <style>
 :root{font:100%/1.5 system-ui,sans-serif;color:#182d2a;background:#f3f4ee;--ink:#182d2a;--line:#d7dfd6;--card:#fff;--income:#197057;--expense:#9b4935}
@@ -43,6 +43,7 @@ tfoot th,tfoot td{border-bottom:0;font-weight:750}
 .bar-track{margin-top:.2rem;background:#e9eee8;border-radius:.25rem}
 .bar{width:var(--size);height:.65rem;border-radius:.25rem;background:var(--bar)}
 .balance{background:#e4eee8}
+.balance-outcome{border-top:1px solid #b5c9bc;padding-top:.7rem}
 .balance strong{display:block;font-size:clamp(1.35rem,4vw,2.1rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 @media(max-width:650px){.fields,.grid,.balance{grid-template-columns:1fr}}
 </style>
@@ -83,8 +84,10 @@ tfoot th,tfoot td{border-bottom:0;font-weight:750}
 </template>
 <template id="balance-template">
   <section class="card balance" aria-label="Bilanz und Kontostand">
-    <div>Bilanzsumme <small>(Einnahmen minus Ausgaben)</small><strong></strong></div>
-    <div>Errechneter aktueller Kontostand<strong></strong></div>
+    <div>Gesamteinnahmen<strong data-total="income"></strong></div>
+    <div>Gesamtausgaben<strong data-total="expense"></strong></div>
+    <div class="balance-outcome">Bilanzsumme <small>(Einnahmen minus Ausgaben)</small><strong data-total="net"></strong></div>
+    <div class="balance-outcome">Errechneter aktueller Kontostand<strong data-total="balance"></strong></div>
   </section>
 </template>
 
@@ -289,10 +292,14 @@ function render(balance, data) {
   chartGrid.append(chart("Einnahmen nach Zweck", "income", income, maximum),
     chart("Ausgaben nach Zweck", "expense", expense, maximum));
   const totals = template("balance");
-  const net = sum(income) - sum(expense);
-  const [netText, balanceText] = totals.querySelectorAll("strong");
-  netText.textContent = euro(net);
-  balanceText.textContent = euro(balance + net);
+  const totalIncome = sum(income);
+  const totalExpense = sum(expense);
+  const net = totalIncome - totalExpense;
+  for (const [key, amount] of Object.entries({
+    income: totalIncome, expense: totalExpense, net, balance: balance + net
+  })) {
+    totals.querySelector('[data-total="' + key + '"]').textContent = euro(amount);
+  }
   results.replaceChildren(overviewGrid, chartGrid, totals);
   results.hidden = false;
 }
