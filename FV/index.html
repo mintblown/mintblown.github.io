@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-gxRoTGrybbjaFTyfPLH8OvrL2rxjZ2hezzPNrWPL5eY='; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'">
+<title>Förderverein · Bilanz</title>
+<style>
+:root{font:100%/1.5 system-ui,sans-serif;color:#182d2a;background:#f3f4ee;--ink:#182d2a;--line:#d7dfd6;--card:#fff;--income:#197057;--expense:#9b4935}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0}
+main{width:min(1080px,calc(100% - 2rem));margin:2rem auto 3rem}
+h1,h2,p{margin:0}
+h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;letter-spacing:-.055em}
+h2{font-size:1.25rem;line-height:1.2}
+header p{margin-bottom:.35rem;font-weight:650;color:#476359}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:clamp(1rem,3vw,1.4rem)}
+form{margin:1.35rem 0 1rem}
+.fields,.grid,.balance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+label{display:grid;align-content:start;gap:.3rem;font-weight:650}
+input,button{font:inherit;min-width:0}
+input{width:100%;padding:.5rem;color:var(--ink);background:#f9faf7;border:1px solid #8e9d94;border-radius:.4rem}
+input[type=file]{cursor:pointer}
+small{color:#465a53;font-weight:400}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+button{padding:.55rem .85rem;border:1px solid #1d594a;border-radius:.45rem;background:#1d594a;color:white;cursor:pointer;font-weight:650}
+button[type=reset]{background:white;color:#1d594a}
+:focus-visible{outline:3px solid #166a89;outline-offset:3px}
+.privacy,.status{margin-top:.7rem;font-size:.9rem;color:#465a53}
+.error{color:#9b2f26;margin-top:.7rem}
+.grid+.grid,.balance{margin-top:1rem}
+.income{--bar:var(--income)}
+.expense{--bar:var(--expense)}
+table{width:100%;border-collapse:collapse;margin-top:.65rem}
+th,td{padding:.4rem 0;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+th:last-child,td:last-child{text-align:right;white-space:nowrap;padding-left:.6rem}
+tfoot th,tfoot td{border-bottom:0;font-weight:750}
+.chart{margin:.8rem 0 0;padding:0;list-style:none;display:grid;gap:.55rem}
+.chart li{min-width:0}
+.chart-label{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;overflow-wrap:anywhere}
+.chart-label strong{white-space:nowrap}
+.bar-track{margin-top:.2rem;background:#e9eee8;border-radius:.25rem}
+.bar{width:var(--size);height:.65rem;border-radius:.25rem;background:var(--bar)}
+.balance{background:#e4eee8}
+.balance strong{display:block;font-size:clamp(1.35rem,4vw,2.1rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+@media(max-width:650px){.fields,.grid,.balance{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+  <header><p>Förderverein</p><h1>Bilanz</h1></header>
+  <form id="import" class="card" autocomplete="off">
+    <div class="fields">
+      <label>Startkontostand in Euro
+        <input id="start" type="text" inputmode="decimal" placeholder="z. B. 1.250,00" required>
+      </label>
+      <label>CSV-Datei
+        <input id="file" type="file" accept=".csv,text/csv" aria-describedby="csv-format">
+        <small id="csv-format">Spalten: Datum, Zweck, Betrag. Einnahmen positiv, Ausgaben negativ.</small>
+      </label>
+    </div>
+    <div class="actions"><button type="submit">Bilanz berechnen</button><button type="reset">Daten leeren</button></div>
+    <p class="privacy">Die Datei wird nur in dieser geöffneten Seite ausgewertet. Es werden keine Daten übertragen oder gespeichert.</p>
+    <p id="status" class="status" role="status" hidden></p>
+    <p id="error" class="error" role="alert" hidden></p>
+  </form>
+  <div id="results" hidden></div>
+</main>
+
+<template id="overview-template">
+  <section class="card">
+    <h2></h2>
+    <table>
+      <thead><tr><th scope="col">Zweck</th><th scope="col">Summe</th></tr></thead>
+      <tbody></tbody>
+      <tfoot><tr><th scope="row">Gesamt</th><td></td></tr></tfoot>
+    </table>
+  </section>
+</template>
+<template id="chart-template">
+  <section class="card"><h2></h2><ul class="chart"></ul><p class="status" hidden>Keine Buchungen.</p></section>
+</template>
+<template id="balance-template">
+  <section class="card balance" aria-label="Bilanz und Kontostand">
+    <div>Bilanzsumme <small>(Einnahmen minus Ausgaben)</small><strong></strong></div>
+    <div>Errechneter aktueller Kontostand<strong></strong></div>
+  </section>
+</template>
+
+<script>
+"use strict";
+
+const form = document.getElementById("import");
+const start = document.getElementById("start");
+const fileInput = document.getElementById("file");
+const error = document.getElementById("error");
+const status = document.getElementById("status");
+const results = document.getElementById("results");
+const collator = new Intl.Collator("de");
+let imported = null;
+let revision = 0;
+
+function euro(cents) {
+  const absolute = cents < 0n ? -cents : cents;
+  const euros = (absolute / 100n).toLocaleString("de-DE");
+  return (cents < 0n ? "−" : "") + euros + "," + String(absolute % 100n).padStart(2, "0") + " €";
+}
+
+function readCents(input) {
+  const value = input.trim().replace(/^€\s*|\s*€$/g, "").replace(/\u2212/g, "-");
+  const match = /^([+-]?)([0-9][0-9., \u00a0\u202f]*)$/.exec(value);
+  if (!match) throw new Error("Ungültiger Betrag");
+  const decimal = /[.,]([0-9]{1,2})$/.exec(match[2]);
+  const integer = decimal ? match[2].slice(0, decimal.index) : match[2];
+  const grouping = /^[0-9]{1,3}([., \u00a0\u202f])[0-9]{3}(?:\1[0-9]{3})*$/;
+  if (!/^[0-9]+$/.test(integer) && !grouping.test(integer)) throw new Error("Ungültiger Betrag");
+  if (decimal && integer.includes(decimal[0][0])) throw new Error("Ungültiger Betrag");
+  const cents = BigInt(integer.replace(/[^0-9]/g, "")) * 100n
+    + BigInt(decimal ? decimal[1].padEnd(2, "0") : "0");
+  return match[1] === "-" ? -cents : cents;
+}
+
+function parseCsv(text, separator) {
+  const rows = [];
+  let fields = [];
+  let field = "";
+  let quoted = false;
+  let quoteClosed = false;
+  let line = 1;
+  let rowLine = 1;
+
+  function finishField() {
+    fields.push(field);
+    field = "";
+    quoteClosed = false;
+  }
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (quoted) {
+      if (char === '"' && text[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else if (char === '"') {
+        quoted = false;
+        quoteClosed = true;
+      } else {
+        field += char;
+        if (char === "\n" || (char === "\r" && text[i + 1] !== "\n")) line++;
+      }
+    } else if (char === separator) {
+      finishField();
+    } else if (char === "\r" || char === "\n") {
+      finishField();
+      if (fields.some(value => value.trim())) rows.push({ fields, line: rowLine });
+      fields = [];
+      if (char === "\r" && text[i + 1] === "\n") i++;
+      rowLine = ++line;
+    } else if (char === '"' && !field && !quoteClosed) {
+      quoted = true;
+    } else if (quoteClosed || char === '"') {
+      throw new Error("Zeile " + line + " enthält fehlerhafte Anführungszeichen.");
+    } else {
+      field += char;
+    }
+  }
+  if (quoted) throw new Error("Ein Anführungszeichen wurde ab Zeile " + rowLine + " nicht geschlossen.");
+  finishField();
+  if (fields.some(value => value.trim())) rows.push({ fields, line: rowLine });
+  return rows;
+}
+
+function summarize(text) {
+  text = text.replace(/^\uFEFF/, "");
+  const header = text.split(/\r\n|\n|\r/).find(line => line.trim()) ?? "";
+  let separator;
+  let columns;
+  for (const candidate of [";", ",", "\t"]) {
+    try {
+      const names = parseCsv(header, candidate)[0]?.fields.map(value => value.trim().toLowerCase()) ?? [];
+      if (names.length === 3 && ["datum", "zweck", "betrag"].every(name => names.includes(name))) {
+        separator = candidate;
+        columns = names;
+        break;
+      }
+    } catch {
+      // Only the matching separator can parse a quoted header.
+    }
+  }
+  if (!columns) throw new Error("Die CSV braucht genau die Spalten Datum, Zweck und Betrag.");
+  const rows = parseCsv(text, separator);
+  const dateIndex = columns.indexOf("datum");
+  const purposeIndex = columns.indexOf("zweck");
+  const amountIndex = columns.indexOf("betrag");
+  const income = new Map();
+  const expense = new Map();
+
+  for (const { fields, line } of rows.slice(1)) {
+    const purpose = fields[purposeIndex]?.trim();
+    if (fields.length !== 3 || !fields[dateIndex]?.trim() || !purpose) {
+      throw new Error("Prüfe Datum, Zweck und Betrag in Zeile " + line + ".");
+    }
+    let amount;
+    try {
+      amount = readCents(fields[amountIndex]);
+    } catch {
+      throw new Error("Der Betrag in Zeile " + line + " ist ungültig.");
+    }
+    if (amount === 0n) continue;
+    const group = amount > 0n ? income : expense;
+    group.set(purpose, (group.get(purpose) ?? 0n) + (amount > 0n ? amount : -amount));
+  }
+
+  return { count: rows.length - 1, income: sortGroups(income), expense: sortGroups(expense) };
+}
+
+function sortGroups(groups) {
+  return [...groups].sort(([nameA, a], [nameB, b]) => a === b ? collator.compare(nameA, nameB) : a > b ? -1 : 1);
+}
+
+function element(tag, text) {
+  const node = document.createElement(tag);
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function template(id) {
+  return document.getElementById(id + "-template").content.firstElementChild.cloneNode(true);
+}
+
+function overview(title, groups) {
+  const card = template("overview");
+  card.querySelector("h2").textContent = title;
+  const body = card.querySelector("tbody");
+  for (const [purpose, amount] of groups) {
+    const row = element("tr");
+    row.append(element("td", purpose), element("td", euro(amount)));
+    body.append(row);
+  }
+  if (!groups.length) {
+    const row = element("tr");
+    const cell = element("td", "Keine Buchungen.");
+    cell.colSpan = 2;
+    row.append(cell);
+    body.append(row);
+  }
+  card.querySelector("tfoot td").textContent = euro(sum(groups));
+  return card;
+}
+
+function chart(title, type, groups, maximum) {
+  const card = template("chart");
+  card.classList.add(type);
+  card.querySelector("h2").textContent = title;
+  card.querySelector("p").hidden = groups.length > 0;
+  const list = card.querySelector("ul");
+  for (const [purpose, amount] of groups) {
+    const item = element("li");
+    const label = element("div");
+    label.className = "chart-label";
+    label.append(element("span", purpose), element("strong", euro(amount)));
+    const track = element("div");
+    track.className = "bar-track";
+    track.setAttribute("aria-hidden", "true");
+    const bar = element("div");
+    bar.className = "bar";
+    bar.style.setProperty("--size", Number(amount * 10000n / maximum) / 100 + "%");
+    track.append(bar);
+    item.append(label, track);
+    list.append(item);
+  }
+  return card;
+}
+
+function sum(groups) {
+  return groups.reduce((total, [, amount]) => total + amount, 0n);
+}
+
+function render(balance, data) {
+  const { income, expense } = data;
+  const highestIncome = income[0]?.[1] ?? 0n;
+  const highestExpense = expense[0]?.[1] ?? 0n;
+  const maximum = highestIncome > highestExpense ? highestIncome : highestExpense;
+  const overviewGrid = element("div");
+  overviewGrid.className = "grid";
+  overviewGrid.append(overview("Einnahmen", income), overview("Ausgaben", expense));
+  const chartGrid = element("div");
+  chartGrid.className = "grid";
+  chartGrid.append(chart("Einnahmen nach Zweck", "income", income, maximum),
+    chart("Ausgaben nach Zweck", "expense", expense, maximum));
+  const totals = template("balance");
+  const net = sum(income) - sum(expense);
+  const [netText, balanceText] = totals.querySelectorAll("strong");
+  netText.textContent = euro(net);
+  balanceText.textContent = euro(balance + net);
+  results.replaceChildren(overviewGrid, chartGrid, totals);
+  results.hidden = false;
+}
+
+function clearResults() {
+  results.replaceChildren();
+  results.hidden = true;
+  status.textContent = "";
+  status.hidden = true;
+  error.textContent = "";
+  error.hidden = true;
+}
+
+function forget() {
+  revision++;
+  imported = null;
+  start.value = "";
+  fileInput.value = "";
+  clearResults();
+}
+
+form.addEventListener("reset", forget);
+window.addEventListener("pagehide", forget);
+fileInput.addEventListener("change", () => {
+  revision++;
+  imported = null;
+  clearResults();
+});
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  const attempt = ++revision;
+  clearResults();
+  try {
+    let balance;
+    try {
+      balance = readCents(start.value);
+    } catch {
+      throw new Error("Gib einen gültigen Startkontostand ein, zum Beispiel 1.250,00.");
+    }
+    const file = fileInput.files[0];
+    if (!file && !imported) throw new Error("Wähle zuerst eine CSV-Datei aus.");
+    if (file) {
+      const bytes = await file.arrayBuffer();
+      if (attempt !== revision) return;
+      let text;
+      try {
+        text = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+      } catch {
+        text = new TextDecoder("windows-1252").decode(bytes);
+      }
+      imported = summarize(text);
+      fileInput.value = "";
+    }
+    render(balance, imported);
+    status.hidden = false;
+    status.textContent = imported.count + (imported.count === 1 ? " Buchung eingelesen." : " Buchungen eingelesen.");
+  } catch (failure) {
+    if (attempt !== revision) return;
+    error.hidden = false;
+    error.textContent = failure.message;
+  }
+});
+</script>
+</body>
+</html>
