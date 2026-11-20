@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dein Puls in Bewegung · Biologie Klasse 6</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="puls.css">
+  <script src="puls.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">♥</span> Lernprojekte</a></header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Biologie · Klasse 6 · Kreislauf</p>
+      <h1>Dein Puls in Bewegung</h1>
+      <p>Dein Herz pumpt Blut durch deinen Körper. Am Handgelenk kannst du die Schläge fühlen. Was passiert mit deinem Puls, wenn du hüpfst?</p>
+    </section>
+    <div class="experiment">
+      <section class="panel">
+        <h2>So geht’s</h2>
+        <ol>
+          <li>Setz dich ruhig hin. Lege Zeige- und Mittelfinger auf die Innenseite deines Handgelenks.</li>
+          <li>Starte die erste Messung. Zähle 15 Sekunden lang die Schläge. Trag die Zahl in die erste Zeile ein.</li>
+          <li>Starte die Hüpfzeit. Hüpfe eine Minute auf der Stelle. Setz dich danach wieder hin und zähle sofort deinen Puls.</li>
+          <li>Die Uhr zeigt dir, wann du wieder zählen sollst. Trag jedes Ergebnis in die passende Zeile ein.</li>
+        </ol>
+        <p>Tipp: Zu zweit kann eine Person zählen und die andere auf die Uhr schauen und eintragen.</p>
+        <div class="timer">
+          <p id="phase" role="status">Bereit für die erste Messung</p>
+          <div id="seconds">15 s</div>
+          <button id="start" type="button">Erste Messung starten</button>
+          <button id="reset" type="button" class="secondary" hidden>Uhr neu starten</button>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>Deine Messwerte</h2>
+        <p>Trag ein, wie viele Schläge du in 15 Sekunden zählst. Die Seite nimmt die Zahl mal 4. So erhältst du den Puls pro Minute.</p>
+        <table>
+          <thead><tr><th scope="col">Zeitpunkt</th><th scope="col">Schläge in 15 s</th><th scope="col">Puls pro Minute</th></tr></thead>
+          <tbody id="measurements"></tbody>
+        </table>
+      </section>
+      <section class="panel diagram">
+        <h2>Dein Puls im Diagramm</h2>
+        <p id="chart-note">Sobald du eine Zahl einträgst, erscheint hier ein Punkt.</p>
+        <canvas id="chart" role="img" aria-label="Diagramm der Messwerte aus der Tabelle" hidden></canvas>
+        <p><strong>Schau genau hin.</strong> Wann war dein Puls am höchsten? Wie hat er sich danach verändert?</p>
+      </section>
+    </div>
+  </main>
+  <footer>Biologie · Klasse 6 · <a href="../impressum.html">Impressum</a></footer>
+</body>
+</html>
