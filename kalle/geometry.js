@@ -1,6 +1,6 @@
 'use strict';
 const Geometry = (() => {
-  const width=1000,height=1000,robotSize=100,ballDiameter=40,margin=Math.SQRT2*robotSize/2;
+  const width=2000,height=2000,robotSize=100,ballDiameter=40,margin=Math.SQRT2*robotSize/2;
   const rad=d=>d*Math.PI/180;
   const normalize=d=>((d+180)%360+360)%360-180;
   const distance=(a,b)=>Math.hypot(b.x-a.x,b.y-a.y);

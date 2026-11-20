@@ -22,7 +22,7 @@ async function test(){
  client.device={gatt:{connected:true},removeEventListener(){}};client.rx={writeValueWithResponse:async()=>{}};
  await assert.rejects(client.command('STATUS',{timeout:5}),/Zeitüberschreitung/);
  client.nextId=10000;await assert.rejects(client.command('SCAN'),/Auftrags-IDs/);
- assert.equal(G.width,1000);assert.equal(G.height,1000);
+ assert.equal(G.width,2000);assert.equal(G.height,2000);
  const p=G.scanPoint({x:500,y:500,heading:-90},{angle:0,distance:100});assert(Math.abs(p.x-500)<1e-8&&p.y===380);
  const right=G.scanPoint({x:500,y:500,heading:-90},{angle:90,distance:100});assert.equal(right.x,620);assert.equal(right.y,500);
  console.log('OK: BLE-Pakete, Abschlussmeldungen, Fehler, STOP, Verbindungsabbruch, Timeout, IDs und Scanprojektion.');

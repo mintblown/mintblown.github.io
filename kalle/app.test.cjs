@@ -14,7 +14,7 @@ class FakeBle {
   this.commands.push(body);const id=this.nextId++;options.onAllocated?.(id);
   if(body==='SCAN'){
    this.onMessage({type:'S',id,phase:'BEGIN'});
-   for(let i=0;i<this.sampleCount;i++)if(i!==this.missing)this.onMessage({type:'P',index:i,angle:i*2,distance:150,quality:i===4?1:0});
+   for(let i=0;i<this.sampleCount;i++)if(i!==this.missing)this.onMessage({type:'P',index:i,angle:i*2,distance:i===0?981:i===1?1600:150,quality:i===4?1:0});
    if(!this.dropEnd)this.onMessage({type:'S',id,phase:'END',count:this.sampleCount});
   }
   if(body==='COUNT')this.onMessage({type:'N',id,count:this.sampleCount});
@@ -31,18 +31,18 @@ async function drain(){for(let i=0;i<200;i++){
  }throw Error('GUI did not finish');}
 async function main(){
  const demo=get('scan').onclick();await drain();await demo;
- assert.equal(vm.runInContext('robot.heading',context),-90);assert.equal(vm.runInContext('samples.size',context),180);
+ assert.equal(vm.runInContext('robot.heading',context),-90);assert.equal(vm.runInContext('samples.size',context),180);assert.equal(get('obstacles').children.length,180);
  client.connected=true;get('ble').value='robot';const scan=get('scan').onclick();await drain();await scan;
  assert(!client.commands.some(c=>c.startsWith('GET')));assert.equal(vm.runInContext('samples.size',context),179);assert(vm.runInContext('poseKnown',context));
- assert.equal(get('obstacles').children.length,178);assert.equal(vm.runInContext('robot.heading',context),-90);
+ assert.equal(get('obstacles').children.length,176);assert.match(get('scanInfo').textContent,/2 außerhalb der Fläche ausgeblendet/);assert.equal(vm.runInContext('robot.heading',context),-90);
  client.sampleCount=137;client.dropEnd=true;const recovered=get('scan').onclick();await drain();await recovered;
  assert(!client.commands.includes('COUNT'));assert.equal(vm.runInContext('samples.size',context),136);assert.equal(vm.runInContext('scanExpected',context),null);
  client.sampleCount=650;client.dropEnd=false;const largeScan=get('scan').onclick();await drain();await largeScan;
- assert.equal(vm.runInContext('samples.size',context),649);assert.equal(get('obstacles').children.length,648);
- vm.runInContext(`{const a=G.segment(robot,{x:500,y:300},robot.heading);const b=G.segment(a.end,{x:650,y:300},a.heading);segments=[a,b];render();}`,context);
+ assert.equal(vm.runInContext('samples.size',context),649);assert.equal(get('obstacles').children.length,646);
+ vm.runInContext(`{const a=G.segment(robot,{x:1000,y:800},robot.heading);const b=G.segment(a.end,{x:1150,y:800},a.heading);segments=[a,b];render();}`,context);
  const before=client.commands.length,drive=get('go').onclick();await drain();await drive;
  assert.deepEqual(client.commands.slice(before),['R000DEGR','G200MMF','R090DEGR','G150MMF']);
- assert.equal(vm.runInContext('Math.round(robot.x)',context),650);assert.equal(vm.runInContext('Math.round(robot.y)',context),300);
+ assert.equal(vm.runInContext('Math.round(robot.x)',context),1150);assert.equal(vm.runInContext('Math.round(robot.y)',context),800);
  assert.equal(vm.runInContext('segments.length',context),0); // no stale route replay
  client.disconnect();assert(get('go').disabled);assert.equal(vm.runInContext('poseKnown',context),false);
  console.log('OK: GUI-Demoscan, BLE-Livestream ohne Nachladen, Hindernisse, Ausrichtung, vier sequenzielle Fahrbefehle und Abbruch.');

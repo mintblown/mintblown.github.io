@@ -1,6 +1,7 @@
 'use strict';
 const G=Geometry,$=id=>document.getElementById(id),svg=$('field'),ns='http://www.w3.org/2000/svg';
-let robot={x:500,y:500,heading:-90},origin={...robot},ball=null,segments=[],drag=null;
+const centerPose={x:G.width/2,y:G.height/2,heading:-90};
+let robot={...centerPose},origin={...robot},ball=null,segments=[],drag=null;
 let busy=false,connecting=false,poseKnown=true,epoch=0,cancelAnimation=null,scanState=null,remoteState='IDLE';
 let scanExpected=null;
 let samples=new Map(),scanPose={...robot},scanSummary='Noch kein Scan.';
@@ -18,17 +19,16 @@ function render(){
     el('circle',{cx:s.end.x,cy:s.end.y,r:18,fill:'white',stroke:'#2979ef','stroke-width':5,class:'handle','data-index':i},$('handles'));
     el('text',{x:s.end.x+24,y:s.end.y-24,fill:'#2565af','font-size':24},$('handles')).textContent=String(i+1);start=s.end;
   });
-  $('obstacles').replaceChildren();let minX=-40,minY=-40,maxX=1040,maxY=1040,valid=0,outside=0,invalid=0;
+  $('obstacles').replaceChildren();let visible=0,outside=0,invalid=0;
+  const tolerance=1e-6; // Keep simulated wall hits despite floating-point rounding.
   for(const sample of samples.values()){
     if(sample.quality!==0||sample.distance===0){invalid++;continue;}
-    const p=G.scanPoint(scanPose,sample);valid++;
-    if(p.x< -1e-6||p.x>1000+1e-6||p.y< -1e-6||p.y>1000+1e-6)outside++;
-    minX=Math.min(minX,p.x-30);minY=Math.min(minY,p.y-30);maxX=Math.max(maxX,p.x+30);maxY=Math.max(maxY,p.y+30);
+    const p=G.scanPoint(scanPose,sample);
+    if(p.x< -tolerance||p.x>G.width+tolerance||p.y< -tolerance||p.y>G.height+tolerance){outside++;continue;}
+    visible++;
     const circle=el('circle',{cx:p.x,cy:p.y,r:5,fill:'#d54b68',opacity:.85},$('obstacles'));
     el('title',{},circle).textContent=`${sample.index}: ${sample.distance} mm · ${sample.angle.toFixed(2)}°`;
   }
-  // Keep every valid return visible, including returns outside the 1 m square.
-  svg.setAttribute('viewBox',`${minX} ${minY} ${maxX-minX} ${maxY-minY}`);
   $('go').disabled=busy||connecting||segments.length!==2||!poseKnown||(!demo()&&!ble.connected);
   $('scan').disabled=busy||connecting||(!demo()&&!ble.connected);
   $('stop').disabled=!busy||connecting;
@@ -37,12 +37,12 @@ function render(){
   $('disconnect').disabled=!ble.connected||connecting;
   $('commands').textContent=segments.length===2?G.commands(segments).join('\n'):'Noch keine vollständige Route geplant.';
   $('positions').textContent=`Roboter: x ${Math.round(robot.x)} mm · y ${Math.round(robot.y)} mm\nRichtung: ${Math.round(((robot.heading%360)+360)%360)}° (270° = oben)\n${poseKnown?'Lokale Pose · bei BLE aus Schritten geschätzt':'Pose unsicher · vor der nächsten Fahrt scannen'}\n${ball?'Ball: nur Demo-Zielmarker':'Ball: nicht separat erkannt'}\n${segments.length}/2 Strecken geplant`;
-  $('scanInfo').textContent=`${scanSummary} · ${samples.size}/${scanExpected??"…"} Messwerte · ${valid} Treffer · ${invalid} ungültig${outside?` · ${outside} außerhalb des Felds (Ansicht erweitert)`:''}`;
+  $('scanInfo').textContent=`${scanSummary} · ${samples.size}/${scanExpected??"…"} Messwerte · ${visible} sichtbare Treffer · ${invalid} ungültig${outside?` · ${outside} außerhalb der Fläche ausgeblendet`:''}`;
 }
 function resetDemo(){
   const random=(a,b)=>a+Math.random()*(b-a);
-  robot={x:500,y:500,heading:-90};origin={...robot};poseKnown=true;segments=[];samples.clear();scanState=null;scanExpected=null;
-  do{ball={x:random(100,900),y:random(100,900)};}while(G.distance(robot,ball)<G.margin+20);scanSummary='Demo · noch kein Scan';render();
+  robot={...centerPose};origin={...robot};poseKnown=true;segments=[];samples.clear();scanState=null;scanExpected=null;
+  do{ball={x:random(100,G.width-100),y:random(100,G.height-100)};}while(G.distance(robot,ball)<G.margin+20);scanSummary='Demo · noch kein Scan';render();
 }
 function onMessage(message){
   if(message.type==='T')remoteState=message.state;
@@ -73,7 +73,7 @@ $('connect').onclick=async()=>{
   try{
     const selected=$('ble').value,device=await ble.connect(selected==='demo'||selected==='new'?null:selected);
     addDeviceOption(device);$('ble').value=device.id;
-    robot={x:500,y:500,heading:-90};origin={...robot};ball=null;segments=[];samples.clear();scanExpected=null;poseKnown=false;
+    robot={...centerPose};origin={...robot};ball=null;segments=[];samples.clear();scanExpected=null;poseKnown=false;
     remoteState='UNKNOWN';await ble.command('STATUS',{timeout:10000});
     $('connection').textContent=`Verbunden: ${device.name||'Kalle-FZ'} · ${remoteState}`;
     status('Roboter verbunden. Zuerst Scan ausführen; die Karte wird relativ zur aktuellen Blickrichtung angelegt.');
@@ -142,14 +142,14 @@ $('go').onclick=async()=>{
   finally{if(token===epoch){busy=false;render();}}
 };
 async function scanDemo(token){
-  robot={x:500,y:500,heading:-90};scanPose={...robot};samples.clear();segments=[];scanExpected=180;
+  robot={...centerPose};scanPose={...robot};samples.clear();segments=[];scanExpected=180;
   // Ray intersections with the square and demo ball, with the same sensor offset.
   const demoSamples=[];
   for(let index=0;index<180;index++){
-    const angle=index*2,beta=G.rad(-90+angle),dx=Math.cos(beta),dy=Math.sin(beta),sx=500+20*dx,sy=500+20*dy;
+    const angle=index*2,beta=G.rad(scanPose.heading+angle),dx=Math.cos(beta),dy=Math.sin(beta),sx=scanPose.x+20*dx,sy=scanPose.y+20*dy;
     const distances=[];
-    if(dx>1e-9)distances.push((1000-sx)/dx);if(dx< -1e-9)distances.push(-sx/dx);
-    if(dy>1e-9)distances.push((1000-sy)/dy);if(dy< -1e-9)distances.push(-sy/dy);
+    if(dx>1e-9)distances.push((G.width-sx)/dx);if(dx< -1e-9)distances.push(-sx/dx);
+    if(dy>1e-9)distances.push((G.height-sy)/dy);if(dy< -1e-9)distances.push(-sy/dy);
     if(ball){const bx=sx-ball.x,by=sy-ball.y,b=bx*dx+by*dy,c=bx*bx+by*by-400,discriminant=b*b-c;
       if(discriminant>=0){const hit=-b-Math.sqrt(discriminant);if(hit>0)distances.push(hit);}}
     demoSamples.push({index,angle,distance:Math.min(...distances),quality:0});
@@ -163,7 +163,7 @@ async function scanDemo(token){
 $('scan').onclick=async()=>{
   if(busy||connecting)return;
   const token=++epoch,hardware=ble.connected;busy=true;poseKnown=false;drag=null;segments=[];samples.clear();
-  robot={x:500,y:500,heading:-90};origin={...robot};scanPose={...robot};scanExpected=hardware?null:180;scanSummary=hardware?'BLE-Scan wird gestartet':'Demo-Scan';render();
+  robot={...centerPose};origin={...robot};scanPose={...robot};scanExpected=hardware?null:180;scanSummary=hardware?'BLE-Scan wird gestartet':'Demo-Scan';render();
   try{
     if(hardware){
       ball=null;scanState={id:null,began:false,ended:false,expected:null};
@@ -178,7 +178,7 @@ $('scan').onclick=async()=>{
     if(token!==epoch)return;
     robot.heading=-90;origin={...robot};poseKnown=true;
     if(!hardware)scanSummary='Demo-Scan vollständig';
-    status('Scan beendet. Blickrichtung ist oben; die empfangenen gültigen Entfernungstreffer sind eingezeichnet.');
+    status('Scan beendet. Blickrichtung ist oben; gültige Entfernungstreffer innerhalb der Fläche sind eingezeichnet.');
   }catch(error){if(token===epoch){scanSummary='Scan unvollständig';status(error.message);await haltAfterFailure(hardware,token);}}
   finally{if(token===epoch){scanState=null;busy=false;render();}}
 };
