@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KALL-E · Grid</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f0f4f8; color: #19304a; font: 1rem system-ui, sans-serif; }
+    main { max-width: 900px; margin: auto; padding: 24px 14px; }
+    a { color: #185dbb; }
+    h1 { margin: 8px 0 16px; }
+    section { background: white; border: 1px solid #dbe5ee; border-radius: 18px; padding: clamp(12px, 3vw, 24px); }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    button { font: inherit; }
+    .controls button { border: 1px solid #b7c8d9; border-radius: 8px; padding: 8px 12px; }
+    #drive { background: #185dbb; color: white; border-color: #185dbb; min-width: 76px; }
+    button { cursor: pointer; }
+    #status { margin: 0; }
+    .board { position: relative; aspect-ratio: 4 / 3; border: 1px solid #b7c8d9; background: white; }
+    svg, #points { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+    .point { position: absolute; width: 6.25%; height: 8.333%; border: 0; padding: 0; background: transparent; transform: translate(-50%, -50%); }
+    .point::before { content: ""; display: block; width: 32%; aspect-ratio: 1; margin: auto; border: 1px solid #222; border-radius: 50%; background: var(--point-color); }
+    .point:hover::before, .point:focus-visible::before { outline: 2px solid #185dbb; outline-offset: 2px; }
+    #robot-layer { pointer-events: none; }
+  </style>
+  <script src="grid.js" defer></script>
+</head>
+<body>
+  <main>
+    <nav><a href="uebersicht.html">KALL-E-Übersicht</a> · <a href="index.html">Fahrplanung</a></nav>
+    <h1>Grid</h1>
+    <section aria-label="Roboter-Simulation">
+      <div class="controls">
+        <button id="drive" type="button">Start</button>
+        <button id="reset" type="button">Zurücksetzen</button>
+        <p id="status" role="status">Bereit</p>
+      </div>
+      <p>Klicke auf einen Kreuzungspunkt, um die Farbe zu wechseln. Schwarz fährt geradeaus, Rot biegt rechts ab, Grün links, Gelb hält an und Blau kehrt um.</p>
+      <p id="dimensions">80 × 60 cm · 5 cm Linienabstand · 10 cm weißer Rand · 1 cm/s</p>
+      <div class="board" role="group" aria-label="Fahrfläche" aria-describedby="dimensions">
+        <svg viewBox="0 0 80 60" aria-hidden="true">
+          <path id="lines" fill="none" stroke="#20252a" stroke-width=".23"></path>
+        </svg>
+        <div id="points"></div>
+        <svg id="robot-layer" viewBox="0 0 80 60" role="img" aria-label="Runder Roboter mit Richtungspfeil">
+          <g id="robot">
+            <circle r="1.7" fill="#185dbb" stroke="white" stroke-width=".19"></circle>
+            <path d="M-1 0H.9M.3 -.6L.9 0L.3 .6" fill="none" stroke="white" stroke-width=".25" stroke-linecap="round" stroke-linejoin="round"></path>
+          </g>
+        </svg>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
