@@ -19,7 +19,8 @@
 
     <div class="tabs" role="tablist" aria-label="Versuche">
       <button type="button" role="tab" id="tab-ebene" aria-controls="ebene" aria-selected="true">Ebene Wellen</button>
-      <button type="button" role="tab" id="tab-spalt" aria-controls="spalt" aria-selected="false" tabindex="-1">Beugung am Spalt</button>
+      <button type="button" role="tab" id="tab-spalt-modell" aria-controls="spalt-modell" aria-selected="false" tabindex="-1">Spalt modellieren</button>
+      <button type="button" role="tab" id="tab-spalt" aria-controls="spalt" aria-selected="false" tabindex="-1">Beugung simulieren</button>
       <button type="button" role="tab" id="tab-brechung" aria-controls="brechung" aria-selected="false" tabindex="-1">Brechung konstruieren</button>
     </div>
 
@@ -39,6 +40,61 @@
       </div>
     </section>
 
+    <section id="spalt-modell" role="tabpanel" aria-labelledby="tab-spalt-modell" hidden>
+      <div class="bench">
+        <div class="visual">
+          <canvas id="slit-model" width="480" height="300" role="img" aria-describedby="slit-task" aria-label="Eine ebene Wellenfront trifft auf eine Blende. Im Spalt entstehen halbkreisförmige Elementarwellen, die auch in den geometrischen Schatten reichen."></canvas>
+          <p class="legend"><span class="incoming">Blende</span><span class="incident-front">Einfallende Wellenfront</span><span class="wavelet">Elementarwellen</span><span class="front">Neue Wellenfront</span></p>
+        </div>
+        <div class="controls">
+          <h2>Wie kommt die Welle hinter die Blende?</h2>
+          <p id="slit-task">Die ebene Wellenfront erreicht den Spalt von links. An welchen Stellen können auf der rechten Seite Elementarwellen entstehen? Lass sie wachsen und beschreibe, was an den Spalträndern passiert.</p>
+          <label>Spaltbreite <output id="model-width-value" for="model-width"></output><input id="model-width" type="range" min="0.5" max="4" step="0.1" value="2"></label>
+          <label>Zeit seit Erreichen des Spalts <output id="model-time-value" for="model-time"></output><input id="model-time" type="range" min="0" max="4" step="0.1" value="1.6"></label>
+          <label><input id="model-envelope" type="checkbox"> Neue Wellenfront einblenden</label>
+          <label><input id="model-minima" type="checkbox"> Richtungen der Minima im Fernfeld anzeigen</label>
+          <p id="model-minima-angles" role="status" hidden></p>
+          <details><summary>Erklärung</summary><p>Nur im offenen Spalt tragen Punkte der einfallenden Front zur Ausbreitung rechts der Blende bei. Die vordere Einhüllende der Elementarwellen ist in der Mitte gerade. An den Spalträndern biegt sie in den geometrischen Schatten ab. Verkleinerst du den Spalt, wird der gerade Teil kürzer, sodass die Front stärker einer Kreiswelle ähnelt. Wie stark die Welle in den verschiedenen Richtungen ist, zeigt die Überlagerung in der nächsten Simulation.</p><p>Im Fernfeld sind die Wege zum Beobachtungspunkt annähernd parallel. Bei einem Winkel θ zur Vorwärtsrichtung beträgt der Gangunterschied der beiden Randwellen Δs = b · sin θ. Dabei ist b die Spaltbreite. Für das erste Minimum gilt Δs = λ. Teilt man den Spalt in zwei Hälften, findet jede Quelle in der einen Hälfte eine Partnerquelle im Abstand b/2 in der anderen. Ihr Gangunterschied ist λ/2, sodass sich die beiden Beiträge auslöschen.</p><p>Allgemein gilt für das m-te Minimum Δs = m · λ. Teilt man den Spalt in 2m gleich breite Streifen, löschen sich die Beiträge aus je zwei benachbarten Streifen paarweise aus. Die violetten Linien markieren diese Richtungen. Die gelbe Strecke zeigt den Gangunterschied der Randwellen am ersten Minimum.</p></details>
+        </div>
+      </div>
+      <figure class="visual minimum-sketch">
+        <figcaption>
+          <h2>Erstes Minimum bei einer Spaltbreite von 2λ</h2>
+          <p>Die violetten Strahlen laufen unter 30° zur gestrichelten Vorwärtsrichtung. Sie starten am oberen Rand, in der Mitte und am unteren Rand des Spalts.</p>
+        </figcaption>
+        <svg viewBox="0 0 480 280" role="img" aria-label="Linienskizze zum ersten Minimum. Eine Senkrechte durch den unteren Spaltrand schneidet die beiden anderen Strahlen. Die dadurch markierten gelben Wegstücke entsprechen einer halben und einer ganzen Wellenlänge.">
+          <g stroke="#dfe9f4" stroke-width="5">
+            <line x1="102" y1="14" x2="102" y2="48"/>
+            <line x1="102" y1="200" x2="102" y2="246"/>
+          </g>
+          <line x1="102" y1="124" x2="390" y2="124" stroke="#a5bbce" stroke-dasharray="6 6" stroke-width="2"/>
+          <g stroke="#d3adff" stroke-width="3">
+            <line x1="102" y1="48" x2="405.1" y2="223"/>
+            <line x1="102" y1="124" x2="328.9" y2="255"/>
+            <line x1="102" y1="200" x2="225" y2="271"/>
+          </g>
+          <line x1="102" y1="200" x2="167.8" y2="86" stroke="#dfe9f4" stroke-dasharray="5 4" stroke-width="2"/>
+          <g stroke="#ffe26e" stroke-width="5">
+            <line x1="102" y1="48" x2="167.8" y2="86"/>
+            <line x1="102" y1="124" x2="134.9" y2="143"/>
+          </g>
+          <g fill="#ffe26e" font-family="system-ui, sans-serif" font-size="19" font-weight="600">
+            <text x="142" y="57">λ</text>
+            <text x="144" y="153">λ/2</text>
+          </g>
+          <text x="58" y="124" text-anchor="end" dominant-baseline="middle" fill="#dfe9f4" font-family="system-ui, sans-serif" font-size="19" font-weight="600">2λ</text>
+          <g stroke="#dfe9f4" stroke-width="2">
+            <line x1="73" y1="48" x2="73" y2="200"/>
+            <line x1="66" y1="48" x2="80" y2="48"/>
+            <line x1="66" y1="124" x2="80" y2="124"/>
+            <line x1="66" y1="200" x2="80" y2="200"/>
+          </g>
+        </svg>
+        <p>Die Maßlinie links teilt den Spalt in zwei Hälften der Breite λ. Die schräge gestrichelte Linie steht senkrecht auf den Strahlen. Bis zu ihr legt der obere Strahl λ mehr zurück als der untere. Der mittlere legt λ/2 mehr zurück als der untere.</p>
+        <p>Für jedes Quellenpaar mit Abstand λ gilt derselbe Gangunterschied λ/2. Ein Wellenberg der einen Quelle trifft auf ein Wellental der anderen. So löschen sich die Beiträge der beiden Spalthälften paarweise aus.</p>
+      </figure>
+    </section>
+
     <section id="spalt" role="tabpanel" aria-labelledby="tab-spalt" hidden>
       <div class="bench">
         <div class="visual">
@@ -51,7 +107,9 @@
           <label>Spaltbreite <output id="width-value" for="width"></output><input id="width" type="range" min="0.5" max="4" step="0.1" value="1"></label>
           <button type="button" id="diff-motion" aria-pressed="false">Animation starten</button>
           <label><input id="sources" type="checkbox"> Quellen im Spalt markieren</label>
-          <details><summary>Erklärung</summary><p>Nur die Punkte im offenen Spalt tragen zur Ausbreitung hinter der Blende bei. Dort überlagern sich ihre Elementarwellen wie beim Tonexperiment. Bei einem schmalen Spalt breitet sich die Welle weit in den Schattenraum aus. Bei einem breiten Spalt verstärken sich die Beiträge vor allem nahe der ursprünglichen Ausbreitungsrichtung. Die Farben zeigen die momentane Auslenkung. Für den Vergleich der Wellenformen mittelt das Modell über die Quellen im Spalt.</p></details>
+          <label><input id="diff-minima" type="checkbox"> Richtungen der Minima im Fernfeld anzeigen</label>
+          <p id="diff-minima-angles" role="status" hidden></p>
+          <details><summary>Erklärung</summary><p>Nur die Punkte im offenen Spalt tragen zur Ausbreitung hinter der Blende bei. Dort überlagern sich ihre Elementarwellen wie beim Tonexperiment. Bei einem schmalen Spalt breitet sich die Welle weit in den Schattenraum aus. Bei einem breiten Spalt verstärken sich die Beiträge vor allem nahe der ursprünglichen Ausbreitungsrichtung. Die violetten Linien zeigen die erwarteten Minima im Fernfeld. Vergleiche sie mit den schwachen Bereichen der Simulation. Die Farben zeigen die momentane Auslenkung. Für den Vergleich der Wellenformen mittelt das Modell über die Quellen im Spalt.</p></details>
         </div>
       </div>
     </section>

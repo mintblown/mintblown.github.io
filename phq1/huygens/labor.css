@@ -116,3 +116,15 @@ summary {
 @media (max-width: 760px) {
   .bench { grid-template-columns: 1fr; }
 }
+
+.minimum-sketch {
+  margin: 1rem 0 0;
+}
+
+.minimum-sketch svg {
+  display: block;
+  width: min(100%, 640px);
+  height: auto;
+  border-radius: .5rem;
+  background: #101f32;
+}

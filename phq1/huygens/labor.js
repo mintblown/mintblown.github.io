@@ -62,6 +62,88 @@ byId('time').addEventListener('input', drawPlane);
 byId('envelope').addEventListener('change', drawPlane);
 drawPlane();
 
+function drawMinima(ctx, prefix, barrier, width, halfOpening, showPathDifference = false) {
+  const output = byId(prefix + '-minima-angles');
+  output.hidden = !byId(prefix + '-minima').checked;
+  if (output.hidden) return;
+
+  const center = [barrier, ctx.canvas.height / 2];
+  const violet = '#d3adff';
+  const angles = [];
+  for (let order = 1; order < width; order++) {
+    const theta = Math.asin(order / width);
+    const dx = Math.cos(theta);
+    const dy = Math.sin(theta);
+    angles.push('±' + format.format(theta / degrees) + '° (m = ' + order + ')');
+    for (const sign of [-1, 1]) {
+      line(ctx, center, [barrier + 560 * dx, center[1] + sign * 560 * dy], violet, 2, true);
+    }
+
+    if (order === 1 && showPathDifference) {
+      const upper = [barrier, center[1] - halfOpening];
+      const lower = [barrier, center[1] + halfOpening];
+      const difference = 2 * halfOpening * dy;
+      const projection = [upper[0] + difference * dx, upper[1] + difference * dy];
+      const rayLength = 110;
+      line(ctx, upper, [upper[0] + rayLength * dx, upper[1] + rayLength * dy], violet, 1);
+      line(ctx, lower, [lower[0] + rayLength * dx, lower[1] + rayLength * dy], violet, 1);
+      line(ctx, lower, projection, colors.white, 1, true);
+      line(ctx, upper, projection, '#ffe26e', 4);
+      dot(ctx, projection, '#ffe26e', 3);
+      label(ctx, 'Δs = λ', projection[0] + 9, projection[1] - 8, '#ffe26e');
+    }
+  }
+  const summary = angles.length
+    ? 'Fernfeldminima bei ' + angles.join(' · ')
+    : 'Bei dieser Spaltbreite gibt es zwischen −90° und +90° kein Fernfeldminimum.';
+  if (output.textContent !== summary) output.textContent = summary;
+}
+
+const slitModel = byId('slit-model').getContext('2d');
+
+function drawSlitModel() {
+  const width = Number(byId('model-width').value);
+  const time = Number(byId('model-time').value);
+  const wavelength = 24;
+  const radius = time * wavelength;
+  const barrier = 154;
+  const top = 150 - width * wavelength / 2;
+  const bottom = 150 + width * wavelength / 2;
+  const sources = Math.ceil(width * 3) + 1;
+  byId('model-width-value').value = format.format(width) + ' λ';
+  byId('model-time-value').value = format.format(time) + ' Perioden';
+
+  clear(slitModel);
+  slitModel.fillStyle = '#182d41';
+  slitModel.fillRect(barrier, 0, 480 - barrier, top);
+  slitModel.fillRect(barrier, bottom, 480 - barrier, 300 - bottom);
+  line(slitModel, [barrier, top], [480, top], '#6f879d', 1, true);
+  line(slitModel, [barrier, bottom], [480, bottom], '#6f879d', 1, true);
+  label(slitModel, 'Geometrischer Schatten', 254, 32);
+  arrow(slitModel, [40, 150], [117, 150], colors.green);
+  line(slitModel, [barrier - 7, 24], [barrier - 7, 276], colors.green, 3);
+  line(slitModel, [barrier, 0], [barrier, top], colors.white, 5);
+  line(slitModel, [barrier, bottom], [barrier, 300], colors.white, 5);
+
+  for (let source = 0; source < sources; source++) {
+    const y = top + source / (sources - 1) * (bottom - top);
+    arc(slitModel, [barrier, y], radius, -Math.PI / 2, Math.PI / 2, colors.blue, 1.3);
+    dot(slitModel, [barrier, y], colors.blue, 3);
+  }
+  if (byId('model-envelope').checked) {
+    arc(slitModel, [barrier, top], radius, -Math.PI / 2, 0, colors.gold, 3);
+    line(slitModel, [barrier + radius, top], [barrier + radius, bottom], colors.gold, 3);
+    arc(slitModel, [barrier, bottom], radius, 0, Math.PI / 2, colors.gold, 3);
+  }
+  drawMinima(slitModel, 'model', barrier, width, (bottom - top) / 2, true);
+}
+
+byId('model-width').addEventListener('input', drawSlitModel);
+byId('model-time').addEventListener('input', drawSlitModel);
+byId('model-envelope').addEventListener('change', drawSlitModel);
+byId('model-minima').addEventListener('change', drawSlitModel);
+drawSlitModel();
+
 const diffraction = byId('diffraction').getContext('2d');
 const field = document.createElement('canvas');
 field.width = 240;
@@ -133,6 +215,7 @@ function drawDiffraction() {
       dot(diffraction, [barrier * 2, 150 + ((i + 0.5) / sourceCount - 0.5) * opening * 2], colors.gold, 1.8);
     }
   }
+  drawMinima(diffraction, 'diff', barrier * 2, opening / wavelength, opening);
 }
 
 function animate(now) {
@@ -161,6 +244,7 @@ motion.addEventListener('click', () => {
 });
 byId('width').addEventListener('input', prepareField);
 byId('sources').addEventListener('change', drawDiffraction);
+byId('diff-minima').addEventListener('change', drawDiffraction);
 prepareField();
 
 const refractionCanvas = byId('refraction');
