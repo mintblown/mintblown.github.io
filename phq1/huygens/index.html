@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Das huygenssche Prinzip · Physik Q1</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="labor.css">
+  <script src="labor.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">∿</span> Physik Q1</a></header>
+  <main class="home-main">
+    <section class="hero">
+      <p class="eyebrow">Schwingungen und Wellen</p>
+      <h1>Das huygenssche Prinzip</h1>
+      <p>Bei den Tönen habt ihr gehört, bei der Wellenwanne gesehen, wie sich Wellen überlagern. Jetzt nutzt ihr viele gleichphasige Quellen, um zu erklären, wie sich eine Wellenfront ausbreitet.</p>
+    </section>
+
+    <div class="tabs" role="tablist" aria-label="Versuche">
+      <button type="button" role="tab" id="tab-ebene" aria-controls="ebene" aria-selected="true">Ebene Wellen</button>
+      <button type="button" role="tab" id="tab-spalt" aria-controls="spalt" aria-selected="false" tabindex="-1">Beugung am Spalt</button>
+      <button type="button" role="tab" id="tab-brechung" aria-controls="brechung" aria-selected="false" tabindex="-1">Brechung konstruieren</button>
+    </div>
+
+    <section id="ebene" role="tabpanel" aria-labelledby="tab-ebene">
+      <div class="bench">
+        <div class="visual">
+          <canvas id="plane" width="480" height="300" role="img" aria-label="Eine gerade Wellenfront mit gleichmäßig verteilten Quellen und halbkreisförmigen Elementarwellen."></canvas>
+          <p class="legend"><span class="incoming">Ausgangsfront</span><span class="wavelet">Elementarwellen</span><span class="front">Neue Front</span></p>
+        </div>
+        <div class="controls">
+          <h2>Wie wandert eine gerade Front?</h2>
+          <p>Verändere die vergangene Zeit. Wo müsste eine Gerade liegen, damit sie alle blauen Kreisbögen gerade berührt?</p>
+          <label>Zeit seit der Ausgangsfront <output id="time-value" for="time"></output><input id="time" type="range" min="0" max="100" value="45"></label>
+          <label><input id="envelope" type="checkbox"> Neue Wellenfront einblenden</label>
+          <details><summary>Erklärung</summary><p>Jeder Punkt einer Wellenfront kann als Ausgangspunkt einer Elementarwelle betrachtet werden. In der Wellenwanne sind diese Wellen kreisförmig. Die neue Front ist die vordere Einhüllende der Elementarwellen. Bei einer ebenen Welle bilden die gleich weit gewachsenen Kreise wieder eine gerade Front. Die Zeichnung zeigt ausgewählte Punkte und jeweils die vordere Hälfte der Kreise.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="spalt" role="tabpanel" aria-labelledby="tab-spalt" hidden>
+      <div class="bench">
+        <div class="visual">
+          <canvas id="diffraction" width="480" height="300" role="img" aria-label="Ebene Wellen treffen von links auf einen Spalt. Rechts zeigt die Überlagerung der Elementarwellen das Beugungsmuster."></canvas>
+          <p class="legend"><span class="wavelet">Wellenberge</span><span class="trough">Wellentäler</span><span class="incoming">Blende</span></p>
+        </div>
+        <div class="controls">
+          <h2>Was ändert die Spaltbreite?</h2>
+          <p>Vergleiche einen Spalt von einer halben Wellenlänge mit einem Spalt von vier Wellenlängen. Schau auch in den Bereich seitlich hinter der Blende.</p>
+          <label>Spaltbreite <output id="width-value" for="width"></output><input id="width" type="range" min="0.5" max="4" step="0.1" value="1"></label>
+          <button type="button" id="diff-motion" aria-pressed="false">Animation starten</button>
+          <label><input id="sources" type="checkbox"> Quellen im Spalt markieren</label>
+          <details><summary>Erklärung</summary><p>Nur die Punkte im offenen Spalt tragen zur Ausbreitung hinter der Blende bei. Dort überlagern sich ihre Elementarwellen wie beim Tonexperiment. Bei einem schmalen Spalt breitet sich die Welle weit in den Schattenraum aus. Bei einem breiten Spalt verstärken sich die Beiträge vor allem nahe der ursprünglichen Ausbreitungsrichtung. Die Farben zeigen die momentane Auslenkung. Für den Vergleich der Wellenformen mittelt das Modell über die Quellen im Spalt.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="brechung" role="tabpanel" aria-labelledby="tab-brechung" hidden>
+      <div class="bench">
+        <div class="visual">
+          <canvas id="refraction" width="480" height="340" role="img" aria-label="Brechungskonstruktion. A und B liegen auf der Grenzfläche. Der blaue Griff steuert Radius und Berührpunkt. Die Regler führen dieselbe Konstruktion aus."></canvas>
+          <p class="legend"><span class="incident-front">Einfallende Wellenfront AC</span><span class="wavelet">Elementarwelle um A</span><span class="front">Gebrochene Wellenfront BT</span></p>
+        </div>
+        <div class="controls">
+          <h2>Wie knickt die Welle ab?</h2>
+          <label>Einfallswinkel <output id="angle-value" for="angle"></output><input id="angle" type="range" min="20" max="55" value="40"></label>
+          <label>Geschwindigkeit im zweiten Medium <select id="medium"><option value="0.65">0,65 · langsamer</option><option value="1.2">1,20 · schneller</option></select></label>
+          <p>Von C bis B vergeht genau eine Periodendauer. Die Strecke CB ist die Wellenlänge λ₁ im ersten Medium.</p>
+          <p id="instruction"></p>
+          <label><span id="construct-label">Radius</span><input id="construct" type="range" aria-labelledby="construct-label"></label>
+          <div class="actions"><button type="button" id="check">Prüfen</button><button type="button" id="reset">Zurücksetzen</button></div>
+          <p id="feedback" role="status"></p>
+          <details><summary>Was zeigt die Konstruktion?</summary><p>Während C bis B läuft, breitet sich die Elementarwelle um A im zweiten Medium aus. In derselben Periodendauer legt sie im zweiten Medium genau eine Wellenlänge λ₂ zurück. Deshalb gilt r = λ₂ = λ₁ · (v₂/v₁). Die Gerade durch B, die den Kreis bei T berührt, ist die neue Wellenfront. Die Ausbreitungsrichtung steht senkrecht auf dieser Front. Der Winkel zum Lot wird beim Übergang in das langsamere Medium kleiner und beim Übergang in das schnellere Medium größer.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>Physik Q1 · Schwingungen und Wellen <span class="footer-legal">· <a href="../../impressum.html">Impressum</a></span></footer>
+</body>
+</html>
