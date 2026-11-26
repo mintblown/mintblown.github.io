@@ -6,6 +6,7 @@
   <title>Der elektrische Strom · Elektrik 1</title>
   <link rel="stylesheet" href="style.css">
   <script defer src="circuit.js"></script>
+  <script defer src="schematic.js"></script>
 </head>
 <body>
   <main class="wrap">
@@ -14,6 +15,38 @@
       <p class="eyebrow">Elektrik 1 · Versuch 2</p>
       <h1>Der elektrische Strom</h1>
       <p>Wie bringst du eine Glühlampe mit einem Batteriehalter und zwei Kabeln zum Leuchten?</p>
+    </div>
+    <div class="experiment-tabs" role="tablist" aria-label="Ansichten zum Stromkreis">
+      <button type="button" role="tab" id="bench-tab" aria-selected="true" aria-controls="bench-panel">Grundplatte</button>
+      <button type="button" role="tab" id="schematic-tab" aria-selected="false" aria-controls="schematic-panel" tabindex="-1">Schaltplan</button>
+    </div>
+    <div id="bench-panel" role="tabpanel" aria-labelledby="bench-tab"></div>
+    <div id="schematic-panel" role="tabpanel" aria-labelledby="schematic-tab" hidden>
+      <section aria-labelledby="schematic-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="schematic-heading">Baue einen Schaltplan</h2>
+            <p>Wähle ein Bauteil und dann ein freies Feld. Wähle ein gelegtes Bauteil, um es zu drehen, zu verschieben oder in den Pool zurückzulegen.</p>
+          </div>
+        </div>
+        <div class="workbench">
+          <div class="panel">
+            <h3>Bauteilpool</h3>
+            <div id="schematic-pool" class="schematic-pool" role="group" aria-label="Bauteile im Pool"></div>
+            <div class="schematic-actions">
+              <button type="button" class="action secondary" id="schematic-rotate">↻ Um 90° drehen</button>
+              <button type="button" class="action secondary" id="schematic-return">In den Pool zurücklegen</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div id="schematic-grid" class="schematic-grid" role="group" aria-label="Schaltplanraster mit 5 mal 5 Feldern"></div>
+            <div class="schematic-actions">
+              <button type="button" class="action" id="schematic-power" aria-pressed="false">Simulation einschalten</button>
+            </div>
+            <p class="circuit-status" id="schematic-status" role="status">Simulation ausgeschaltet.</p>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 </body>

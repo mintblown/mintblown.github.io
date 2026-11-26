@@ -13,7 +13,7 @@ const plateRails=[
   ]},
 ];
 
-const main = document.querySelector("main");
+const benchPanel = document.querySelector("#bench-panel");
 
 function circuitPage(){
   const components=[
@@ -25,7 +25,7 @@ function circuitPage(){
   const socketByKey=Object.fromEntries(sockets.map(socket=>[socket.key,socket]));
   const leads=[{name:'Rotes Kabel',color:'#c53243',ends:[]},{name:'Blaues Kabel',color:'#1768b1',ends:[]}];
 
-  main.insertAdjacentHTML('beforeend',`
+  benchPanel.insertAdjacentHTML('beforeend',`
     <section aria-labelledby="circuit-heading">
       <div class="section-head"><div><h2 id="circuit-heading">Virtueller Stromkreis</h2>
       <p>Setze den Batteriehalter oben links und die Glühlampe unten mittig ein. Wähle dann ein Kabel und stecke es in zwei Buchsen. Die Metallleisten verbinden die Buchsen auf der Platte.</p></div></div>
