@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wahrheitstabellen erforschen · Greenhouse Challenge</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="greenhouse.css">
+<script type="module" src="tables.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main class="tables-page">
+<section class="hero">
+<p class="eyebrow">Greenhouse Challenge · IF EF</p>
+<h1>Wahrheitstabellen erforschen</h1>
+<p>Eine Wahrheitstabelle zeigt für jede mögliche Eingangskombination den Ausgang. Füllen Sie die Tabellen für die drei Operatoren aus.</p>
+</section>
+<nav class="lessons" aria-label="Einheiten"><a href="operatoren.html">Operatoren</a> <a href="wahrheitstabellen.html" aria-current="page">Wahrheitstabellen</a> <a href="challenge.html">Challenge</a></nav>
+<section class="panel">
+<h2>Ausgänge vorhersagen</h2>
+<div class="controls">
+<label for="operator">Operator</label>
+<select id="operator" data-operator>
+<option value="and">UND (∧)</option><option value="or">ODER (∨)</option><option value="not">NICHT (¬)</option>
+</select>
+</div>
+<p id="context"></p>
+<p>Tragen Sie für jede Zeile 0 (falsch) oder 1 (wahr) ein und prüfen Sie danach Ihre Tabelle.</p>
+<table><caption id="table-caption"></caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table>
+<button id="check-table" type="button">Tabelle prüfen</button>
+<p id="feedback" class="status" role="status"></p>
+</section>
+<details><summary>Wie entstehen die Zeilen?</summary><p>Schreiben Sie für A zuerst zweimal 0 und dann zweimal 1. B wechselt in jeder Zeile zwischen 0 und 1. So kommt bei zwei Eingängen jede der vier Kombinationen genau einmal vor. NICHT hat nur einen Eingang und daher zwei Zeilen.</p></details>
+</main>
+<footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greenhouse Challenge · Greenhouse Challenge</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="greenhouse.css">
+<script type="module" src="challenge.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main class="challenge-page">
+<section class="hero">
+<p class="eyebrow">Greenhouse Challenge · IF EF</p>
+<h1>Greenhouse Challenge</h1>
+<p>Die Erde ist trocken, der Wassertank ist leer und die Pumpe läuft trotzdem. Entwickeln Sie im Gruppenpuzzle drei Regeln, die solche Fehler verhindern.</p>
+</section>
+<nav class="lessons" aria-label="Einheiten"><a href="operatoren.html">Operatoren</a> <a href="wahrheitstabellen.html">Wahrheitstabellen</a> <a href="challenge.html" aria-current="page">Challenge</a></nav>
+<section class="panel guide">
+<h2>Von der Expertengruppe zur Stammgruppe</h2>
+<p>Gehen Sie in Ihrer Expertengruppe die Saisonereignisse durch. Die Eingänge sind mit 0 (falsch) oder 1 (wahr) angegeben. Tragen Sie für jede Kombination in der Wahrheitstabelle ein, ob das Gerät an oder aus sein soll. Finden Sie dann einen logischen Ausdruck aus den drei Eingängen, der für alle acht Kombinationen einen passenden Ausgang liefert. Begründen Sie Ihre Regel und notieren Sie ihren Code. Geben Sie am Rechner Ihrer Stammgruppe die drei Codes in den passenden Tabs ein und starten Sie die gemeinsame Simulation.</p>
+</section>
+<div class="lab">
+<section class="panel scene-card" aria-labelledby="scene-title">
+<h2 id="scene-title">Tomatengewächshaus</h2>
+<div class="greenhouse" id="greenhouse" aria-hidden="true">
+<img src="gewaechshaus.webp" alt="" width="1050" height="700">
+<div class="lamp"></div><div class="air">≋ ≋</div>
+<div class="rain"><i></i><i></i><i></i></div>
+<div class="plants"><span><i></i></span><span><i></i></span><span><i></i></span></div>
+</div>
+<ul class="devices" id="devices" aria-label="Gerätezustände"></ul>
+<p id="scene-caption"></p>
+</section>
+<section class="panel workbench" aria-label="Steuerungen und Saison">
+<div class="tab-bar" role="tablist" aria-label="Gewächshaussteuerung">
+<button type="button" id="tab-water" role="tab" aria-controls="experiment" aria-selected="true">Bewässerung</button>
+<button type="button" id="tab-air" role="tab" aria-controls="experiment" aria-selected="false" tabindex="-1">Belüftung</button>
+<button type="button" id="tab-light" role="tab" aria-controls="experiment" aria-selected="false" tabindex="-1">Beleuchtung</button>
+<button type="button" id="tab-season" role="tab" aria-controls="season" aria-selected="false" tabindex="-1" disabled>Simulation</button>
+</div>
+<p id="progress" class="progress" role="status"></p>
+<div id="experiment" role="tabpanel" aria-labelledby="tab-water"></div>
+<div id="season" role="tabpanel" aria-labelledby="tab-season" hidden>
+<h2>Von der Pflanzung bis zur Ernte</h2>
+<p>Die Steuerungen reagieren auf wechselnde Bedingungen. Beobachten Sie pro Station, welche Geräte laufen und wo die Pflanzen Stress haben.</p>
+<div class="controls">
+<button type="button" id="start-season">Simulation starten</button>
+<button type="button" class="secondary" id="next-stage" disabled>Nächste Station</button>
+</div>
+<ol class="timeline" id="timeline" aria-label="Saisonverlauf"></ol>
+<div id="stage" aria-live="polite"></div>
+<div id="harvest" hidden>
+<h3>Ihre Tomatenernte</h3>
+<div class="harvest"><div id="fruit" aria-hidden="true">🍅</div><dl id="kpis"></dl></div>
+<p>Die Prozentwerte sind vereinfachte Modellwerte. Sie ergeben sich aus den ausgelösten Geräten und den Stresssituationen im Saisonverlauf.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body>
+</html>

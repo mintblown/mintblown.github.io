@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operatoren entdecken · Greenhouse Challenge</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="greenhouse.css">
+<script type="module" src="operators.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="../../index.html">✳ IF EF · Informatik</a><a href="../../../index.html">Alle Projekte</a></header>
+<main class="operators-page">
+<section class="hero">
+<p class="eyebrow">Greenhouse Challenge · IF EF</p>
+<h1>Operatoren entdecken</h1>
+<p>Wie entscheidet ein Gewächshaus, ob es ein Gerät einschaltet? Verändern Sie die Eingänge und beobachten Sie den Ausgang.</p>
+</section>
+<nav class="lessons" aria-label="Einheiten"><a href="operatoren.html" aria-current="page">Operatoren</a> <a href="wahrheitstabellen.html">Wahrheitstabellen</a> <a href="challenge.html">Challenge</a></nav>
+<section class="panel">
+<h2>Schalten und beobachten</h2>
+<div class="controls">
+<label for="operator">Operator</label>
+<select id="operator" data-operator>
+<option value="and">UND (∧)</option><option value="or">ODER (∨)</option><option value="not">NICHT (¬)</option>
+</select>
+</div>
+<h3 id="example"></h3>
+<div id="switches" class="choices"></div>
+<div class="readout" aria-live="polite"><p class="formula" id="formula"></p><p id="device"></p></div>
+<p id="observation"></p>
+</section>
+<section class="panel">
+<h2>Mathematische Notation</h2>
+<p>Die Buchstaben stehen für Aussagen, die wahr (1) oder falsch (0) sein können.</p>
+<dl class="notation">
+<div><dt>A ∧ B</dt><dd><strong>Konjunktion (UND).</strong> Beide Aussagen sind wahr.</dd></div>
+<div><dt>A ∨ B</dt><dd><strong>Disjunktion (ODER).</strong> Mindestens eine Aussage ist wahr. Beide dürfen wahr sein.</dd></div>
+<div><dt>¬A</dt><dd><strong>Negation (NICHT).</strong> Kehrt den Wahrheitswert von A um.</dd></div>
+</dl>
+</section>
+</main>
+<footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
+</body>
+</html>
