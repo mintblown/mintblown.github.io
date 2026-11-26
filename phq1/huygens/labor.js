@@ -308,11 +308,12 @@ function drawRefraction() {
   }
   if (stage === 'done') {
     const beta = theta;
-    const normalEnd = [T[0], T[1] + 30];
-    line(refraction, T, normalEnd, colors.white, 1, true);
-    arc(refraction, T, 22, Math.PI / 2 - beta, Math.PI / 2, colors.gold, 1);
-    arrow(refraction, T, [T[0] + 33 * Math.sin(beta), T[1] + 33 * Math.cos(beta)], colors.gold);
-    label(refraction, 'β = ' + format.format(beta / degrees) + '°', T[0] + 36, T[1] + 32, colors.gold);
+    const normalLength = 68;
+    line(refraction, T, [T[0], T[1] + normalLength], colors.white, 1.5, true);
+    label(refraction, 'Lot', T[0] - 32, T[1] + normalLength);
+    arrow(refraction, T, [T[0] + 65 * Math.sin(beta), T[1] + 65 * Math.cos(beta)], colors.gold);
+    arc(refraction, T, 34, Math.PI / 2 - beta, Math.PI / 2, colors.gold, 2);
+    label(refraction, 'β', T[0] + 51 * Math.sin(beta / 2) - 5, T[1] + 51 * Math.cos(beta / 2) + 5, colors.gold);
   }
   for (const [name, point, dx, dy] of [['A', A, -20, -10], ['B', B, 8, -8], ['C', C, 7, -8]]) {
     dot(refraction, point, colors.white);
