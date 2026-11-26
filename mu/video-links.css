@@ -1,0 +1,30 @@
+.video-reference {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .9rem;
+  margin-top: .8rem;
+}
+.video-disclosure summary {
+  width: fit-content;
+  color: var(--accent, #126b64);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.video-disclaimer {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: min(34rem, 100%);
+  margin: .4rem 0 0;
+  padding: .55rem .75rem;
+  border: 1px solid #c6d3cd;
+  border-radius: .45rem;
+  background: white;
+  font-size: .9rem;
+}
+
+.video-reference > a { color: var(--accent, #126b64); }
+.project-grid .video-reference { margin: .65rem 0 0 .65rem; }

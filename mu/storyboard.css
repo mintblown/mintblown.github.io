@@ -20,7 +20,6 @@ h2 { margin: 0 0 .65rem; font-size: 1.45rem; }
 p { line-height: 1.55; }
 .subject, .spot { margin: 0; }
 .subject { font-weight: 700; color: var(--accent); }
-.classroom-note { margin: .8rem 0 0; }
 section { margin-top: 2rem; }
 section p { max-width: 70ch; }
 .board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .6rem; }
