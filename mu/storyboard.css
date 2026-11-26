@@ -5,6 +5,8 @@
   background: #f5f8f6;
 }
 .dfb { --accent: #563685; --soft: #eee7f9; }
+.heimkommen { --accent: #813b31; --soft: #f8e8e3; }
+.kassensymphonie { --accent: #245a76; --soft: #e0f0f7; }
 .phantasia { --accent: #006650; --soft: #dff4e9; }
 * { box-sizing: border-box; }
 body { margin: 0; }
@@ -51,7 +53,65 @@ textarea { display: block; width: 100%; margin-top: .65rem; padding: .75rem; fon
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 720px) {
   #cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .timeline { grid-template-columns: 1fr; border-left: 2px solid var(--accent); padding-left: .65rem; }
+  .timeline { grid-template-columns: 1fr; }
   .slot-body .card { max-width: 19rem; }
 }
 @media (prefers-reduced-motion: reduce) { .faces { transition: none; } }
+
+.spot-description { margin: 0 0 1rem; }
+.spot-description summary {
+  display: list-item;
+  width: fit-content;
+  padding: .55rem .8rem;
+  border: 1px solid var(--accent);
+  border-radius: .5rem;
+  background: white;
+  color: var(--accent);
+  font-weight: 650;
+  cursor: pointer;
+}
+.spot-description[open] summary { background: var(--soft); }
+.spot-description p { margin: .65rem 0 0; }
+
+.timeline-layout { display: grid; gap: .65rem; }
+.time-axis {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  color: var(--accent);
+  font-weight: 650;
+}
+.time-arrow {
+  position: relative;
+  flex: 1;
+  border-top: 2px solid currentColor;
+  margin-inline-end: .3rem;
+}
+.time-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -1px;
+  width: .55rem;
+  height: .55rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+#screenshot-note { margin-top: .65rem; }
+@media (max-width: 720px) {
+  .timeline-layout { grid-template-columns: auto minmax(0, 1fr); }
+  .time-axis { flex-direction: column; }
+  .time-arrow {
+    border-top: 0;
+    border-left: 2px solid currentColor;
+    margin: 0 0 .3rem;
+  }
+  .time-arrow::after {
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: -1px;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}

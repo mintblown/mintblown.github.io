@@ -11,7 +11,7 @@
   <header>
     <nav aria-label="Navigation">
       <a href="../index.html">Lernprojekte</a>
-      <a href="phantasia.html">HARIBO Phantasia</a>
+      <a href="werbung.html">Werbung</a>
     </nav>
   </header>
   <main>
@@ -22,17 +22,25 @@
     <section aria-labelledby="scenes-title">
       <h2 id="scenes-title">Szenenkarten</h2>
       <p>Ziehe die Karten in der Reihenfolge des Spots auf die Zeitachse. Tippe oder klicke auf eine Karte, um sie umzudrehen. Mit „Verschieben“ kannst du einen Platz auch direkt auswählen.</p>
+      <details class="spot-description">
+        <summary>Spotbeschreibung</summary>
+        <p>Eine Jugendliche wird nach dem neuen Heimtrikot gefragt und findet es typisch deutsch. Danach greift der Spot Alltagsszenen und Klischees auf, vom Dönerimbiss bis zu Socken in Badelatschen. Die Montage zeigt auch Nationalspieler im weißen Heimtrikot. Den Abschluss des Storyboards bilden Heim- und Auswärtstrikot.</p>
+      </details>
       <div class="board" id="cards" aria-label="Verfügbare Szenenkarten"></div>
     </section>
     <section aria-labelledby="timeline-title">
       <h2 id="timeline-title">Zeitachse</h2>
-      <ol class="board timeline" id="timeline"></ol>
+      <div class="timeline-layout">
+        <div class="time-axis" aria-hidden="true">Zeit<span class="time-arrow"></span></div>
+        <ol class="board timeline" id="timeline"></ol>
+      </div>
     </section>
     <p class="sr-only" id="status" role="status"></p>
     <section aria-labelledby="music-title">
       <h2 id="music-title">Die Rolle der Musik</h2>
       <label for="music">Wie verändert sich die Musik im Spot? Nenne eine Szene und erkläre, wie Musik und Bilder dort zusammenwirken.</label>
-      <textarea id="music" rows="5" placeholder="Schreibe hier deine Beobachtungen auf."></textarea>
+      <textarea id="music" aria-describedby="screenshot-note" rows="5" placeholder="Schreibe hier deine Beobachtungen auf."></textarea>
+      <p id="screenshot-note">Speichere dein fertiges Storyboard zusammen mit deinem Text als Screenshot. Wenn beides nicht auf einen Bildschirm passt, mache mehrere Screenshots.</p>
     </section>
   </main>
 </body>

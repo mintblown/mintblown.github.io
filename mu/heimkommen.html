@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>#heimkommen | Musik in der Werbung</title>
+  <link rel="stylesheet" href="storyboard.css">
+  <script defer src="storyboard.js"></script>
+</head>
+<body class="heimkommen" data-spot="heimkommen">
+  <header>
+    <nav aria-label="Navigation">
+      <a href="../index.html">Lernprojekte</a>
+      <a href="werbung.html">Werbung</a>
+    </nav>
+  </header>
+  <main>
+    <p class="subject">Musik in der Werbung</p>
+    <h1>#heimkommen</h1>
+    <p class="spot">EDEKA · 2015</p>
+    <p class="classroom-note">Den Link zum Werbespot findest du in Classroom.</p>
+    <section aria-labelledby="scenes-title">
+      <h2 id="scenes-title">Szenenkarten</h2>
+      <p>Ziehe die Karten in der Reihenfolge des Spots auf die Zeitachse. Tippe oder klicke auf eine Karte, um sie umzudrehen. Mit „Verschieben“ kannst du einen Platz auch direkt auswählen.</p>
+      <details class="spot-description">
+        <summary>Spotbeschreibung</summary>
+        <p>Ein Vater hört am Telefon, dass ihn seine Familie zu Weihnachten nicht besuchen kann. Er sitzt allein am gedeckten Tisch. Später bekommen seine Kinder die Nachricht, dass er gestorben sei, und reisen zu seinem Haus. Dort finden sie ihn lebendig vor und essen gemeinsam mit ihm.</p>
+      </details>
+      <div class="board" id="cards" aria-label="Verfügbare Szenenkarten"></div>
+    </section>
+    <section aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Zeitachse</h2>
+      <div class="timeline-layout">
+        <div class="time-axis" aria-hidden="true">Zeit<span class="time-arrow"></span></div>
+        <ol class="board timeline" id="timeline"></ol>
+      </div>
+    </section>
+    <p class="sr-only" id="status" role="status"></p>
+    <section aria-labelledby="music-title">
+      <h2 id="music-title">Die Rolle der Musik</h2>
+      <label for="music">Wie verändert die Musik deine Wahrnehmung des allein feiernden Vaters und des Wiedersehens? Beschreibe zwei Stellen im Spot.</label>
+      <textarea id="music" aria-describedby="screenshot-note" rows="5" placeholder="Schreibe hier deine Beobachtungen auf."></textarea>
+      <p id="screenshot-note">Speichere dein fertiges Storyboard zusammen mit deinem Text als Screenshot. Wenn beides nicht auf einen Bildschirm passt, mache mehrere Screenshots.</p>
+    </section>
+  </main>
+</body>
+</html>

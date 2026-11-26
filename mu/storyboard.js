@@ -8,6 +8,20 @@ const scenes = {
     ["Krokodil und Chamäleon", "Die Polizisten reden über tierische Fruchtgummis und lassen ihrer Fantasie freien Lauf."],
     ["Phantasia-Packung", "Die Packung und die Marke stehen im Mittelpunkt des Schlussbilds."]
   ],
+  heimkommen: [
+    ["Nachricht am Telefon", "Der Vater hört eine Nachricht ab. Ein Besuch zu Weihnachten klappt wieder nicht."],
+    ["Allein am Weihnachtstisch", "Der Vater sitzt an Weihnachten allein am gedeckten Tisch."],
+    ["Die Todesnachricht", "Die erwachsenen Kinder erhalten die Nachricht, dass ihr Vater gestorben sei."],
+    ["Ankunft am Haus", "Die Familie reist an und kommt im Haus des Vaters zusammen."],
+    ["Wiedersehen am Tisch", "Der Vater erscheint lebendig. Die Familie bleibt und isst gemeinsam mit ihm."]
+  ],
+  kassensymphonie: [
+    ["Einkauf an der Kasse", "Kundinnen und Kunden warten an den Kassen und legen ihre Einkäufe aufs Band."],
+    ["Das Licht geht aus", "Das Licht im Markt geht aus. Die Wartenden schauen sich überrascht um."],
+    ["Produkte am Scanner", "Beim Scannen der Waren erklingen unterschiedlich hohe Pieptöne."],
+    ["Die Kassen spielen zusammen", "Mehrere Kassen spielen gemeinsam die Melodie von Jingle Bells. Ein Beatboxer steuert den Rhythmus bei."],
+    ["Reaktionen im Markt", "Die Kundinnen und Kunden erleben die Aufführung. Einige lächeln oder klatschen."]
+  ],
   dfb: [
     ["Zwei Jugendliche im Gespräch", "Eine Jugendliche wird nach dem neuen Heimtrikot gefragt. Sie findet es typisch deutsch."],
     ["Fußballfans am Imbiss", "Der Film zeigt einen Dönerimbiss als einen von mehreren Schauplätzen aus dem Alltag."],
