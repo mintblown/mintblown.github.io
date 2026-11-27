@@ -1,0 +1,30 @@
+.blog-lesson { max-width: 820px; padding-bottom: 42px; }
+.blog-tabs:not([hidden]) { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 16px; }
+.blog-tabs button {
+  padding: .65rem .9rem;
+  border: 1px solid #bad8d0;
+  border-radius: 12px;
+  background: white;
+  color: #126b64;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.blog-tabs [aria-selected="true"] { background: #126b64; color: white; border-color: #126b64; }
+.blog-tabs button:focus-visible,
+.blog-entry:focus-visible { outline: 3px solid #d48c50; outline-offset: 3px; }
+.blog-entry {
+  margin-top: 16px;
+  padding: clamp(20px, 5vw, 40px);
+  border: 1px solid #dce5e5;
+  border-radius: 22px;
+  background: white;
+  line-height: 1.65;
+}
+.blog-entry h2 { margin: 0; line-height: 1.2; }
+.blog-entry .byline { margin: .35rem 0 1.3rem; color: #52636c; }
+.blog-entry section { margin-top: 1.5rem; padding: 1rem; border-radius: 12px; background: #e5f3f0; }
+.blog-entry h3, .blog-entry ol { margin: 0; }
+.blog-entry ol { padding-inline-start: 1.4rem; }
+.blog-entry li { margin-top: .55rem; }

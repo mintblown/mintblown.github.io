@@ -48,3 +48,15 @@ footer a { color: #176c68; }
 .legal-content h2 { margin: 0 0 12px; font-size: 1.4rem; }
 .legal-content p { margin: 0 0 12px; }
 .legal-content address { font-style: normal; }
+
+.subject-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.subject-nav a {
+  padding: .55rem .9rem;
+  border-radius: 999px;
+  background: #dfece8;
+  color: #126b64;
+  font-weight: 700;
+}
+.subject-nav a:focus-visible { outline: 3px solid #d48c50; outline-offset: 3px; }
+.subject-projects { padding: 32px 0 0; }
+.subject-projects:last-child { padding-bottom: 64px; }
