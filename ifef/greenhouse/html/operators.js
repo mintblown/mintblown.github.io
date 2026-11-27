@@ -1,5 +1,22 @@
 import { operators } from "./operators-data.js";
 
+document.querySelectorAll(".term-help > button").forEach(term => {
+  term.addEventListener("click", () => term.focus());
+});
+
+const expertGroup = document.querySelector("#expert-group");
+const groupPrompts = document.querySelectorAll("[data-expert-group]");
+
+function showGroupPrompt() {
+  groupPrompts.forEach(prompt => {
+    prompt.hidden = prompt.dataset.expertGroup !== expertGroup.value;
+  });
+}
+
+expertGroup.addEventListener("change", showGroupPrompt);
+showGroupPrompt();
+document.querySelector("#expert-group-controls").hidden = false;
+
 const selector = document.querySelector("[data-operator]");
 const switches = document.querySelector("#switches");
 

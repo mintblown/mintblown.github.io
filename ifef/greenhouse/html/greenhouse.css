@@ -7,6 +7,35 @@
 }
 .lessons a[aria-current="page"] { background: #126b64; color: white; }
 .panel h2:first-child { margin-top: 0; }
+.term-help > button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #126b64;
+  text-decoration: underline dotted;
+  text-underline-offset: .2em;
+  cursor: help;
+}
+.term-definition {
+  position: fixed;
+  z-index: 3;
+  inset-inline: 0;
+  bottom: 1rem;
+  width: max-content;
+  max-width: min(24rem, calc(100% - 2rem));
+  margin-inline: auto;
+  padding: .75rem 1rem;
+  border-radius: .6rem;
+  background: #21313c;
+  color: white;
+  visibility: hidden;
+}
+.term-help > button:focus + .term-definition { visibility: visible; }
+@media (hover: hover) {
+  .term-help > button:hover + .term-definition { visibility: visible; }
+  .operators-page:has(.term-help > button:hover) .term-help > button:focus:not(:hover) + .term-definition { visibility: hidden; }
+}
 .choices { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
 .choice {
   display: inline-flex;

@@ -14,9 +14,66 @@
 <section class="hero">
 <p class="eyebrow">Greenhouse Challenge · IF EF</p>
 <h1>Operatoren entdecken</h1>
-<p>Wie entscheidet ein Gewächshaus, ob es ein Gerät einschaltet? Verändern Sie die Eingänge und beobachten Sie den Ausgang.</p>
+<p>Wie entscheidet ein Gewächshaus, ob es ein Gerät einschaltet? Entwickeln Sie im Gruppenpuzzle eine Schaltregel und erklären Sie sie Ihrer Stammgruppe.</p>
 </section>
-<nav class="lessons" aria-label="Einheiten"><a href="operatoren.html" aria-current="page">Operatoren</a> <a href="wahrheitstabellen.html">Wahrheitstabellen</a> <a href="challenge.html">Challenge</a></nav>
+<nav class="lessons" aria-label="Einheiten"><a href="operatoren.html" aria-current="page">Operatoren</a> <a href="wahrheitstabellen.html">Wahrheitstabellen</a></nav>
+<section class="panel">
+<h2>Gruppenpuzzle im Gewächshaus</h2>
+<h3>In der Stammgruppe (5 Min.)</h3>
+<p>Verteilen Sie die <span class="term-help"><button type="button" aria-describedby="definition-operator">Operatoren</button><span class="term-definition" id="definition-operator" role="tooltip">Ein Operator verknüpft zwei Wahrheitswerte oder kehrt einen Wahrheitswert um.</span></span> UND, ODER und NICHT in Ihrer Stammgruppe. Klären Sie dann gemeinsam, was <span class="term-help"><button type="button" aria-describedby="definition-eingang">Eingang</button><span class="term-definition" id="definition-eingang" role="tooltip">Eine Aussage, die als Bedingung in die Schaltregel eingeht und wahr oder falsch sein kann.</span></span> und <span class="term-help"><button type="button" aria-describedby="definition-ausgang">Ausgang</button><span class="term-definition" id="definition-ausgang" role="tooltip">Das Ergebnis der Schaltregel. Wahr bedeutet, dass das Gerät an sein soll. Falsch bedeutet, dass es aus sein soll.</span></span> bedeuten. Ein Eingang ist eine Aussage über einen Zustand im Gewächshaus und kann wahr oder falsch sein. Mögliche Eingänge sind „Die Erde ist trocken“, „Der Tank ist gefüllt“, „Es ist zu heiß“, „Es ist zu feucht“ und „Es ist hell“. Der Ausgang ist wahr, wenn das Gerät an sein soll, und falsch, wenn es aus sein soll.</p>
+<section>
+<h3>Mathematische Notation</h3>
+<p>Die Buchstaben stehen für Aussagen, die wahr (1) oder falsch (0) sein können.</p>
+<dl class="notation">
+<div><dt>A ∧ B</dt><dd><strong>Konjunktion (UND).</strong> Beide Aussagen sind wahr.</dd></div>
+<div><dt>A ∨ B</dt><dd><strong>Disjunktion (ODER).</strong> Mindestens eine Aussage ist wahr. Beide dürfen wahr sein.</dd></div>
+<div><dt>¬A</dt><dd><strong>Negation (NICHT).</strong> Kehrt den <span class="term-help"><button type="button" aria-describedby="definition-wahrheitswert">Wahrheitswert</button><span class="term-definition" id="definition-wahrheitswert" role="tooltip">Der Wert einer Aussage. Er ist entweder wahr (1) oder falsch (0).</span></span> von A um.</dd></div>
+</dl>
+</section>
+<h3>In der Expertengruppe (15 Min.)</h3>
+<p>Gehen Sie mit den Lernenden zusammen, die denselben Operator übernommen haben. Entwickeln Sie eine <span class="term-help"><button type="button" aria-describedby="definition-schaltregel">Schaltregel</button><span class="term-definition" id="definition-schaltregel" role="tooltip">Eine Regel, die für die Werte der Eingänge festlegt, ob der Ausgang wahr oder falsch ist.</span></span> für die Pumpe, die Lüftung oder eine Lampe. Sie können auch eigene Eingänge wählen.</p>
+<ol>
+<li>Wählen Sie ein Gerät und legen Sie die Eingänge fest. Nennen Sie den ersten Eingang A. Bei UND und ODER brauchen Sie einen zweiten Eingang B. Schreiben Sie für jeden Eingang auf, für welche Aussage er steht.</li>
+<li>Formulieren Sie die Schaltregel zuerst als Satz. Geben Sie an, wann der Ausgang wahr ist. Schreiben Sie dieselbe Regel dann als <span class="term-help"><button type="button" aria-describedby="definition-ausdruck">logischen Ausdruck</button><span class="term-definition" id="definition-ausdruck" role="tooltip">Eine Schreibweise mit Buchstaben für die Eingänge und Zeichen für die Operatoren, zum Beispiel A ∧ B.</span></span> mit Ihrem Operator und den Buchstaben aus Schritt 1.</li>
+<li>Erstellen Sie eine <span class="term-help"><button type="button" aria-describedby="definition-wahrheitstabelle">Wahrheitstabelle</button><span class="term-definition" id="definition-wahrheitstabelle" role="tooltip">Eine Tabelle mit allen möglichen Kombinationen der Eingangswerte und dem zugehörigen Ausgang.</span></span> für Ihre Schaltregel. Legen Sie für jeden Eingang und für den Ausgang je eine Spalte an. Tragen Sie alle Kombinationen aus wahr und falsch ein und bestimmen Sie für jede Zeile den Ausgang. Bei einem Eingang ergeben sich zwei Zeilen, bei zwei Eingängen vier. Auf der Seite <a href="wahrheitstabellen.html">Wahrheitstabellen erforschen</a> können Sie den Aufbau üben.</li>
+<li>Wählen Sie zwei Zeilen der Wahrheitstabelle aus und beschreiben Sie zu jeder eine Situation im Gewächshaus. Nutzen Sie dazu die Leitfrage unten.</li>
+</ol>
+<div id="expert-group-controls" hidden>
+<div class="controls">
+<label for="expert-group">In welcher Expertengruppe arbeitest du?</label>
+<select id="expert-group">
+<option value="">Bitte wählen</option>
+<option value="and">UND (∧)</option>
+<option value="or">ODER (∨)</option>
+<option value="not">NICHT (¬)</option>
+</select>
+</div>
+</div>
+<div data-expert-group="and">
+<h4>UND (∧)</h4>
+<p>Bei welchem Gerät müssen beide Eingänge wahr sein? Vergleichen Sie einen Fall, in dem ein Eingang wahr und der andere falsch ist, mit einem Fall, in dem beide wahr sind.</p>
+<details>
+<summary>Beispielauftrag zur Pumpe</summary>
+<p>Eingang A steht für „Die Erde ist trocken“, Eingang B für „Der Tank ist gefüllt“. Zuerst ist die Erde trocken und der Tank leer. A ist wahr und B ist falsch. Nach dem Auffüllen sind beide Eingänge wahr. In welcher Situation ist der Ausgang „Die Pumpe läuft“ wahr?</p>
+</details>
+</div>
+<div data-expert-group="or">
+<h4>ODER (∨)</h4>
+<p>Bei welchem Gerät reicht jeder der beiden Eingänge für sich aus, wenn er wahr ist? Vergleichen Sie einen Fall, in dem genau ein Eingang wahr ist, mit einem Fall, in dem beide wahr sind.</p>
+<details>
+<summary>Beispielauftrag zur Lüftung</summary>
+<p>Eingang A steht für „Es ist zu heiß“, Eingang B für „Es ist zu feucht“. Am Vormittag ist es zu heiß, die Luftfeuchtigkeit ist noch im grünen Bereich. A ist wahr und B ist falsch. Mittags sind beide Eingänge wahr. Welchen Wahrheitswert hat der Ausgang „Die Lüftung ist an“ in den beiden Situationen?</p>
+</details>
+</div>
+<div data-expert-group="not">
+<h4>NICHT (¬)</h4>
+<p>Welches Gerät soll genau dann an sein, wenn sein Eingang falsch ist? Vergleichen Sie die Fälle, in denen der Eingang wahr oder falsch ist.</p>
+<details>
+<summary>Beispielauftrag zur Lampe</summary>
+<p>Eingang A steht für „Es ist hell“. Tagsüber ist der Eingang wahr, nach Sonnenuntergang ist er falsch. Wann ist der Ausgang „Die Lampe leuchtet“ wahr?</p>
+</details>
+</div>
+</section>
 <section class="panel">
 <h2>Schalten und beobachten</h2>
 <div class="controls">
@@ -31,13 +88,8 @@
 <p id="observation"></p>
 </section>
 <section class="panel">
-<h2>Mathematische Notation</h2>
-<p>Die Buchstaben stehen für Aussagen, die wahr (1) oder falsch (0) sein können.</p>
-<dl class="notation">
-<div><dt>A ∧ B</dt><dd><strong>Konjunktion (UND).</strong> Beide Aussagen sind wahr.</dd></div>
-<div><dt>A ∨ B</dt><dd><strong>Disjunktion (ODER).</strong> Mindestens eine Aussage ist wahr. Beide dürfen wahr sein.</dd></div>
-<div><dt>¬A</dt><dd><strong>Negation (NICHT).</strong> Kehrt den Wahrheitswert von A um.</dd></div>
-</dl>
+<h2>In der Stammgruppe (5 Min.)</h2>
+<p>Kehren Sie in Ihre Stammgruppe zurück. Lesen Sie reihum Ihre Schaltregel als Satz vor und stellen Sie Ihre Eingänge und die beiden Situationen vor. Die anderen sagen voraus, ob der Ausgang jeweils wahr oder falsch ist, und bestimmen den Operator. Zeigen Sie dann Ihren logischen Ausdruck und prüfen Sie die Vorhersagen anhand Ihrer Wahrheitstabelle.</p>
 </section>
 </main>
 <footer>Informatik · Einführungsphase NRW <span class="footer-legal">· <a href="../../../impressum.html">Impressum</a></span></footer>
